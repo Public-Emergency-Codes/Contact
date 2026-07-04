@@ -335,7 +335,7 @@ async function downloadMedia(message: ChatMediaMessage) {
     let saveUri = message.imageUri;
     if (!saveUri.startsWith('file://')) {
       const ext = extensionFromUri(saveUri);
-      const dest = `${FileSystem.cacheDirectory}emessages_${message.id}_${Date.now()}${ext}`;
+      const dest = `${FileSystem.cacheDirectory}contact_${message.id}_${Date.now()}${ext}`;
       await FileSystem.copyAsync({ from: saveUri, to: dest });
       saveUri = dest;
     }

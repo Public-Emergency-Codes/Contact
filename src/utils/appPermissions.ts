@@ -13,7 +13,7 @@ const openLocationPermissionSettings = async () => {
       'android.intent.action.MANAGE_APP_PERMISSION' as any,
       {
         extra: {
-          'android.intent.extra.PACKAGE_NAME': 'com.emessages.app',
+          'android.intent.extra.PACKAGE_NAME': 'com.contact.app',
           'android.intent.extra.PERMISSION_GROUP_NAME': 'android.permission-group.LOCATION',
         },
       }

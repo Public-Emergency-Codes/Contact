@@ -20,7 +20,7 @@ const Text = AppText;
 
 
 interface ExistingContactPrefill { id: string; name: string; number: string; }
-interface Props { visible: boolean; onClose: () => void; onSaved: () => void; initialContact?: ExistingContactPrefill | null; }
+interface Props { visible: boolean; onClose: () => void; onSaved: () => void; initialContact?: ExistingContactPrefill | null; helperText?: string; }
 
 const defaultForm = {
   firstName: '', lastName: '', middleName: '',
@@ -67,7 +67,7 @@ function Section({ icon, label, summary, colors, open, onOpen, children }: {
   );
 }
 
-export default function AddContactModal({ visible, onClose, onSaved, initialContact = null }: Props) {
+export default function AddContactModal({ visible, onClose, onSaved, initialContact = null, helperText }: Props) {
   const { colors } = useTheme();
   const [form, setForm] = useState(defaultForm);
   const [containers, setContainers] = useState<any[]>(PHONE_CONTAINER);
@@ -259,6 +259,12 @@ export default function AddContactModal({ visible, onClose, onSaved, initialCont
               keyboardShouldPersistTaps="handled"
               contentContainerStyle={s.scroll}
             >
+              {helperText ? (
+                <View style={[s.saveToRow, { borderColor: colors.border }]}>
+                  <Ionicons name="information-circle-outline" size={18} color={colors.textSecondary} />
+                  <Text style={[s.saveToTxt, { color: colors.textSecondary, flex: 1 }]}>{helperText}</Text>
+                </View>
+              ) : null}
               {/* Save to — iOS only, Android saves to default account */}
               {Platform.OS === 'ios' && (
                 <TouchableOpacity style={[s.saveToRow, { borderColor: colors.border }]} onPress={() => setShowSaveTo(true)}>

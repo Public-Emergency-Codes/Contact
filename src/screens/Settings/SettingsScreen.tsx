@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import {
   View,
   ScrollView,
@@ -116,7 +116,7 @@ function DevDialer() {
             const dm = NM.DirectSms;
             if (!dm) { Alert.alert('DirectSms module is NULL — native module not loaded'); return; }
             try {
-              const id = await dm.sendSms(savedOverride, '[DEV TEST] Direct SMS from eMessages');
+              const id = await dm.sendSms(savedOverride, '[DEV TEST] Direct SMS from Contact');
               Alert.alert('SMS sent!', `msgId=${id}\nTo: ${savedOverride}`);
             } catch (e: any) {
               Alert.alert('SMS FAILED', e?.message || String(e));

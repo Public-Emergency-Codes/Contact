@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.emessages.app'
+    namespace 'com.contact.app'
     defaultConfig {
-        applicationId 'com.emessages.app'
+        applicationId 'com.contact.app'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -190,7 +190,7 @@ dependencies {
     // Material Components (for BottomSheetDialogFragment in QuickReplyBottomSheet)
     implementation("com.google.android.material:material:1.12.0")
 
-    // Carrier MMS sender used when eMessages is the default SMS app.
+    // Carrier MMS sender used when contact is the default SMS app.
     implementation("com.klinkerapps:android-smsmms:5.2.6")
 
     // Hardware-accelerated video transcoding for carrier-sized MMS payloads.

@@ -8,7 +8,7 @@ const Text = AppText;
 
 export function EmergencyDirectoryPage(props: any) {
   const { screenWidth, styles, emergencyCards, expandedEmergencyId, setExpandedEmergencyId, colors,
-    openE911, e911CardNumber, makeCall, navigateToSmsChat } = props;
+    openE911, e911CardNumber, makeCall, navigateToSmsChat, edit311Contact } = props;
   return (
 <View style={{ width: screenWidth }}>
           <ScrollView contentContainerStyle={styles.emergencyTabList}>
@@ -16,6 +16,8 @@ export function EmergencyDirectoryPage(props: any) {
               const expanded = expandedEmergencyId === item.id;
               const isE911 = item.id === 'e1';
               const smsCapable = ['e4', 'e6'].includes(item.id);
+              const is311 = item.id === 'e5';
+              const callable = item.callable !== false;
               return (
                 <View key={item.id} style={styles.contactCard}>
                   <TouchableOpacity
@@ -49,9 +51,9 @@ export function EmergencyDirectoryPage(props: any) {
                             <Ionicons name="videocam" size={22} color="#fff" />
                           </TouchableOpacity>
                         )}
-                        <TouchableOpacity style={styles.emergencyActionBtn} onPress={() => { if (isE911) { openE911({ source: 'home_emergency_card', emergencyNumber: e911CardNumber, autoInitiateCall: true, startNewSession: true }); } else { makeCall(item.number, item.name); } }}>
+                        {callable && <TouchableOpacity style={styles.emergencyActionBtn} onPress={() => { if (isE911) { openE911({ source: 'home_emergency_card', emergencyNumber: e911CardNumber, autoInitiateCall: true, startNewSession: true }); } else { makeCall(item.number, item.name); } }}>
                           <Ionicons name="call" size={22} color="#fff" />
-                        </TouchableOpacity>
+                        </TouchableOpacity>}
                         {isE911 && (
                           <TouchableOpacity style={styles.emergencyActionBtn} onPress={() => openE911({ source: 'home_emergency_card', emergencyNumber: e911CardNumber, showInitiateCallButton: true })}>
                             <Ionicons name="chatbox" size={22} color="#fff" />
@@ -60,6 +62,11 @@ export function EmergencyDirectoryPage(props: any) {
                         {smsCapable && (
                           <TouchableOpacity style={styles.emergencyActionBtn} onPress={() => navigateToSmsChat(item.number)}>
                             <Ionicons name="chatbox" size={22} color="#fff" />
+                          </TouchableOpacity>
+                        )}
+                        {is311 && (
+                          <TouchableOpacity style={styles.emergencyActionBtn} onPress={edit311Contact} accessibilityLabel="Correct county service number in phone contacts">
+                            <Ionicons name="pencil" size={22} color="#fff" />
                           </TouchableOpacity>
                         )}
                       </View>

@@ -130,7 +130,7 @@ class MainActivity : ReactActivity() {
   }
 
   /**
-   * If the intent carries an sms:/smsto: URI, rewrite it into an communicationsapp://
+   * If the intent carries an sms:/smsto: URI, rewrite it into an contact://
    * deep link so React Native's built-in Linking module picks it up via
    * [Linking.getInitialURL] (cold start) and [Linking.addEventListener]
    * (warm launch).
@@ -142,7 +142,7 @@ class MainActivity : ReactActivity() {
   private fun rewriteToDeepLink(intent: Intent) {
     // 1) Handle share intents from other apps
     if (intent.action == Intent.ACTION_SEND || intent.action == Intent.ACTION_SEND_MULTIPLE) {
-      val sb = StringBuilder("communicationsapp://share?")
+      val sb = StringBuilder("contact://share?")
       val mimeType = intent.type ?: "*/*"
       sb.append("mimeType=").append(Uri.encode(mimeType))
 
@@ -314,7 +314,7 @@ class MainActivity : ReactActivity() {
       ?.substringBefore('?')
       ?.trim()
       ?.takeIf { it.isNotEmpty() } ?: return
-    intent.data = Uri.parse("communicationsapp://sms-compose/${Uri.encode(address)}")
+    intent.data = Uri.parse("contact://sms-compose/${Uri.encode(address)}")
     intent.action = Intent.ACTION_VIEW
   }
 

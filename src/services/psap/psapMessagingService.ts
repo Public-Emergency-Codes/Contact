@@ -31,10 +31,8 @@ const EMERGENCY_OVERRIDE_NUMBER = EMERGENCY_TEST_NUMBER;
 
 const resolvePsapNumber = (psapNumber?: string) => {
   const trimmed = (psapNumber || '').trim();
-  if (__DEV__ && ENFORCE_NON_911_IN_DEV) {
-    if (!trimmed || trimmed === '911') return EMERGENCY_OVERRIDE_NUMBER;
-  }
-  if (!trimmed || trimmed === '911') return EMERGENCY_OVERRIDE_NUMBER;
+  if (!trimmed) return EMERGENCY_OVERRIDE_NUMBER;
+  if (__DEV__ && ENFORCE_NON_911_IN_DEV && trimmed === '911') return EMERGENCY_OVERRIDE_NUMBER;
   return trimmed;
 };
 

@@ -1,7 +1,7 @@
 {
-  "name": "emessages",
+  "name": "contact",
   "version": "1.0.0",
-  "description": "An experimental Android messaging client built with Expo, React Native, and native Kotlin modules.",
+  "description": "An Android phone app that enhances the calling and messaging you already use every day with built-in emergency tools — silent text-to-911, video dispatch, live location, medical-data relay, and routing to 988, 311, and 211. No new workflows to learn.",
   "license": "0BSD",
   "main": "index.ts",
   "scripts": {
@@ -22,8 +22,15 @@
     "android",
     "expo",
     "react-native",
+    "emergency",
+    "911",
+    "988",
+    "311",
+    "211",
+    "phone",
+    "calling",
     "sms",
-    "messaging"
+    "public-safety"
   ],
   "engines": {
     "node": ">=20"

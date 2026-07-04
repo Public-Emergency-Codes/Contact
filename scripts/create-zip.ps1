@@ -56,7 +56,7 @@ $files | Compress-Archive -DestinationPath $dest -Force
 
 if (Test-Path $dest) {
     $sizeMB = [math]::Round((Get-Item $dest).Length / 1MB, 1)
-    Write-Host "Done! e_messages-source.zip - $sizeMB MB"
+    Write-Host "Done! contact-source.zip - $sizeMB MB"
 } else {
     Write-Host "ERROR: Zip was not created"
 }

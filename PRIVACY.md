@@ -1,6 +1,6 @@
 # Privacy and Data Flow
 
-eMessages processes highly sensitive device data. Anyone distributing a build is responsible for reviewing the code, platform disclosures, third-party terms, and applicable law.
+Contact processes highly sensitive device data. Anyone distributing a build is responsible for reviewing the code, platform disclosures, third-party terms, and applicable law.
 
 ## Device data
 

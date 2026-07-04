@@ -11,8 +11,13 @@ export type CountyDirectoryEntry = {
 export type Local311Equivalent = {
   county: string;
   state: string;
-  phone: string;
+  phone: string | null;
   has311: boolean;
+};
+
+const isAvailablePhone = (value: string | null | undefined): value is string => {
+  const normalized = value?.trim().toLowerCase();
+  return !!normalized && normalized !== 'not available';
 };
 
 const STATE_ABBREVIATIONS: Record<string, string> = {
@@ -49,8 +54,7 @@ export function findCountyDirectoryEntry(
 
   return (countyDirectory as CountyDirectoryEntry[]).find((entry) =>
     entry.state.toLowerCase() === targetState &&
-    normalizeCounty(entry.county) === targetCounty &&
-    !!entry.phone?.trim(),
+    normalizeCounty(entry.county) === targetCounty,
   ) || null;
 }
 
@@ -71,7 +75,7 @@ export async function resolveLocal311Equivalent(
   return {
     county: entry.county,
     state: entry.state,
-    phone: entry.phone,
+    phone: isAvailablePhone(entry.phone) ? entry.phone.trim() : null,
     has311: entry.has_311,
   };
 }

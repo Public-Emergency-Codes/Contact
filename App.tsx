@@ -14,15 +14,15 @@ import emergencyHistoryService from './src/services/emergencyHistoryService';
 import locationHistoryService from './src/services/location/locationHistoryService';
 import emergencyLocationService from './src/services/location/emergencyLocationService';
 
-// ── Deep-link: emessages://e911-chat?prefill=...&source=... ─────────────────
+// ── Deep-link: contact://e911-chat?prefill=...&source=... ─────────────────
 type External911Payload = { prefillMessage: string; source?: string };
 type ExternalHomePayload = { initialHomeTab: 'chat' };
 
 function parseEmergencyUrl(url: string): External911Payload | null {
   try {
     const [base, query = ''] = url.split('?');
-    if (!base.toLowerCase().startsWith('emessages://')) return null;
-    const path = base.replace(/^emessages:\/\//i, '').toLowerCase();
+    if (!base.toLowerCase().startsWith('contact://')) return null;
+    const path = base.replace(/^contact:\/\//i, '').toLowerCase();
     if (path !== 'e911-chat' && path !== 'e911') return null;
     const params = new URLSearchParams(query);
     const prefillMessage = decodeURIComponent(
@@ -35,10 +35,10 @@ function parseEmergencyUrl(url: string): External911Payload | null {
   }
 }
 
-// ── Deep-link: emessages://sms-compose/{number} ───────────────────────────
+// ── Deep-link: contact://sms-compose/{number} ───────────────────────────
 function parseSmsComposeUrl(url: string): string | null {
   try {
-    // Match emessages://sms-compose/{number} using simple string search
+    // Match contact://sms-compose/{number} using simple string search
     const marker = 'sms-compose/';
     const idx = url.toLowerCase().indexOf(marker);
     if (idx === -1) return null;
@@ -49,12 +49,12 @@ function parseSmsComposeUrl(url: string): string | null {
   }
 }
 
-// ── Deep-link: emessages://home?tab=chat ─────────────────────────────────
+// ── Deep-link: contact://home?tab=chat ─────────────────────────────────
 function parseHomeUrl(url: string): ExternalHomePayload | null {
   try {
     const [base, query = ''] = url.split('?');
-    if (!base.toLowerCase().startsWith('emessages://')) return null;
-    const path = base.replace(/^emessages:\/\//i, '').toLowerCase();
+    if (!base.toLowerCase().startsWith('contact://')) return null;
+    const path = base.replace(/^contact:\/\//i, '').toLowerCase();
     if (path !== 'home') return null;
     const params = new URLSearchParams(query);
     const tab = (params.get('tab') || '').trim().toLowerCase();
@@ -127,8 +127,8 @@ async function consumeNativePendingShare(): Promise<ExternalSharePayload | null>
 function parseShareUrl(url: string): ExternalSharePayload | null {
   try {
     const [base, query = ''] = url.split('?');
-    if (!base.toLowerCase().startsWith('emessages://')) return null;
-    const path = base.replace(/^emessages:\/\//i, '').toLowerCase();
+    if (!base.toLowerCase().startsWith('contact://')) return null;
+    const path = base.replace(/^contact:\/\//i, '').toLowerCase();
     if (path !== 'share') return null;
     const params = new URLSearchParams(query);
     const mimeType = params.get('mimeType') || '*/*';
@@ -144,9 +144,9 @@ function parseShareUrl(url: string): ExternalSharePayload | null {
 
 function parseReturnToCallUrl(url: string): 'e911' | 'home' | null {
   try {
-    if (!url.toLowerCase().startsWith('emessages://')) return null;
+    if (!url.toLowerCase().startsWith('contact://')) return null;
     const [base, query = ''] = url.split('?');
-    const path = base.replace(/^emessages:\/\//i, '').toLowerCase();
+    const path = base.replace(/^contact:\/\//i, '').toLowerCase();
     if (path !== 'return-to-call') return null;
     const target = new URLSearchParams(query).get('target');
     return target === 'home' ? 'home' : 'e911';

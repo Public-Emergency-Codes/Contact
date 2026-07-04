@@ -69,7 +69,7 @@
       android:name=".MmsDownloadReceiver"
       android:exported="false">
       <intent-filter>
-        <action android:name="com.emessages.app.ACTION_MMS_DOWNLOADED"/>
+        <action android:name="com.contact.app.ACTION_MMS_DOWNLOADED"/>
       </intent-filter>
     </receiver>
 
@@ -108,7 +108,7 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="emessages"/>
+        <data android:scheme="contact"/>
       </intent-filter>
       <intent-filter>
         <action android:name="android.intent.action.SEND"/>
@@ -214,12 +214,6 @@
         <action android:name="android.telecom.InCallService"/>
       </intent-filter>
     </service>
-
-    <service
-        android:name=".E911CallDetectorService"
-        android:enabled="true"
-        android:exported="false"
-        android:foregroundServiceType="location|phoneCall" />
 
     <receiver
       android:name=".InCallNotificationActionReceiver"

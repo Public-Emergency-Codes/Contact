@@ -267,7 +267,7 @@ object ReturnToCallOverlay {
 
         val intent = Intent(context, MainActivity::class.java).apply {
             action = Intent.ACTION_VIEW
-            data = Uri.parse("communicationsapp://return-to-call?target=e911")
+            data = Uri.parse("contact://return-to-call?target=e911")
             addFlags(
                 Intent.FLAG_ACTIVITY_NEW_TASK or
                     Intent.FLAG_ACTIVITY_SINGLE_TOP or

@@ -2,14 +2,14 @@
   {
     "county": "Madison County",
     "state": "Alabama",
-    "phone": "(765) 833-3333",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lee County",
     "state": "Alabama",
-    "phone": "(601) 388-8888",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Morgan County",
@@ -50,8 +50,8 @@
   {
     "county": "St. Clair County",
     "state": "Alabama",
-    "phone": "(715) 833-3333",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lauderdale County",
@@ -644,8 +644,8 @@
   {
     "county": "Boone County",
     "state": "Arkansas",
-    "phone": "(306) 111-1111",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Mississippi County",
@@ -782,8 +782,8 @@
   {
     "county": "Lawrence County",
     "state": "Arkansas",
-    "phone": "(978) 089-3080",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Van Buren County",
@@ -794,8 +794,8 @@
   {
     "county": "Cross County",
     "state": "Arkansas",
-    "phone": "(291) 666-6666",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Arkansas County",
@@ -992,8 +992,8 @@
   {
     "county": "San Joaquin County",
     "state": "California",
-    "phone": "(978) 022-6312",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "San Mateo County",
@@ -1208,7 +1208,7 @@
   {
     "county": "Inyo County",
     "state": "California",
-    "phone": "(583) 333-3333",
+    "phone": "(760) 878-0292",
     "has_311": false
   },
   {
@@ -1382,7 +1382,7 @@
   {
     "county": "Teller County",
     "state": "Colorado",
-    "phone": "(201) 003-2716",
+    "phone": "(719) 689-2988",
     "has_311": false
   },
   {
@@ -1412,8 +1412,8 @@
   {
     "county": "Gunnison County",
     "state": "Colorado",
-    "phone": "(353) 380-6306",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Alamosa County",
@@ -1424,8 +1424,8 @@
   {
     "county": "Pitkin County",
     "state": "Colorado",
-    "phone": "(334) 254-4342",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Grand County",
@@ -1838,8 +1838,8 @@
   {
     "county": "Putnam County",
     "state": "Florida",
-    "phone": "(201) 402-2202",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Columbia County",
@@ -1970,8 +1970,8 @@
   {
     "county": "Lafayette County",
     "state": "Florida",
-    "phone": "(201) 106-0711",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Liberty County",
@@ -2066,14 +2066,14 @@
   {
     "county": "Bibb County",
     "state": "Georgia",
-    "phone": "(732) 836-2443",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Douglas County",
     "state": "Georgia",
-    "phone": "(470) 308-4428",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Carroll County",
@@ -2180,8 +2180,8 @@
   {
     "county": "Walker County",
     "state": "Georgia",
-    "phone": "(615) 725-3666",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Catoosa County",
@@ -2306,8 +2306,8 @@
   {
     "county": "Haralson County",
     "state": "Georgia",
-    "phone": "(201) 106-0712",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Madison County",
@@ -2408,8 +2408,8 @@
   {
     "county": "Tattnall County",
     "state": "Georgia",
-    "phone": "(200) 309-1714",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Putnam County",
@@ -2456,14 +2456,14 @@
   {
     "county": "Banks County",
     "state": "Georgia",
-    "phone": "(418) 525-4953",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lamar County",
     "state": "Georgia",
-    "phone": "(767) 003-3662",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Pike County",
@@ -2510,8 +2510,8 @@
   {
     "county": "Crisp County",
     "state": "Georgia",
-    "phone": "(238) 115-3536",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Appling County",
@@ -2522,14 +2522,14 @@
   {
     "county": "Brantley County",
     "state": "Georgia",
-    "phone": "(397) 193-2216",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Berrien County",
     "state": "Georgia",
-    "phone": "(287) 688-3461",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Rabun County",
@@ -2600,8 +2600,8 @@
   {
     "county": "Crawford County",
     "state": "Georgia",
-    "phone": "(220) 661-3623",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Heard County",
@@ -2642,8 +2642,8 @@
   {
     "county": "Bacon County",
     "state": "Georgia",
-    "phone": "(362) 383-3492",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Evans County",
@@ -2726,8 +2726,8 @@
   {
     "county": "Wilkinson County",
     "state": "Georgia",
-    "phone": "(201) 106-0713",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Montgomery County",
@@ -2744,8 +2744,8 @@
   {
     "county": "Atkinson County",
     "state": "Georgia",
-    "phone": "(322) 006-3463",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lincoln County",
@@ -2756,8 +2756,8 @@
   {
     "county": "Taylor County",
     "state": "Georgia",
-    "phone": "(200) 309-1714",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Marion County",
@@ -2822,8 +2822,8 @@
   {
     "county": "Stewart County",
     "state": "Georgia",
-    "phone": "(703) 867-3551",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Schley County",
@@ -2846,8 +2846,8 @@
   {
     "county": "Clay County",
     "state": "Georgia",
-    "phone": "(201) 509-0508",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Baker County",
@@ -2906,8 +2906,8 @@
   {
     "county": "Ada County",
     "state": "Idaho",
-    "phone": "(561) 492-4811",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Canyon County",
@@ -2924,8 +2924,8 @@
   {
     "county": "Bonneville County",
     "state": "Idaho",
-    "phone": "(451) 397-4803",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Twin Falls County",
@@ -2942,8 +2942,8 @@
   {
     "county": "Madison County",
     "state": "Idaho",
-    "phone": "(201) 107-1702",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bonner County",
@@ -3020,8 +3020,8 @@
   {
     "county": "Owyhee County",
     "state": "Idaho",
-    "phone": "(288) 497-8105",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Gooding County",
@@ -3032,8 +3032,8 @@
   {
     "county": "Fremont County",
     "state": "Idaho",
-    "phone": "(461) 659-4896",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Shoshone County",
@@ -3080,8 +3080,8 @@
   {
     "county": "Benewah County",
     "state": "Idaho",
-    "phone": "(201) 106-0614",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Clearwater County",
@@ -3122,8 +3122,8 @@
   {
     "county": "Lincoln County",
     "state": "Idaho",
-    "phone": "(931) 433-2454",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Oneida County",
@@ -3230,8 +3230,8 @@
   {
     "county": "Rock Island County",
     "state": "Illinois",
-    "phone": "(884) 444-4444",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Tazewell County",
@@ -3326,7 +3326,7 @@
   {
     "county": "Macoupin County",
     "state": "Illinois",
-    "phone": "(328) 888-8888",
+    "phone": "(217) 854-3181",
     "has_311": false
   },
   {
@@ -3362,7 +3362,7 @@
   {
     "county": "Effingham County",
     "state": "Illinois",
-    "phone": "(328) 888-8888",
+    "phone": "(217) 342-6535",
     "has_311": false
   },
   {
@@ -3404,8 +3404,8 @@
   {
     "county": "Logan County",
     "state": "Illinois",
-    "phone": "(298) 924-4444",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Iroquois County",
@@ -3620,8 +3620,8 @@
   {
     "county": "Schuyler County",
     "state": "Illinois",
-    "phone": "(703) 543-4448",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Brown County",
@@ -3740,8 +3740,8 @@
   {
     "county": "Vanderburgh County",
     "state": "Indiana",
-    "phone": "(217) 777-7777",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Porter County",
@@ -3782,14 +3782,14 @@
   {
     "county": "Hancock County",
     "state": "Indiana",
-    "phone": "(328) 888-8888",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bartholomew County",
     "state": "Indiana",
-    "phone": "(551) 111-1111",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Howard County",
@@ -3806,8 +3806,8 @@
   {
     "county": "Kosciusko County",
     "state": "Indiana",
-    "phone": "(777) 777-7777",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Boone County",
@@ -3842,8 +3842,8 @@
   {
     "county": "Henry County",
     "state": "Indiana",
-    "phone": "(724) 465-3805",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Noble County",
@@ -3866,8 +3866,8 @@
   {
     "county": "DeKalb County",
     "state": "Indiana",
-    "phone": "(366) 944-4444",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dubois County",
@@ -3890,14 +3890,14 @@
   {
     "county": "Montgomery County",
     "state": "Indiana",
-    "phone": "(509) 384-4432",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Putnam County",
     "state": "Indiana",
-    "phone": "(777) 777-7777",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Cass County",
@@ -3920,8 +3920,8 @@
   {
     "county": "Knox County",
     "state": "Indiana",
-    "phone": "(849) 413-7836",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Whitley County",
@@ -3938,8 +3938,8 @@
   {
     "county": "Miami County",
     "state": "Indiana",
-    "phone": "(580) 174-4513",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Daviess County",
@@ -3986,8 +3986,8 @@
   {
     "county": "Wells County",
     "state": "Indiana",
-    "phone": "(701) 547-3122",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Washington County",
@@ -4076,8 +4076,8 @@
   {
     "county": "Perry County",
     "state": "Indiana",
-    "phone": "(666) 666-6666",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Fountain County",
@@ -4316,8 +4316,8 @@
   {
     "county": "Benton County",
     "state": "Iowa",
-    "phone": "(700) 135-6123",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Plymouth County",
@@ -4352,8 +4352,8 @@
   {
     "county": "Buchanan County",
     "state": "Iowa",
-    "phone": "(471) 944-4444",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Buena Vista County",
@@ -4406,8 +4406,8 @@
   {
     "county": "Madison County",
     "state": "Iowa",
-    "phone": "(700) 129-3555",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Clayton County",
@@ -4688,8 +4688,8 @@
   {
     "county": "Fremont County",
     "state": "Iowa",
-    "phone": "(551) 652-0359",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Osceola County",
@@ -5054,8 +5054,8 @@
   {
     "county": "Ottawa County",
     "state": "Kansas",
-    "phone": "(666) 666-6666",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Gray County",
@@ -5066,8 +5066,8 @@
   {
     "county": "Mitchell County",
     "state": "Kansas",
-    "phone": "(200) 208-0222",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Washington County",
@@ -5534,8 +5534,8 @@
   {
     "county": "Taylor County",
     "state": "Kentucky",
-    "phone": "(201) 408-1221",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Perry County",
@@ -5690,8 +5690,8 @@
   {
     "county": "Mason County",
     "state": "Kentucky",
-    "phone": "(201) 408-1221",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Henry County",
@@ -5714,8 +5714,8 @@
   {
     "county": "Fleming County",
     "state": "Kentucky",
-    "phone": "(711) 703-0950",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lawrence County",
@@ -5750,8 +5750,8 @@
   {
     "county": "Estill County",
     "state": "Kentucky",
-    "phone": "(239) 000-4175",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Knott County",
@@ -5846,8 +5846,8 @@
   {
     "county": "Magoffin County",
     "state": "Kentucky",
-    "phone": "(201) 809-2218",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Martin County",
@@ -5882,8 +5882,8 @@
   {
     "county": "McLean County",
     "state": "Kentucky",
-    "phone": "(477) 028-4153",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hancock County",
@@ -5894,14 +5894,14 @@
   {
     "county": "Livingston County",
     "state": "Kentucky",
-    "phone": "(978) 072-2249",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Gallatin County",
     "state": "Kentucky",
-    "phone": "(685) 940-4292",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Crittenden County",
@@ -6050,8 +6050,8 @@
   {
     "county": "Rapides Parish",
     "state": "Louisiana",
-    "phone": "(201) 309-2815",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Terrebonne Parish",
@@ -6236,8 +6236,8 @@
   {
     "county": "Pointe Coupee Parish",
     "state": "Louisiana",
-    "phone": "(201) 309-2815",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Franklin Parish",
@@ -6302,8 +6302,8 @@
   {
     "county": "St. Helena Parish",
     "state": "Louisiana",
-    "phone": "(643) 454-7912",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Caldwell Parish",
@@ -6314,8 +6314,8 @@
   {
     "county": "West Carroll Parish",
     "state": "Louisiana",
-    "phone": "(201) 309-2815",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Madison Parish",
@@ -6344,8 +6344,8 @@
   {
     "county": "Cameron Parish",
     "state": "Louisiana",
-    "phone": "(201) 901-1618",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Tensas Parish",
@@ -6398,8 +6398,8 @@
   {
     "county": "Hancock County",
     "state": "Maine",
-    "phone": "(700) 136-8311",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Somerset County",
@@ -6566,8 +6566,8 @@
   {
     "county": "Middlesex County",
     "state": "Massachusetts",
-    "phone": "(700) 162-4610",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Worcester County",
@@ -6698,8 +6698,8 @@
   {
     "county": "Muskegon County",
     "state": "Michigan",
-    "phone": "(201) 311-1302",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "St. Clair County",
@@ -6782,8 +6782,8 @@
   {
     "county": "Marquette County",
     "state": "Michigan",
-    "phone": "(608) 297-9136",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Shiawassee County",
@@ -6812,8 +6812,8 @@
   {
     "county": "St. Joseph County",
     "state": "Michigan",
-    "phone": "(201) 311-1302",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Tuscola County",
@@ -6836,8 +6836,8 @@
   {
     "county": "Branch County",
     "state": "Michigan",
-    "phone": "(201) 509-0601",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hillsdale County",
@@ -6866,8 +6866,8 @@
   {
     "county": "Houghton County",
     "state": "Michigan",
-    "phone": "(906) 482-0055",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Delta County",
@@ -6878,8 +6878,8 @@
   {
     "county": "Chippewa County",
     "state": "Michigan",
-    "phone": "(906) 635-6330",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wexford County",
@@ -6908,8 +6908,8 @@
   {
     "county": "Mason County",
     "state": "Michigan",
-    "phone": "(201) 201-0701",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Alpena County",
@@ -6944,8 +6944,8 @@
   {
     "county": "Dickinson County",
     "state": "Michigan",
-    "phone": "(906) 774-2266",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Cheboygan County",
@@ -6992,8 +6992,8 @@
   {
     "county": "Menominee County",
     "state": "Michigan",
-    "phone": "(906) 863-9968",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Ogemaw County",
@@ -7016,8 +7016,8 @@
   {
     "county": "Keweenaw County",
     "state": "Michigan",
-    "phone": "(906) 337-1610",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Missaukee County",
@@ -7034,8 +7034,8 @@
   {
     "county": "Gogebic County",
     "state": "Michigan",
-    "phone": "(285) 844-5151",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Crawford County",
@@ -7058,20 +7058,20 @@
   {
     "county": "Alger County",
     "state": "Michigan",
-    "phone": "(906) 387-3879",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Iron County",
     "state": "Michigan",
-    "phone": "(906) 875-0619",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Mackinac County",
     "state": "Michigan",
-    "phone": "(906) 643-7300",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Alcona County",
@@ -7088,32 +7088,32 @@
   {
     "county": "Ontonagon County",
     "state": "Michigan",
-    "phone": "(906) 884-2865",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Oscoda County",
     "state": "Michigan",
-    "phone": "(201) 003-2716",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Schoolcraft County",
     "state": "Michigan",
-    "phone": "(906) 341-3630",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Baraga County",
     "state": "Michigan",
-    "phone": "(906) 524-6100",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Luce County",
     "state": "Michigan",
-    "phone": "(906) 293-3204",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Ramsey County",
@@ -7160,8 +7160,8 @@
   {
     "county": "Scott County",
     "state": "Minnesota",
-    "phone": "(901) 476-0207",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wright County",
@@ -7286,7 +7286,7 @@
   {
     "county": "McLeod County",
     "state": "Minnesota",
-    "phone": "(201) 206-2020",
+    "phone": "(320) 864-5551",
     "has_311": false
   },
   {
@@ -7352,8 +7352,8 @@
   {
     "county": "Lyon County",
     "state": "Minnesota",
-    "phone": "(201) 905-2104",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Brown County",
@@ -7400,8 +7400,8 @@
   {
     "county": "Martin County",
     "state": "Minnesota",
-    "phone": "(201) 905-2104",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Waseca County",
@@ -7574,8 +7574,8 @@
   {
     "county": "Grant County",
     "state": "Minnesota",
-    "phone": "(731) 811-5090",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lincoln County",
@@ -7604,8 +7604,8 @@
   {
     "county": "Red Lake County",
     "state": "Minnesota",
-    "phone": "(201) 206-2020",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lake of the Woods County",
@@ -7616,8 +7616,8 @@
   {
     "county": "Traverse County",
     "state": "Minnesota",
-    "phone": "(201) 410-0610",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Harrison County",
@@ -7658,8 +7658,8 @@
   {
     "county": "Forrest County",
     "state": "Mississippi",
-    "phone": "(201) 802-2816",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lauderdale County",
@@ -7778,8 +7778,8 @@
   {
     "county": "Union County",
     "state": "Mississippi",
-    "phone": "(870) 762-2332",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bolivar County",
@@ -7814,8 +7814,8 @@
   {
     "county": "Simpson County",
     "state": "Mississippi",
-    "phone": "(201) 309-2807",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Prentiss County",
@@ -7826,8 +7826,8 @@
   {
     "county": "Itawamba County",
     "state": "Mississippi",
-    "phone": "(374) 816-3794",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Marion County",
@@ -8078,14 +8078,14 @@
   {
     "county": "Issaquena County",
     "state": "Mississippi",
-    "phone": "(688) 331-3624",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Saint Louis County",
     "state": "Missouri",
-    "phone": "(201) 104-1809",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "St. Charles County",
@@ -8108,8 +8108,8 @@
   {
     "county": "Clay County",
     "state": "Missouri",
-    "phone": "(385) 468-7400",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Boone County",
@@ -8126,14 +8126,14 @@
   {
     "county": "Cass County",
     "state": "Missouri",
-    "phone": "(382) 525-4278",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Platte County",
     "state": "Missouri",
-    "phone": "(201) 503-2419",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Christian County",
@@ -8234,8 +8234,8 @@
   {
     "county": "Howell County",
     "state": "Missouri",
-    "phone": "(732) 938-4500",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lawrence County",
@@ -8252,8 +8252,8 @@
   {
     "county": "Scott County",
     "state": "Missouri",
-    "phone": "(201) 310-2117",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Laclede County",
@@ -8354,8 +8354,8 @@
   {
     "county": "Saline County",
     "state": "Missouri",
-    "phone": "(201) 908-0211",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Crawford County",
@@ -8390,8 +8390,8 @@
   {
     "county": "Nodaway County",
     "state": "Missouri",
-    "phone": "(340) 365-4469",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Vernon County",
@@ -8408,8 +8408,8 @@
   {
     "county": "Perry County",
     "state": "Missouri",
-    "phone": "(978) 162-3760",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Ste. Genevieve County",
@@ -8450,8 +8450,8 @@
   {
     "county": "Macon County",
     "state": "Missouri",
-    "phone": "(201) 310-2117",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "New Madrid County",
@@ -8474,8 +8474,8 @@
   {
     "county": "Livingston County",
     "state": "Missouri",
-    "phone": "(601) 660-6468",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dent County",
@@ -8510,7 +8510,7 @@
   {
     "county": "Mississippi County",
     "state": "Missouri",
-    "phone": "(201) 710-2306",
+    "phone": "(573) 683-2146",
     "has_311": false
   },
   {
@@ -8594,8 +8594,8 @@
   {
     "county": "Hickory County",
     "state": "Missouri",
-    "phone": "(471) 882-4199",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Caldwell County",
@@ -8648,8 +8648,8 @@
   {
     "county": "Shannon County",
     "state": "Missouri",
-    "phone": "(200) 812-2223",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Gentry County",
@@ -8702,8 +8702,8 @@
   {
     "county": "Schuyler County",
     "state": "Missouri",
-    "phone": "(201) 310-2117",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Knox County",
@@ -8732,8 +8732,8 @@
   {
     "county": "Gallatin County",
     "state": "Montana",
-    "phone": "(486) 733-5045",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Missoula County",
@@ -8744,8 +8744,8 @@
   {
     "county": "Flathead County",
     "state": "Montana",
-    "phone": "(721) 035-5352",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Cascade County",
@@ -8774,8 +8774,8 @@
   {
     "county": "Lake County",
     "state": "Montana",
-    "phone": "(718) 529-5281",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lincoln County",
@@ -8888,19 +8888,19 @@
   {
     "county": "Madison County",
     "state": "Montana",
-    "phone": "(427) 869-5016",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Deer Lodge County",
     "state": "Montana",
-    "phone": "(346) 442-5109",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Stillwater County",
     "state": "Montana",
-    "phone": "(978) 073-8574",
+    "phone": "(406) 322-8010",
     "has_311": false
   },
   {
@@ -8930,8 +8930,8 @@
   {
     "county": "Powell County",
     "state": "Montana",
-    "phone": "(352) 100-5190",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "McCone County",
@@ -9014,8 +9014,8 @@
   {
     "county": "Fallon County",
     "state": "Montana",
-    "phone": "(545) 396-5133",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Liberty County",
@@ -9038,8 +9038,8 @@
   {
     "county": "Golden Valley County",
     "state": "Montana",
-    "phone": "(701) 872-3713",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Treasure County",
@@ -9140,8 +9140,8 @@
   {
     "county": "Gage County",
     "state": "Nebraska",
-    "phone": "(200) 301-0521",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dakota County",
@@ -9302,8 +9302,8 @@
   {
     "county": "Burt County",
     "state": "Nebraska",
-    "phone": "(200) 912-1222",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Howard County",
@@ -9326,8 +9326,8 @@
   {
     "county": "Clay County",
     "state": "Nebraska",
-    "phone": "(580) 474-4485",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Stanton County",
@@ -9470,8 +9470,8 @@
   {
     "county": "Pawnee County",
     "state": "Nebraska",
-    "phone": "(735) 161-4445",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hitchcock County",
@@ -9536,14 +9536,14 @@
   {
     "county": "Deuel County",
     "state": "Nebraska",
-    "phone": "(605) 874-2120",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Arthur County",
     "state": "Nebraska",
-    "phone": "(200) 807-0406",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Banner County",
@@ -9716,8 +9716,8 @@
   {
     "county": "Carroll County",
     "state": "New Hampshire",
-    "phone": "(324) 571-4854",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Sullivan County",
@@ -9770,8 +9770,8 @@
   {
     "county": "Union County",
     "state": "New Jersey",
-    "phone": "(666) 666-6666",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Camden County",
@@ -9830,7 +9830,7 @@
   {
     "county": "Sussex County",
     "state": "New Jersey",
-    "phone": "(202) 002-1216",
+    "phone": "(973) 579-0200",
     "has_311": false
   },
   {
@@ -9908,8 +9908,8 @@
   {
     "county": "Chaves County",
     "state": "New Mexico",
-    "phone": "(549) 309-3691",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Eddy County",
@@ -9944,8 +9944,8 @@
   {
     "county": "Cibola County",
     "state": "New Mexico",
-    "phone": "(226) 849-3868",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "San Miguel County",
@@ -9974,8 +9974,8 @@
   {
     "county": "Roosevelt County",
     "state": "New Mexico",
-    "phone": "(640) 342-3765",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Catron County",
@@ -10004,8 +10004,8 @@
   {
     "county": "Sierra County",
     "state": "New Mexico",
-    "phone": "(901) 476-0207",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Union County",
@@ -10070,8 +10070,8 @@
   {
     "county": "Nassau County",
     "state": "New York",
-    "phone": "(614) 976-4511",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Richmond County",
@@ -10094,8 +10094,8 @@
   {
     "county": "Albany County",
     "state": "New York",
-    "phone": "(594) 323-4723",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dutchess County",
@@ -10142,7 +10142,7 @@
   {
     "county": "Rensselaer County",
     "state": "New York",
-    "phone": "(623) 656-4729",
+    "phone": "(518) 266-1900",
     "has_311": false
   },
   {
@@ -10172,8 +10172,8 @@
   {
     "county": "Tompkins County",
     "state": "New York",
-    "phone": "(379) 118-4700",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Putnam County",
@@ -10184,14 +10184,14 @@
   {
     "county": "Steuben County",
     "state": "New York",
-    "phone": "(302) 868-4681",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Sullivan County",
     "state": "New York",
-    "phone": "(519) 963-4618",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Chemung County",
@@ -10202,20 +10202,20 @@
   {
     "county": "Clinton County",
     "state": "New York",
-    "phone": "(604) 506-4954",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Cattaraugus County",
     "state": "New York",
-    "phone": "(694) 897-4678",
+    "phone": "(716) 701-3599",
     "has_311": false
   },
   {
     "county": "Cayuga County",
     "state": "New York",
-    "phone": "(372) 031-4762",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Madison County",
@@ -10226,8 +10226,8 @@
   {
     "county": "Warren County",
     "state": "New York",
-    "phone": "(408) 882-2700",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Livingston County",
@@ -10262,14 +10262,14 @@
   {
     "county": "Genesee County",
     "state": "New York",
-    "phone": "(729) 045-4764",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Montgomery County",
     "state": "New York",
-    "phone": "(545) 711-4750",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Tioga County",
@@ -10280,8 +10280,8 @@
   {
     "county": "Greene County",
     "state": "New York",
-    "phone": "(571) 724-4682",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Allegany County",
@@ -10310,14 +10310,14 @@
   {
     "county": "Orleans County",
     "state": "New York",
-    "phone": "(724) 424-4805",
+    "phone": "(585) 589-7000",
     "has_311": false
   },
   {
     "county": "Wyoming County",
     "state": "New York",
-    "phone": "(738) 667-4746",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Essex County",
@@ -10340,8 +10340,8 @@
   {
     "county": "Lewis County",
     "state": "New York",
-    "phone": "(463) 795-4848",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Yates County",
@@ -10412,8 +10412,8 @@
   {
     "county": "Gaston County",
     "state": "North Carolina",
-    "phone": "(202) 010-2204",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "New Hanover County",
@@ -10466,8 +10466,8 @@
   {
     "county": "Harnett County",
     "state": "North Carolina",
-    "phone": "(693) 502-3916",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Randolph County",
@@ -10532,14 +10532,14 @@
   {
     "county": "Chatham County",
     "state": "North Carolina",
-    "phone": "(201) 306-2204",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wilson County",
     "state": "North Carolina",
-    "phone": "(235) 797-3954",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Caldwell County",
@@ -10556,8 +10556,8 @@
   {
     "county": "Pender County",
     "state": "North Carolina",
-    "phone": "(234) 680-3822",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Carteret County",
@@ -10586,8 +10586,8 @@
   {
     "county": "Rutherford County",
     "state": "North Carolina",
-    "phone": "(416) 458-3917",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Haywood County",
@@ -10622,8 +10622,8 @@
   {
     "county": "Watauga County",
     "state": "North Carolina",
-    "phone": "(436) 203-4010",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Duplin County",
@@ -10664,14 +10664,14 @@
   {
     "county": "McDowell County",
     "state": "North Carolina",
-    "phone": "(404) 983-3948",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Beaufort County",
     "state": "North Carolina",
-    "phone": "(201) 207-1222",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Vance County",
@@ -10682,8 +10682,8 @@
   {
     "county": "Pasquotank County",
     "state": "North Carolina",
-    "phone": "(386) 825-4014",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Richmond County",
@@ -10718,8 +10718,8 @@
   {
     "county": "Alexander County",
     "state": "North Carolina",
-    "phone": "(282) 211-6495",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Transylvania County",
@@ -10730,8 +10730,8 @@
   {
     "county": "Scotland County",
     "state": "North Carolina",
-    "phone": "(638) 978-3856",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Currituck County",
@@ -10790,8 +10790,8 @@
   {
     "county": "Greene County",
     "state": "North Carolina",
-    "phone": "(201) 105-3121",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Polk County",
@@ -10862,8 +10862,8 @@
   {
     "county": "Pamlico County",
     "state": "North Carolina",
-    "phone": "(347) 881-3890",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Clay County",
@@ -10976,7 +10976,7 @@
   {
     "county": "McKenzie County",
     "state": "North Dakota",
-    "phone": "(619) 703-5288",
+    "phone": "(701) 444-3616",
     "has_311": false
   },
   {
@@ -10988,8 +10988,8 @@
   {
     "county": "Ramsey County",
     "state": "North Dakota",
-    "phone": "(651) 266-8000",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Barnes County",
@@ -11060,8 +11060,8 @@
   {
     "county": "McHenry County",
     "state": "North Dakota",
-    "phone": "(378) 719-5343",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dickey County",
@@ -11096,8 +11096,8 @@
   {
     "county": "Pierce County",
     "state": "North Dakota",
-    "phone": "(428) 238-5343",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wells County",
@@ -11138,13 +11138,13 @@
   {
     "county": "Slope County",
     "state": "North Dakota",
-    "phone": "(618) 095-5144",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bowman County",
     "state": "North Dakota",
-    "phone": "(615) 458-5107",
+    "phone": "(701) 523-3130",
     "has_311": false
   },
   {
@@ -11180,8 +11180,8 @@
   {
     "county": "Golden Valley County",
     "state": "North Dakota",
-    "phone": "(587) 939-5199",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Logan County",
@@ -11198,8 +11198,8 @@
   {
     "county": "McIntosh County",
     "state": "North Dakota",
-    "phone": "(467) 814-5106",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Sheridan County",
@@ -11276,8 +11276,8 @@
   {
     "county": "Warren County",
     "state": "Ohio",
-    "phone": "(515) 690-9180",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Delaware County",
@@ -11288,8 +11288,8 @@
   {
     "county": "Lake County",
     "state": "Ohio",
-    "phone": "(847) 377-3600",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Mahoning County",
@@ -11330,8 +11330,8 @@
   {
     "county": "Fairfield County",
     "state": "Ohio",
-    "phone": "(360) 354-4401",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Portage County",
@@ -11342,8 +11342,8 @@
   {
     "county": "Wood County",
     "state": "Ohio",
-    "phone": "(270) 276-3904",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Richland County",
@@ -11372,8 +11372,8 @@
   {
     "county": "Ashtabula County",
     "state": "Ohio",
-    "phone": "(519) 910-4637",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Geauga County",
@@ -11438,14 +11438,14 @@
   {
     "county": "Athens County",
     "state": "Ohio",
-    "phone": "(409) 502-4353",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Pickaway County",
     "state": "Ohio",
-    "phone": "(325) 806-4389",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Sandusky County",
@@ -11480,8 +11480,8 @@
   {
     "county": "Ashland County",
     "state": "Ohio",
-    "phone": "(392) 932-4521",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Darke County",
@@ -11498,14 +11498,14 @@
   {
     "county": "Logan County",
     "state": "Ohio",
-    "phone": "(264) 889-4474",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Auglaize County",
     "state": "Ohio",
-    "phone": "(735) 365-4493",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Holmes County",
@@ -11516,14 +11516,14 @@
   {
     "county": "Brown County",
     "state": "Ohio",
-    "phone": "(251) 215-4312",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Highland County",
     "state": "Ohio",
-    "phone": "(275) 417-4339",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Mercer County",
@@ -11546,8 +11546,8 @@
   {
     "county": "Preble County",
     "state": "Ohio",
-    "phone": "(701) 364-4401",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Ottawa County",
@@ -11576,14 +11576,14 @@
   {
     "county": "Coshocton County",
     "state": "Ohio",
-    "phone": "(421) 813-4461",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Williams County",
     "state": "Ohio",
-    "phone": "(701) 425-4604",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Morrow County",
@@ -11600,8 +11600,8 @@
   {
     "county": "Putnam County",
     "state": "Ohio",
-    "phone": "(741) 313-4544",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hardin County",
@@ -11630,8 +11630,8 @@
   {
     "county": "Henry County",
     "state": "Ohio",
-    "phone": "(745) 198-4579",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hocking County",
@@ -11648,8 +11648,8 @@
   {
     "county": "Carroll County",
     "state": "Ohio",
-    "phone": "(492) 383-4492",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Meigs County",
@@ -11750,8 +11750,8 @@
   {
     "county": "Muskogee County",
     "state": "Oklahoma",
-    "phone": "(284) 425-3943",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Garfield County",
@@ -11786,8 +11786,8 @@
   {
     "county": "LeFlore County",
     "state": "Oklahoma",
-    "phone": "(344) 676-3863",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "McClain County",
@@ -11864,8 +11864,8 @@
   {
     "county": "Lincoln County",
     "state": "Oklahoma",
-    "phone": "(691) 806-3952",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "McCurtain County",
@@ -11948,8 +11948,8 @@
   {
     "county": "Kingfisher County",
     "state": "Oklahoma",
-    "phone": "(595) 609-3977",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Atoka County",
@@ -12098,8 +12098,8 @@
   {
     "county": "Cimarron County",
     "state": "Oklahoma",
-    "phone": "(721) 430-4068",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dewey County",
@@ -12164,8 +12164,8 @@
   {
     "county": "Deschutes County",
     "state": "Oregon",
-    "phone": "(642) 926-4863",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Linn County",
@@ -12212,8 +12212,8 @@
   {
     "county": "Klamath County",
     "state": "Oregon",
-    "phone": "(610) 606-4726",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Coos County",
@@ -12242,26 +12242,26 @@
   {
     "county": "Malheur County",
     "state": "Oregon",
-    "phone": "(448) 825-4784",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Crook County",
     "state": "Oregon",
-    "phone": "(711) 199-4889",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Tillamook County",
     "state": "Oregon",
-    "phone": "(445) 273-5034",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wasco County",
     "state": "Oregon",
-    "phone": "(644) 616-5002",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Harney County",
@@ -12302,8 +12302,8 @@
   {
     "county": "Morrow County",
     "state": "Oregon",
-    "phone": "(298) 931-5032",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Grant County",
@@ -12338,7 +12338,7 @@
   {
     "county": "Montgomery County",
     "state": "Pennsylvania",
-    "phone": "(468) 514-4451",
+    "phone": "(610) 278-3000",
     "has_311": false
   },
   {
@@ -12356,8 +12356,8 @@
   {
     "county": "Lancaster County",
     "state": "Pennsylvania",
-    "phone": "(393) 361-4432",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Chester County",
@@ -12368,14 +12368,14 @@
   {
     "county": "York County",
     "state": "Pennsylvania",
-    "phone": "(352) 152-4420",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Berks County",
     "state": "Pennsylvania",
-    "phone": "(421) 103-4474",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lehigh County",
@@ -12410,8 +12410,8 @@
   {
     "county": "Cumberland County",
     "state": "Pennsylvania",
-    "phone": "(306) 706-4449",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lackawanna County",
@@ -12422,8 +12422,8 @@
   {
     "county": "Washington County",
     "state": "Pennsylvania",
-    "phone": "(563) 842-4449",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Butler County",
@@ -12494,8 +12494,8 @@
   {
     "county": "Lawrence County",
     "state": "Pennsylvania",
-    "phone": "(556) 357-4537",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Indiana County",
@@ -12506,8 +12506,8 @@
   {
     "county": "Crawford County",
     "state": "Pennsylvania",
-    "phone": "(574) 076-4614",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Clearfield County",
@@ -12542,7 +12542,7 @@
   {
     "county": "Pike County",
     "state": "Pennsylvania",
-    "phone": "(497) 490-4575",
+    "phone": "(570) 296-7613",
     "has_311": false
   },
   {
@@ -12554,8 +12554,8 @@
   {
     "county": "Venango County",
     "state": "Pennsylvania",
-    "phone": "(603) 654-4583",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bedford County",
@@ -12566,8 +12566,8 @@
   {
     "county": "Perry County",
     "state": "Pennsylvania",
-    "phone": "(307) 361-4474",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Mifflin County",
@@ -12584,8 +12584,8 @@
   {
     "county": "Union County",
     "state": "Pennsylvania",
-    "phone": "(326) 641-4536",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Tioga County",
@@ -12626,26 +12626,26 @@
   {
     "county": "Clarion County",
     "state": "Pennsylvania",
-    "phone": "(632) 500-4561",
+    "phone": "(814) 226-4000",
     "has_311": false
   },
   {
     "county": "Greene County",
     "state": "Pennsylvania",
-    "phone": "(566) 717-4412",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Elk County",
     "state": "Pennsylvania",
-    "phone": "(696) 386-4588",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wyoming County",
     "state": "Pennsylvania",
-    "phone": "(414) 894-4596",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Juniata County",
@@ -12662,13 +12662,13 @@
   {
     "county": "Potter County",
     "state": "Pennsylvania",
-    "phone": "(258) 842-4624",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Forest County",
     "state": "Pennsylvania",
-    "phone": "(646) 852-4597",
+    "phone": "(814) 755-3537",
     "has_311": false
   },
   {
@@ -12680,8 +12680,8 @@
   {
     "county": "Cameron County",
     "state": "Pennsylvania",
-    "phone": "(733) 923-4591",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Kent County",
@@ -12998,8 +12998,8 @@
   {
     "county": "Lincoln County",
     "state": "South Dakota",
-    "phone": "(684) 996-4794",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Brookings County",
@@ -13016,14 +13016,14 @@
   {
     "county": "Meade County",
     "state": "South Dakota",
-    "phone": "(681) 833-4937",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Codington County",
     "state": "South Dakota",
-    "phone": "(643) 494-4982",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lawrence County",
@@ -13034,7 +13034,7 @@
   {
     "county": "Yankton County",
     "state": "South Dakota",
-    "phone": "(631) 208-4763",
+    "phone": "(605) 260-4400",
     "has_311": false
   },
   {
@@ -13058,14 +13058,14 @@
   {
     "county": "Union County",
     "state": "South Dakota",
-    "phone": "(692) 076-4744",
+    "phone": "(605) 356-2644",
     "has_311": false
   },
   {
     "county": "Clay County",
     "state": "South Dakota",
-    "phone": "(664) 835-4753",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Oglala Lakota County",
@@ -13076,14 +13076,14 @@
   {
     "county": "Lake County",
     "state": "South Dakota",
-    "phone": "(650) 678-4875",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Butte County",
     "state": "South Dakota",
-    "phone": "(530) 538-7691",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Roberts County",
@@ -13094,8 +13094,8 @@
   {
     "county": "Custer County",
     "state": "South Dakota",
-    "phone": "(624) 131-4837",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Turner County",
@@ -13130,20 +13130,20 @@
   {
     "county": "Perkins County",
     "state": "South Dakota",
-    "phone": "(696) 879-5041",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hutchinson County",
     "state": "South Dakota",
-    "phone": "(601) 322-4799",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bon Homme County",
     "state": "South Dakota",
-    "phone": "(591) 305-4760",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Harding County",
@@ -13154,8 +13154,8 @@
   {
     "county": "Hamlin County",
     "state": "South Dakota",
-    "phone": "(642) 655-4948",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Moody County",
@@ -13202,8 +13202,8 @@
   {
     "county": "Kingsbury County",
     "state": "South Dakota",
-    "phone": "(620) 308-4914",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Brule County",
@@ -13214,8 +13214,8 @@
   {
     "county": "Walworth County",
     "state": "South Dakota",
-    "phone": "(262) 741-4241",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Ziebach County",
@@ -13226,8 +13226,8 @@
   {
     "county": "Haakon County",
     "state": "South Dakota",
-    "phone": "(298) 183-4908",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Marshall County",
@@ -13268,8 +13268,8 @@
   {
     "county": "Hand County",
     "state": "South Dakota",
-    "phone": "(500) 000-4932",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hanson County",
@@ -13280,8 +13280,8 @@
   {
     "county": "Mellette County",
     "state": "South Dakota",
-    "phone": "(358) 291-4826",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bennett County",
@@ -13298,8 +13298,8 @@
   {
     "county": "Douglas County",
     "state": "South Dakota",
-    "phone": "(551) 834-4804",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Aurora County",
@@ -13310,7 +13310,7 @@
   {
     "county": "Sully County",
     "state": "South Dakota",
-    "phone": "(410) 399-4952",
+    "phone": "(605) 258-2884",
     "has_311": false
   },
   {
@@ -13334,14 +13334,14 @@
   {
     "county": "Potter County",
     "state": "South Dakota",
-    "phone": "(425) 204-4990",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Miner County",
     "state": "South Dakota",
-    "phone": "(611) 553-4875",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hyde County",
@@ -13358,14 +13358,14 @@
   {
     "county": "Jerauld County",
     "state": "South Dakota",
-    "phone": "(530) 180-4878",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Buffalo County",
     "state": "South Dakota",
-    "phone": "(483) 657-4876",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Knox County",
@@ -13460,8 +13460,8 @@
   {
     "county": "Robertson County",
     "state": "Tennessee",
-    "phone": "(511) 638-4042",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Greene County",
@@ -13484,7 +13484,7 @@
   {
     "county": "Loudon County",
     "state": "Tennessee",
-    "phone": "(743) 296-3957",
+    "phone": "(865) 458-4664",
     "has_311": false
   },
   {
@@ -13496,14 +13496,14 @@
   {
     "county": "Tipton County",
     "state": "Tennessee",
-    "phone": "(249) 624-3930",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hawkins County",
     "state": "Tennessee",
-    "phone": "(325) 223-4034",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dickson County",
@@ -13514,8 +13514,8 @@
   {
     "county": "McMinn County",
     "state": "Tennessee",
-    "phone": "(716) 084-3922",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Roane County",
@@ -13538,14 +13538,14 @@
   {
     "county": "Gibson County",
     "state": "Tennessee",
-    "phone": "(326) 043-3985",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lawrence County",
     "state": "Tennessee",
-    "phone": "(464) 507-3897",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Warren County",
@@ -13556,7 +13556,7 @@
   {
     "county": "Cheatham County",
     "state": "Tennessee",
-    "phone": "(492) 814-4013",
+    "phone": "(615) 792-2340",
     "has_311": false
   },
   {
@@ -13586,8 +13586,8 @@
   {
     "county": "Dyer County",
     "state": "Tennessee",
-    "phone": "(282) 937-3993",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Rhea County",
@@ -13616,20 +13616,20 @@
   {
     "county": "Giles County",
     "state": "Tennessee",
-    "phone": "(496) 359-3895",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Obion County",
     "state": "Tennessee",
-    "phone": "(307) 097-4026",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Marion County",
     "state": "Tennessee",
-    "phone": "(626) 643-3888",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "White County",
@@ -13676,8 +13676,8 @@
   {
     "county": "Grainger County",
     "state": "Tennessee",
-    "phone": "(274) 560-4017",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hardeman County",
@@ -13712,8 +13712,8 @@
   {
     "county": "DeKalb County",
     "state": "Tennessee",
-    "phone": "(605) 478-3982",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Union County",
@@ -13730,8 +13730,8 @@
   {
     "county": "Fentress County",
     "state": "Tennessee",
-    "phone": "(685) 455-4028",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Humphreys County",
@@ -13742,14 +13742,14 @@
   {
     "county": "Johnson County",
     "state": "Tennessee",
-    "phone": "(422) 942-4035",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Polk County",
     "state": "Tennessee",
-    "phone": "(725) 970-3890",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Chester County",
@@ -13778,14 +13778,14 @@
   {
     "county": "Benton County",
     "state": "Tennessee",
-    "phone": "(403) 647-3992",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bledsoe County",
     "state": "Tennessee",
-    "phone": "(662) 148-3941",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Cannon County",
@@ -13808,8 +13808,8 @@
   {
     "county": "Grundy County",
     "state": "Tennessee",
-    "phone": "(616) 248-3917",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Crockett County",
@@ -13820,8 +13820,8 @@
   {
     "county": "Lewis County",
     "state": "Tennessee",
-    "phone": "(455) 571-3930",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Trousdale County",
@@ -13832,13 +13832,13 @@
   {
     "county": "Decatur County",
     "state": "Tennessee",
-    "phone": "(399) 466-3941",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Perry County",
     "state": "Tennessee",
-    "phone": "(421) 233-3944",
+    "phone": "(931) 589-2453",
     "has_311": false
   },
   {
@@ -13898,8 +13898,8 @@
   {
     "county": "Fort Bend County",
     "state": "Texas",
-    "phone": "(231) 428-3269",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hidalgo County",
@@ -13940,14 +13940,14 @@
   {
     "county": "Galveston County",
     "state": "Texas",
-    "phone": "(319) 486-3251",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Nueces County",
     "state": "Texas",
-    "phone": "(645) 874-3069",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lubbock County",
@@ -13982,8 +13982,8 @@
   {
     "county": "Brazos County",
     "state": "Texas",
-    "phone": "(758) 715-3395",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Ellis County",
@@ -13994,8 +13994,8 @@
   {
     "county": "Johnson County",
     "state": "Texas",
-    "phone": "(654) 274-3583",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Kaufman County",
@@ -14060,8 +14060,8 @@
   {
     "county": "Wichita County",
     "state": "Texas",
-    "phone": "(526) 784-3761",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Gregg County",
@@ -14090,7 +14090,7 @@
   {
     "county": "Bastrop County",
     "state": "Texas",
-    "phone": "(662) 845-3331",
+    "phone": "(512) 581-7100",
     "has_311": false
   },
   {
@@ -14108,8 +14108,8 @@
   {
     "county": "Victoria County",
     "state": "Texas",
-    "phone": "(698) 124-3187",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Henderson County",
@@ -14222,14 +14222,14 @@
   {
     "county": "Medina County",
     "state": "Texas",
-    "phone": "(489) 322-3246",
+    "phone": "(830) 665-8015",
     "has_311": false
   },
   {
     "county": "Wilson County",
     "state": "Texas",
-    "phone": "(588) 490-3227",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Caldwell County",
@@ -14240,8 +14240,8 @@
   {
     "county": "Rusk County",
     "state": "Texas",
-    "phone": "(333) 946-3553",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Kerr County",
@@ -14312,8 +14312,8 @@
   {
     "county": "Wharton County",
     "state": "Texas",
-    "phone": "(770) 095-3242",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hill County",
@@ -14336,7 +14336,7 @@
   {
     "county": "Jim Wells County",
     "state": "Texas",
-    "phone": "(589) 698-3067",
+    "phone": "(361) 325-4500",
     "has_311": false
   },
   {
@@ -14366,8 +14366,8 @@
   {
     "county": "Jasper County",
     "state": "Texas",
-    "phone": "(401) 402-3401",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bee County",
@@ -14384,8 +14384,8 @@
   {
     "county": "Titus County",
     "state": "Texas",
-    "phone": "(316) 414-3677",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Palo Pinto County",
@@ -14414,14 +14414,14 @@
   {
     "county": "Cass County",
     "state": "Texas",
-    "phone": "(373) 984-3659",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Gillespie County",
     "state": "Texas",
-    "phone": "(504) 807-3353",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Milam County",
@@ -14432,8 +14432,8 @@
   {
     "county": "Aransas County",
     "state": "Texas",
-    "phone": "(697) 468-3109",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Uvalde County",
@@ -14444,14 +14444,14 @@
   {
     "county": "Gaines County",
     "state": "Texas",
-    "phone": "(721) 132-3624",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lampasas County",
     "state": "Texas",
-    "phone": "(572) 411-3450",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Llano County",
@@ -14486,8 +14486,8 @@
   {
     "county": "Moore County",
     "state": "Texas",
-    "phone": "(238) 971-3970",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hockley County",
@@ -14522,8 +14522,8 @@
   {
     "county": "Lavaca County",
     "state": "Texas",
-    "phone": "(430) 200-0195",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Burleson County",
@@ -14558,8 +14558,8 @@
   {
     "county": "Hutchinson County",
     "state": "Texas",
-    "phone": "(286) 851-3968",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Calhoun County",
@@ -14594,8 +14594,8 @@
   {
     "county": "Deaf Smith County",
     "state": "Texas",
-    "phone": "(719) 106-3872",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Young County",
@@ -14642,14 +14642,14 @@
   {
     "county": "Karnes County",
     "state": "Texas",
-    "phone": "(611) 136-3198",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Pecos County",
     "state": "Texas",
-    "phone": "(718) 188-3407",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Callahan County",
@@ -14702,8 +14702,8 @@
   {
     "county": "Camp County",
     "state": "Texas",
-    "phone": "(314) 959-3649",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lamb County",
@@ -14714,14 +14714,14 @@
   {
     "county": "Wilbarger County",
     "state": "Texas",
-    "phone": "(477) 857-3771",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Reeves County",
     "state": "Texas",
-    "phone": "(622) 500-3464",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Morris County",
@@ -14768,14 +14768,14 @@
   {
     "county": "Ward County",
     "state": "Texas",
-    "phone": "(680) 428-3487",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Clay County",
     "state": "Texas",
-    "phone": "(573) 135-3739",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Somervell County",
@@ -14798,7 +14798,7 @@
   {
     "county": "Marion County",
     "state": "Texas",
-    "phone": "(372) 664-3629",
+    "phone": "(903) 215-8870",
     "has_311": false
   },
   {
@@ -14822,8 +14822,8 @@
   {
     "county": "Jack County",
     "state": "Texas",
-    "phone": "(576) 394-3678",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Stephens County",
@@ -14870,8 +14870,8 @@
   {
     "county": "San Augustine County",
     "state": "Texas",
-    "phone": "(387) 819-3474",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Winkler County",
@@ -14888,8 +14888,8 @@
   {
     "county": "McCulloch County",
     "state": "Texas",
-    "phone": "(466) 657-3451",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Yoakum County",
@@ -14984,8 +14984,8 @@
   {
     "county": "Delta County",
     "state": "Texas",
-    "phone": "(251) 647-3697",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Haskell County",
@@ -15044,14 +15044,14 @@
   {
     "county": "Jim Hogg County",
     "state": "Texas",
-    "phone": "(531) 735-2992",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Crane County",
     "state": "Texas",
-    "phone": "(735) 771-3477",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Garza County",
@@ -15086,8 +15086,8 @@
   {
     "county": "Sutton County",
     "state": "Texas",
-    "phone": "(352) 212-3375",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Fisher County",
@@ -15116,8 +15116,8 @@
   {
     "county": "Coke County",
     "state": "Texas",
-    "phone": "(355) 288-3528",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Schleicher County",
@@ -15158,14 +15158,14 @@
   {
     "county": "Reagan County",
     "state": "Texas",
-    "phone": "(260) 298-3472",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hemphill County",
     "state": "Texas",
-    "phone": "(384) 387-3965",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lipscomb County",
@@ -15242,8 +15242,8 @@
   {
     "county": "Armstrong County",
     "state": "Texas",
-    "phone": "(285) 460-3872",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "King County",
@@ -15260,8 +15260,8 @@
   {
     "county": "Dickens County",
     "state": "Texas",
-    "phone": "(334) 882-3721",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Kent County",
@@ -15530,8 +15530,8 @@
   {
     "county": "Orleans County",
     "state": "Vermont",
-    "phone": "(719) 838-4969",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lamoille County",
@@ -15542,8 +15542,8 @@
   {
     "county": "Grand Isle County",
     "state": "Vermont",
-    "phone": "(634) 423-4963",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Essex County",
@@ -15554,8 +15554,8 @@
   {
     "county": "Fairfax County",
     "state": "Virginia",
-    "phone": "(302) 088-4300",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Prince William County",
@@ -15620,8 +15620,8 @@
   {
     "county": "Montgomery County",
     "state": "Virginia",
-    "phone": "(554) 155-4113",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Roanoke County",
@@ -15644,8 +15644,8 @@
   {
     "county": "Bedford County",
     "state": "Virginia",
-    "phone": "(630) 266-4130",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Augusta County",
@@ -15662,14 +15662,14 @@
   {
     "county": "York County",
     "state": "Virginia",
-    "phone": "(372) 241-4120",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Pittsylvania County",
     "state": "Virginia",
-    "phone": "(642) 702-4076",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Culpeper County",
@@ -15680,7 +15680,7 @@
   {
     "county": "Campbell County",
     "state": "Virginia",
-    "phone": "(901) 476-0207",
+    "phone": "(434) 332-9500",
     "has_311": false
   },
   {
@@ -15710,7 +15710,7 @@
   {
     "county": "Louisa County",
     "state": "Virginia",
-    "phone": "(240) 056-4208",
+    "phone": "(540) 967-0401",
     "has_311": false
   },
   {
@@ -15770,8 +15770,8 @@
   {
     "county": "Halifax County",
     "state": "Virginia",
-    "phone": "(683) 853-4071",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Powhatan County",
@@ -15794,13 +15794,13 @@
   {
     "county": "Carroll County",
     "state": "Virginia",
-    "phone": "(524) 108-4064",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Goochland County",
     "state": "Virginia",
-    "phone": "(241) 750-4178",
+    "phone": "(804) 556-5800",
     "has_311": false
   },
   {
@@ -15824,8 +15824,8 @@
   {
     "county": "New Kent County",
     "state": "Virginia",
-    "phone": "(901) 465-5213",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wythe County",
@@ -15854,8 +15854,8 @@
   {
     "county": "Prince Edward County",
     "state": "Virginia",
-    "phone": "(727) 141-4122",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Greene County",
@@ -15866,8 +15866,8 @@
   {
     "county": "Lee County",
     "state": "Virginia",
-    "phone": "(646) 386-5955",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Scott County",
@@ -15896,13 +15896,13 @@
   {
     "county": "Patrick County",
     "state": "Virginia",
-    "phone": "(563) 437-4059",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Appomattox County",
     "state": "Virginia",
-    "phone": "(692) 494-4136",
+    "phone": "(434) 352-2637",
     "has_311": false
   },
   {
@@ -15914,14 +15914,14 @@
   {
     "county": "Giles County",
     "state": "Virginia",
-    "phone": "(526) 581-4130",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Nottoway County",
     "state": "Virginia",
-    "phone": "(762) 029-4114",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Floyd County",
@@ -15932,8 +15932,8 @@
   {
     "county": "Brunswick County",
     "state": "Virginia",
-    "phone": "(244) 701-4072",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Clarke County",
@@ -15962,8 +15962,8 @@
   {
     "county": "Madison County",
     "state": "Virginia",
-    "phone": "(715) 732-7406",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Amelia County",
@@ -16004,8 +16004,8 @@
   {
     "county": "Lancaster County",
     "state": "Virginia",
-    "phone": "(375) 717-4174",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Middlesex County",
@@ -16046,14 +16046,14 @@
   {
     "county": "King and Queen County",
     "state": "Virginia",
-    "phone": "(332) 545-4176",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Charles City County",
     "state": "Virginia",
-    "phone": "(317) 542-4135",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Surry County",
@@ -16082,8 +16082,8 @@
   {
     "county": "Highland County",
     "state": "Virginia",
-    "phone": "(625) 828-4245",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "King County",
@@ -16094,8 +16094,8 @@
   {
     "county": "Pierce County",
     "state": "Washington",
-    "phone": "(408) 882-2700",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Snohomish County",
@@ -16130,8 +16130,8 @@
   {
     "county": "Benton County",
     "state": "Washington",
-    "phone": "(307) 295-5124",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Skagit County",
@@ -16160,14 +16160,14 @@
   {
     "county": "Island County",
     "state": "Washington",
-    "phone": "(479) 444-1711",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Chelan County",
     "state": "Washington",
-    "phone": "(678) 071-5303",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Clallam County",
@@ -16190,8 +16190,8 @@
   {
     "county": "Walla Walla County",
     "state": "Washington",
-    "phone": "(385) 876-5120",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Stevens County",
@@ -16202,8 +16202,8 @@
   {
     "county": "Kittitas County",
     "state": "Washington",
-    "phone": "(676) 219-5221",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Whitman County",
@@ -16232,8 +16232,8 @@
   {
     "county": "Klickitat County",
     "state": "Washington",
-    "phone": "(671) 524-5081",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Asotin County",
@@ -16250,20 +16250,20 @@
   {
     "county": "San Juan County",
     "state": "Washington",
-    "phone": "(502) 213-5379",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Pend Oreille County",
     "state": "Washington",
-    "phone": "(208) 770-2590",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Skamania County",
     "state": "Washington",
-    "phone": "(584) 355-5097",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lincoln County",
@@ -16286,8 +16286,8 @@
   {
     "county": "Columbia County",
     "state": "Washington",
-    "phone": "(408) 882-2700",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Garfield County",
@@ -16334,8 +16334,8 @@
   {
     "county": "Harrison County",
     "state": "West Virginia",
-    "phone": "(553) 467-4349",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Mercer County",
@@ -16370,8 +16370,8 @@
   {
     "county": "Greenbrier County",
     "state": "West Virginia",
-    "phone": "(546) 564-4200",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Logan County",
@@ -16382,8 +16382,8 @@
   {
     "county": "Marshall County",
     "state": "West Virginia",
-    "phone": "(528) 222-4413",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hancock County",
@@ -16490,8 +16490,8 @@
   {
     "county": "Hardy County",
     "state": "West Virginia",
-    "phone": "(685) 289-4320",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Wetzel County",
@@ -16514,8 +16514,8 @@
   {
     "county": "Summers County",
     "state": "West Virginia",
-    "phone": "(512) 348-4168",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Grant County",
@@ -16568,8 +16568,8 @@
   {
     "county": "Gilmer County",
     "state": "West Virginia",
-    "phone": "(513) 003-4307",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Tucker County",
@@ -16592,14 +16592,14 @@
   {
     "county": "Wirt County",
     "state": "West Virginia",
-    "phone": "(467) 104-4319",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Dane County",
     "state": "Wisconsin",
-    "phone": "(302) 970-4771",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Waukesha County",
@@ -16616,8 +16616,8 @@
   {
     "county": "Racine County",
     "state": "Wisconsin",
-    "phone": "(437) 833-4736",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Outagamie County",
@@ -16682,8 +16682,8 @@
   {
     "county": "St. Croix County",
     "state": "Wisconsin",
-    "phone": "(543) 318-4987",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Ozaukee County",
@@ -16736,14 +16736,14 @@
   {
     "county": "Calumet County",
     "state": "Wisconsin",
-    "phone": "(402) 319-4881",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Grant County",
     "state": "Wisconsin",
-    "phone": "(687) 081-4747",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Waupaca County",
@@ -16772,14 +16772,14 @@
   {
     "county": "Douglas County",
     "state": "Wisconsin",
-    "phone": "(583) 714-5144",
+    "phone": "(715) 395-1341",
     "has_311": false
   },
   {
     "county": "Pierce County",
     "state": "Wisconsin",
-    "phone": "(545) 935-4952",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Marinette County",
@@ -16838,8 +16838,8 @@
   {
     "county": "Juneau County",
     "state": "Wisconsin",
-    "phone": "(732) 018-4867",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Waushara County",
@@ -16874,14 +16874,14 @@
   {
     "county": "Taylor County",
     "state": "Wisconsin",
-    "phone": "(696) 317-5009",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Langlade County",
     "state": "Wisconsin",
-    "phone": "(342) 965-5008",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Green Lake County",
@@ -16898,8 +16898,8 @@
   {
     "county": "Lafayette County",
     "state": "Wisconsin",
-    "phone": "(734) 403-4727",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Burnett County",
@@ -16916,8 +16916,8 @@
   {
     "county": "Richland County",
     "state": "Wisconsin",
-    "phone": "(708) 185-4806",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bayfield County",
@@ -16928,14 +16928,14 @@
   {
     "county": "Ashland County",
     "state": "Wisconsin",
-    "phone": "(686) 500-5175",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Marquette County",
     "state": "Wisconsin",
-    "phone": "(307) 803-4854",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Crawford County",
@@ -16958,8 +16958,8 @@
   {
     "county": "Buffalo County",
     "state": "Wisconsin",
-    "phone": "(599) 576-4914",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Forest County",
@@ -16970,14 +16970,14 @@
   {
     "county": "Pepin County",
     "state": "Wisconsin",
-    "phone": "(579) 362-4939",
+    "phone": "(715) 672-7242",
     "has_311": false
   },
   {
     "county": "Iron County",
     "state": "Wisconsin",
-    "phone": "(710) 896-5134",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Florence County",
@@ -17042,19 +17042,19 @@
   {
     "county": "Teton County",
     "state": "Wyoming",
-    "phone": "(534) 521-4863",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Lincoln County",
     "state": "Wyoming",
-    "phone": "(524) 744-4678",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Uinta County",
     "state": "Wyoming",
-    "phone": "(537) 679-4571",
+    "phone": "(307) 783-0301",
     "has_311": false
   },
   {
@@ -17078,13 +17078,13 @@
   {
     "county": "Goshen County",
     "state": "Wyoming",
-    "phone": "(552) 929-4659",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Big Horn County",
     "state": "Wyoming",
-    "phone": "(262) 422-4935",
+    "phone": "(307) 568-2358",
     "has_311": false
   },
   {
@@ -17156,8 +17156,8 @@
   {
     "county": "Shelby County",
     "state": "Alabama",
-    "phone": "(530) 942-3680",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Montgomery County",
@@ -17174,8 +17174,8 @@
   {
     "county": "Dallas County",
     "state": "Alabama",
-    "phone": "(490) 089-3576",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
@@ -17306,8 +17306,8 @@
   {
     "county": "District of Columbia",
     "state": "District of Columbia",
-    "phone": "(706) 868-3375",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Miami-Dade County",
@@ -17318,8 +17318,8 @@
   {
     "county": "Broward County",
     "state": "Florida",
-    "phone": "(552) 287-2897",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Hillsborough County",
@@ -17354,8 +17354,8 @@
   {
     "county": "Jefferson County",
     "state": "Florida",
-    "phone": "(221) 429-3368",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Hamilton County",
@@ -17414,8 +17414,8 @@
   {
     "county": "Franklin County",
     "state": "Georgia",
-    "phone": "(294) 943-3805",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Cook County",
@@ -17510,8 +17510,8 @@
   {
     "county": "Hamilton County",
     "state": "Illinois",
-    "phone": "(364) 935-4215",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Hamilton County",
@@ -17522,8 +17522,8 @@
   {
     "county": "Monroe County",
     "state": "Indiana",
-    "phone": "(541) 470-4334",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Clark County",
@@ -17534,14 +17534,14 @@
   {
     "county": "Wayne County",
     "state": "Indiana",
-    "phone": "(670) 218-4414",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jackson County",
     "state": "Indiana",
-    "phone": "(583) 234-4307",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Shelby County",
@@ -17552,14 +17552,14 @@
   {
     "county": "Jefferson County",
     "state": "Indiana",
-    "phone": "(635) 485-4294",
+    "phone": "(812) 265-8900",
     "has_311": true
   },
   {
     "county": "Fayette County",
     "state": "Indiana",
-    "phone": "(656) 172-4389",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
@@ -17576,8 +17576,8 @@
   {
     "county": "Orange County",
     "state": "Indiana",
-    "phone": "(543) 575-4265",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Dallas County",
@@ -17594,8 +17594,8 @@
   {
     "county": "Fayette County",
     "state": "Iowa",
-    "phone": "(593) 985-4746",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jefferson County",
@@ -17606,8 +17606,8 @@
   {
     "county": "Hamilton County",
     "state": "Iowa",
-    "phone": "(441) 632-4693",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Shelby County",
@@ -17702,8 +17702,8 @@
   {
     "county": "Jackson County",
     "state": "Kentucky",
-    "phone": "(764) 600-4145",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Monroe County",
@@ -17732,14 +17732,14 @@
   {
     "county": "West Baton Rouge Parish",
     "state": "Louisiana",
-    "phone": "(662) 251-3370",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
     "state": "Maine",
-    "phone": "(390) 381-4970",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Montgomery County",
@@ -17768,14 +17768,14 @@
   {
     "county": "Suffolk County",
     "state": "Massachusetts",
-    "phone": "(329) 178-4689",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
     "state": "Massachusetts",
-    "phone": "(699) 068-4717",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Wayne County",
@@ -17816,8 +17816,8 @@
   {
     "county": "Jackson County",
     "state": "Mississippi",
-    "phone": "(344) 470-3370",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Monroe County",
@@ -17852,7 +17852,7 @@
   {
     "county": "Jefferson County",
     "state": "Missouri",
-    "phone": "(715) 232-4237",
+    "phone": "(636) 797-5555",
     "has_311": true
   },
   {
@@ -17864,8 +17864,8 @@
   {
     "county": "Dallas County",
     "state": "Missouri",
-    "phone": "(498) 236-4169",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Wayne County",
@@ -17876,14 +17876,14 @@
   {
     "county": "Monroe County",
     "state": "Missouri",
-    "phone": "(585) 980-4372",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Clark County",
     "state": "Missouri",
-    "phone": "(606) 909-4474",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Shelby County",
@@ -17900,7 +17900,7 @@
   {
     "county": "Wayne County",
     "state": "Nebraska",
-    "phone": "(655) 187-4674",
+    "phone": "(402) 375-2288",
     "has_311": true
   },
   {
@@ -17924,8 +17924,8 @@
   {
     "county": "Clark County",
     "state": "Nevada",
-    "phone": "(671) 988-4024",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Washoe County",
@@ -17942,7 +17942,7 @@
   {
     "county": "Bernalillo County",
     "state": "New Mexico",
-    "phone": "(347) 695-3879",
+    "phone": "(505) 468-7000",
     "has_311": true
   },
   {
@@ -17954,8 +17954,8 @@
   {
     "county": "Suffolk County",
     "state": "New York",
-    "phone": "(695) 300-4534",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Westchester County",
@@ -17972,20 +17972,20 @@
   {
     "county": "Monroe County",
     "state": "New York",
-    "phone": "(281) 807-4797",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Orange County",
     "state": "New York",
-    "phone": "(557) 678-4583",
+    "phone": "(845) 291-4000",
     "has_311": true
   },
   {
     "county": "Jefferson County",
     "state": "New York",
-    "phone": "(415) 803-4871",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Wayne County",
@@ -17996,8 +17996,8 @@
   {
     "county": "Fulton County",
     "state": "New York",
-    "phone": "(547) 190-4773",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
@@ -18008,8 +18008,8 @@
   {
     "county": "Hamilton County",
     "state": "New York",
-    "phone": "(540) 322-4833",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Mecklenburg County",
@@ -18032,8 +18032,8 @@
   {
     "county": "Wayne County",
     "state": "North Carolina",
-    "phone": "(771) 717-3915",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
@@ -18044,14 +18044,14 @@
   {
     "county": "Jackson County",
     "state": "North Carolina",
-    "phone": "(307) 217-3907",
+    "phone": "(828) 586-4055",
     "has_311": true
   },
   {
     "county": "Franklin County",
     "state": "Ohio",
-    "phone": "(329) 135-4424",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Cuyahoga County",
@@ -18068,14 +18068,14 @@
   {
     "county": "Clark County",
     "state": "Ohio",
-    "phone": "(262) 407-4422",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Wayne County",
     "state": "Ohio",
-    "phone": "(424) 957-4520",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Erie County",
@@ -18122,8 +18122,8 @@
   {
     "county": "Tulsa County",
     "state": "Oklahoma",
-    "phone": "(235) 391-4001",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jackson County",
@@ -18176,8 +18176,8 @@
   {
     "county": "Monroe County",
     "state": "Pennsylvania",
-    "phone": "(203) 040-2030",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
@@ -18194,8 +18194,8 @@
   {
     "county": "Wayne County",
     "state": "Pennsylvania",
-    "phone": "(474) 186-4610",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jefferson County",
@@ -18218,8 +18218,8 @@
   {
     "county": "Jackson County",
     "state": "South Dakota",
-    "phone": "(287) 273-4841",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Clark County",
@@ -18236,8 +18236,8 @@
   {
     "county": "Davidson County",
     "state": "Tennessee",
-    "phone": "(519) 785-4002",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Hamilton County",
@@ -18266,8 +18266,8 @@
   {
     "county": "Fayette County",
     "state": "Tennessee",
-    "phone": "(280) 571-3896",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Wayne County",
@@ -18278,14 +18278,14 @@
   {
     "county": "Jackson County",
     "state": "Tennessee",
-    "phone": "(619) 326-4024",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Harris County",
     "state": "Texas",
-    "phone": "(268) 833-3305",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Dallas County",
@@ -18302,25 +18302,25 @@
   {
     "county": "Travis County",
     "state": "Texas",
-    "phone": "(617) 279-3355",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Denton County",
     "state": "Texas",
-    "phone": "(675) 237-3675",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "El Paso County",
     "state": "Texas",
-    "phone": "(382) 580-3515",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jefferson County",
     "state": "Texas",
-    "phone": "(389) 892-3303",
+    "phone": "(409) 835-8400",
     "has_311": true
   },
   {
@@ -18338,20 +18338,20 @@
   {
     "county": "Fayette County",
     "state": "Texas",
-    "phone": "(699) 948-3305",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Shelby County",
     "state": "Texas",
-    "phone": "(392) 073-3517",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Houston County",
     "state": "Texas",
-    "phone": "(268) 764-3467",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jackson County",
@@ -18362,8 +18362,8 @@
   {
     "county": "Franklin County",
     "state": "Texas",
-    "phone": "(293) 018-3673",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Duval County",
@@ -18380,8 +18380,8 @@
   {
     "county": "Wayne County",
     "state": "Utah",
-    "phone": "(508) 737-4245",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
@@ -18392,8 +18392,8 @@
   {
     "county": "Orange County",
     "state": "Vermont",
-    "phone": "(710) 484-4874",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
@@ -18404,32 +18404,32 @@
   {
     "county": "Orange County",
     "state": "Virginia",
-    "phone": "(761) 684-4236",
+    "phone": "(540) 672-3313",
     "has_311": true
   },
   {
     "county": "Mecklenburg County",
     "state": "Virginia",
-    "phone": "(735) 008-4062",
+    "phone": "(434) 738-6191",
     "has_311": true
   },
   {
     "county": "Southampton County",
     "state": "Virginia",
-    "phone": "(307) 170-4071",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Northampton County",
     "state": "Virginia",
-    "phone": "(417) 708-4128",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Richmond County",
     "state": "Virginia",
-    "phone": "(348) 860-4200",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Spokane County",
@@ -18440,44 +18440,44 @@
   {
     "county": "Clark County",
     "state": "Washington",
-    "phone": "(540) 431-5068",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Franklin County",
     "state": "Washington",
-    "phone": "(354) 013-5155",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jefferson County",
     "state": "Washington",
-    "phone": "(456) 601-5298",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jefferson County",
     "state": "West Virginia",
-    "phone": "(253) 411-4355",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Fayette County",
     "state": "West Virginia",
-    "phone": "(492) 101-4209",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Wayne County",
     "state": "West Virginia",
-    "phone": "(374) 703-4223",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Jackson County",
     "state": "West Virginia",
-    "phone": "(441) 845-4298",
-    "has_311": true
+    "has_311": true,
+    "phone": "not available"
   },
   {
     "county": "Monroe County",
@@ -18518,14 +18518,14 @@
   {
     "county": "Jackson County",
     "state": "Wisconsin",
-    "phone": "(674) 636-4909",
+    "phone": "(715) 284-0201",
     "has_311": true
   },
   {
     "county": "City of Alexandria",
     "state": "Virginia",
-    "phone": "(318) 473-1373",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "City of Bristol",
@@ -18578,8 +18578,8 @@
   {
     "county": "City of Fairfax",
     "state": "Virginia",
-    "phone": "(302) 727-5615",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "City of Falls Church",
@@ -18752,20 +18752,20 @@
   {
     "county": "Aleutians West Census Area",
     "state": "Alaska",
-    "phone": "(437) 226-1610",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Bethel Census Area",
     "state": "Alaska",
-    "phone": "(507) 786-6674",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Chugach Census Area",
     "state": "Alaska",
-    "phone": "(437) 226-1610",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Copper River Census Area",
@@ -18776,20 +18776,20 @@
   {
     "county": "Dillingham Census Area",
     "state": "Alaska",
-    "phone": "(207) 000-0200",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Hoonah-Angoon Census Area",
     "state": "Alaska",
-    "phone": "(437) 226-1610",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Kusilvak Census Area",
     "state": "Alaska",
-    "phone": "(437) 226-1610",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Nome Census Area",
@@ -18800,8 +18800,8 @@
   {
     "county": "Prince of Wales-Hyder Census Area",
     "state": "Alaska",
-    "phone": "(809) 326-8872",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   },
   {
     "county": "Southeast Fairbanks Census Area",
@@ -18878,7 +18878,7 @@
   {
     "county": "Western Connecticut Planning Region",
     "state": "Connecticut",
-    "phone": "(475) 323-2060",
-    "has_311": false
+    "has_311": false,
+    "phone": "not available"
   }
 ]

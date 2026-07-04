@@ -45,6 +45,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const [deepSearchTooltip, setDeepSearchTooltip] = useState(false);
   const [addContactVisible, setAddContactVisible] = useState(false);
   const [editingContact, setEditingContact] = useState<{ id: string; name: string; number: string } | null>(null);
+  const [contactHelperText, setContactHelperText] = useState<string | undefined>();
   const [expandedContactId, setExpandedContactId] = useState<string | null>(null);
   const [expandedEmergencyId, setExpandedEmergencyId] = useState<string | null>(null);
   const [expandedRecentId, setExpandedRecentId] = useState<string | null>(null);
@@ -286,6 +287,19 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const toDialable = useCallback((value: string) => value.replace(/[^\d+*#,;]/g, ''), []);
   const e911CardNumber = EMERGENCY_TEST_NUMBER;
 
+  const countyContactName = local311 ? `${local311.county} non-emergency services` : 'County non-emergency services';
+  const savedCountyContact = useMemo(() => contacts.find((contact: any) =>
+    contact.name?.trim().toLowerCase() === countyContactName.toLowerCase(),
+  ) || null, [contacts, countyContactName]);
+
+  const edit311Contact = useCallback(() => {
+    setEditingContact(savedCountyContact
+      ? { id: savedCountyContact.id, name: savedCountyContact.name, number: savedCountyContact.number }
+      : { id: '', name: countyContactName, number: local311?.phone || '' });
+    setContactHelperText('This correction is saved only to your phone contacts. It does not change the county directory or update the number for other users.');
+    setAddContactVisible(true);
+  }, [countyContactName, local311?.phone, savedCountyContact]);
+
   const makeCall = useCallback(async (phoneNumber: string, _label: string) => {
     const dialable = toDialable(phoneNumber);
     if (!dialable) {
@@ -400,7 +414,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const emergencyCards = useMemo(() => {
     const coveredBy911 = ['Police', ...(!localNums.fire ? ['Fire'] : []), ...(!localNums.medical ? ['Medical'] : [])];
     const primaryEmergencyNumber = e911CardNumber;
-    const cards: { id: string; name: string; number: string; subtitle: string; description: string; icon: string }[] = [
+    const cards: { id: string; name: string; number: string; subtitle: string; description: string; icon: string; callable?: boolean }[] = [
       {
         id: 'e1', name: primaryEmergencyNumber, number: primaryEmergencyNumber,
         subtitle: coveredBy911.join(' · '), icon: 'alert-circle',
@@ -427,18 +441,23 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
         description: 'Dial 211 to be connected with local social support programs, including food banks, emergency housing, utility assistance, mental health resources, child care, and disaster relief. This is the right number for navigating community resources. It is not for medical or police emergencies, and response times may vary by region.',
       },
       {
-        id: 'e5', name: local311?.phone || '311', number: local311?.phone || '311',
+        id: 'e5', name: savedCountyContact?.number || local311?.phone || 'Not available', number: savedCountyContact?.number || local311?.phone || '',
         subtitle: local311
           ? `${local311.county} ${local311.has311 ? '311 service' : 'non-emergency services'}`
-          : 'Non-emergency city services',
+          : 'County non-emergency services',
         icon: 'alert-circle',
-        description: local311
-          ? `Call this ${local311.county} number for non-urgent local government services and issues such as noise complaints, potholes, broken streetlights, graffiti, or illegal dumping. Do not use it for emergencies — call 911 when there is an immediate threat to life, safety, or property.`
-          : 'Dial 311 to report non-urgent city issues such as noise complaints, potholes, broken streetlights, graffiti, illegal dumping, or to ask questions about local government services. Do not call 311 for emergencies — if there is any immediate threat to life, safety, or property, call 911 instead.',
+        callable: !!(savedCountyContact?.number || local311?.phone),
+        description: savedCountyContact
+          ? `Using the number saved in your phone contacts for ${local311?.county || 'this county'}. Tap the pencil to correct it. Changes only update your phone contact.`
+          : local311?.phone
+          ? `Call this ${local311.county} number for non-urgent local government services and issues such as noise complaints, potholes, broken streetlights, graffiti, or illegal dumping. If the number is incorrect, tap the pencil to save a correction only to your phone contacts. Do not use it for emergencies — call 911 when there is an immediate threat to life, safety, or property.`
+          : local311
+            ? `A county service number is not currently available for ${local311.county}. Tap the pencil if you know the correct number; it will be saved only to your phone contacts.`
+            : 'A county service number is not currently available for your location. Tap the pencil if you know the correct number; it will be saved only to your phone contacts.',
       },
     );
     return cards;
-  }, [e911CardNumber, local311, localNums]);
+  }, [e911CardNumber, local311, localNums, savedCountyContact]);
 
   const filteredContacts = useMemo(() => {
     if (!searchQuery.trim()) return contacts;
@@ -488,6 +507,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
           expandedEmergencyId={expandedEmergencyId} setExpandedEmergencyId={setExpandedEmergencyId}
           colors={colors} openE911={openE911} e911CardNumber={e911CardNumber}
           makeCall={makeCall} navigateToSmsChat={navigateToSmsChat}
+          edit311Contact={edit311Contact}
         />
 
         {/* Page 1: Chat */}
@@ -583,8 +603,9 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
       <AddContactModal
         visible={addContactVisible}
         initialContact={editingContact}
-        onClose={() => { setAddContactVisible(false); setEditingContact(null); }}
-        onSaved={() => { setAddContactVisible(false); setEditingContact(null); loadContactsData(); }}
+        helperText={contactHelperText}
+        onClose={() => { setAddContactVisible(false); setEditingContact(null); setContactHelperText(undefined); }}
+        onSaved={() => { setAddContactVisible(false); setEditingContact(null); setContactHelperText(undefined); loadContactsData(); }}
       />
 
       {/* Filter dropdown — recent calls only */}

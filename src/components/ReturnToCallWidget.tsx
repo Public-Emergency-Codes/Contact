@@ -91,7 +91,7 @@ export default function ReturnToCallWidget({ navigationRef, currentRouteName }: 
       const id = await Notifications.scheduleNotificationAsync({
         content: {
           title: regularCallSession ? 'Active call' : callActive ? 'Active emergency call' : 'Recording in progress',
-          body: 'Tap to return to eMessages.',
+          body: 'Tap to return to Contact.',
           data: NOTIFICATION_DATA,
           sticky: true,
           autoDismiss: false,

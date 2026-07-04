@@ -147,7 +147,7 @@ export const useEmergencyCallCamera = ({
             const { status } = await MediaLibrary.requestPermissionsAsync();
             if (status === 'granted') {
               const asset = await MediaLibrary.createAssetAsync(dest);
-              await MediaLibrary.createAlbumAsync('eMessages', asset, true);
+              await MediaLibrary.createAlbumAsync('Contact', asset, true);
             }
           } catch (e) { console.error('Failed to save recording:', e); }
         },

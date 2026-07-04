@@ -1,13 +1,19 @@
 {
   "expo": {
-    "name": "eMessages",
-    "slug": "emessages",
+    "name": "Contact",
+    "slug": "contact",
+    "icon": "./assets/icon-foreground.png",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "android": {
-      "package": "com.emessages.app",
+      "package": "com.contact.app",
+      "icon": "./assets/icon-foreground.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon-adaptive-foreground.png",
+        "backgroundColor": "#00B84A"
+      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "permissions": [
@@ -33,18 +39,18 @@
         "VIBRATE"
       ]
     },
-    "scheme": "emessages",
+    "scheme": "contact",
     "plugins": [
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow eMessages to access your location for 911 emergency services."
+          "locationAlwaysAndWhenInUsePermission": "Allow Contact to access your location for 911 emergency services."
         }
       ],
       [
         "react-native-vision-camera",
         {
-          "cameraPermissionText": "Allow eMessages to use the camera for emergency video dispatch.",
+          "cameraPermissionText": "Allow Contact to use the camera for emergency video dispatch.",
           "enableMicrophonePermission": true
         }
       ],

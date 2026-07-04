@@ -1,6 +1,6 @@
-# eMessages
+# Contact
 
-eMessages is an experimental Android messaging client built with Expo, React Native, TypeScript, and custom Kotlin modules. It includes SMS/MMS workflows, contact management, recordings, location sharing, accessibility controls, and emergency-oriented interface experiments.
+Contact is an Android phone app that enhances the calling and messaging you already use every day with built-in emergency tools. It works the way your phone already works — calls, texts, contacts, keypad, recent — and quietly integrates silent text-to-911, live video dispatch, real-time location sharing, medical-profile relay, and automatic routing to 988, 311, and 211. No new workflows to learn. Built with React Native, TypeScript, and native Kotlin modules.
 
 > [!CAUTION]
 > This project is not a certified emergency service, medical device, dispatch system, or replacement for the phone's native emergency calling features. Do not rely on it to contact emergency services or transmit accurate location data. Call your local emergency number using the system dialer when help is needed.
@@ -21,7 +21,7 @@ The application is Android-first and under active development. It requests sensi
 
 ```powershell
 git clone <your-fork-url>
-cd e_messages
+cd contact
 npm ci
 Copy-Item .env.example .env.local
 npm run typecheck

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingTop="8dp"
+    android:paddingRight="18dp"
+    android:paddingBottom="8dp"
+    android:background="#111111">
+
+    <View
+        android:layout_width="48dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#4A4A4A" />
+
+    <LinearLayout
+        android:id="@+id/replyList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" />
+
+    <EditText
+        android:id="@+id/customReplyInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_incall_info_card"
+        android:hint="Type your own quick response"
+        android:imeOptions="actionSend"
+        android:inputType="textCapSentences"
+        android:minLines="1"
+        android:padding="14dp"
+        android:textColor="#F3F6FF"
+        android:textColorHint="#8F98AA" />
+</LinearLayout>

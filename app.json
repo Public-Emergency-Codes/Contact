@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "Contact",
+    "slug": "contact",
+    "icon": "./assets/icon-foreground.png",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "android": {
+      "package": "com.contact.app",
+      "icon": "./assets/icon-foreground.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon-adaptive-foreground.png",
+        "backgroundColor": "#00B84A"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "ACCESS_BACKGROUND_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "RECORD_AUDIO",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_PHONE_CALL",
+        "READ_PHONE_STATE",
+        "READ_CALL_LOG",
+        "CALL_PHONE",
+        "SEND_SMS",
+        "READ_SMS",
+        "RECEIVE_SMS",
+        "WAKE_LOCK",
+        "READ_CONTACTS",
+        "WRITE_CONTACTS",
+        "SYSTEM_ALERT_WINDOW",
+        "ACCESS_NOTIFICATION_POLICY",
+        "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS",
+        "VIBRATE"
+      ]
+    },
+    "scheme": "contact",
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Contact to access your location for 911 emergency services."
+        }
+      ],
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "Allow Contact to use the camera for emergency video dispatch.",
+          "enableMicrophonePermission": true
+        }
+      ],
+      "expo-font",
+      "expo-video"
+    ]
+  }
+}

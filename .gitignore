@@ -51,3 +51,4 @@ window_dump_*.xml
 android/deps*.txt
 android/runlog.txt
 phone_*.png
+user-facing-text.md

@@ -1,0 +1,89 @@
+export interface AppColors {
+  background: string;
+  surface: string;
+  surfaceAlt: string;
+  border: string;
+  borderLight: string;
+  textPrimary: string;
+  textSecondary: string;
+  textMuted: string;
+  accent: string;
+  accentLight: string;
+  accentBg: string;
+  selectionBg: string;
+  switchTrackOff: string;
+  switchThumbOff: string;
+  inputBackground: string;
+  inputBorder: string;
+  inputText: string;
+  inputPlaceholder: string;
+  dangerBg: string;
+  cardBorder: string;
+  headerBackground: string;
+  tabBarBackground: string;
+  tabBarBorder: string;
+  tabBarActive: string;
+  tabBarInactive: string;
+  badgeBg: string;
+  badgeText: string;
+}
+
+export const darkColors: AppColors = {
+  background: '#000000',
+  surface: '#1a1a1a',
+  surfaceAlt: '#2a2a2a',
+  border: '#333333',
+  borderLight: '#444444',
+  textPrimary: '#FFFFFF',
+  textSecondary: '#CCCCCC',
+  textMuted: '#9CA3AF',
+  accent: '#2563EB',
+  accentLight: '#93C5FD',
+  accentBg: '#1e3a8a',
+  selectionBg: 'rgba(255,255,255,0.10)',
+  switchTrackOff: '#6B7F95',
+  switchThumbOff: '#F3F4F6',
+  inputBackground: '#1a1a1a',
+  inputBorder: '#333333',
+  inputText: '#FFFFFF',
+  inputPlaceholder: '#666666',
+  dangerBg: '#1e3a8a',
+  cardBorder: '#333333',
+  headerBackground: '#1a1a1a',
+  tabBarBackground: '#1a1a1a',
+  tabBarBorder: '#333333',
+  tabBarActive: '#2563EB',
+  tabBarInactive: '#CCCCCC',
+  badgeBg: '#DC2626',
+  badgeText: '#FFFFFF',
+};
+
+export const lightColors: AppColors = {
+  background: '#F3F4F6',
+  surface: '#FFFFFF',
+  surfaceAlt: '#F9FAFB',
+  border: '#E5E7EB',
+  borderLight: '#D1D5DB',
+  textPrimary: '#111827',
+  textSecondary: '#374151',
+  textMuted: '#6B7280',
+  accent: '#2563EB',
+  accentLight: '#3B82F6',
+  accentBg: '#EFF6FF',
+  selectionBg: 'rgba(0,0,0,0.10)',
+  switchTrackOff: '#C7D2DE',
+  switchThumbOff: '#111827',
+  inputBackground: '#FFFFFF',
+  inputBorder: '#D1D5DB',
+  inputText: '#111827',
+  inputPlaceholder: '#9CA3AF',
+  dangerBg: '#EFF6FF',
+  cardBorder: '#E5E7EB',
+  headerBackground: '#FFFFFF',
+  tabBarBackground: '#FFFFFF',
+  tabBarBorder: '#E5E7EB',
+  tabBarActive: '#2563EB',
+  tabBarInactive: '#6B7280',
+  badgeBg: '#DC2626',
+  badgeText: '#FFFFFF',
+};

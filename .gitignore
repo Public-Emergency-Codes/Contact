@@ -1,0 +1,53 @@
+# Dependencies and generated JavaScript output
+node_modules/
+.expo/
+dist/
+coverage/
+.eslintcache
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.pem
+*.p12
+keystore.properties
+google-services.json
+
+# Android / Gradle generated output
+.gradle/
+.kotlin/
+build/
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/local.properties
+local.properties
+captures/
+
+# IDE and operating-system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Logs, crash dumps, and local diagnostics
+*.log
+*.hprof
+app_logs.txt
+android_build_output.txt
+build_err*.txt
+build_output.txt
+crash_*.txt
+.tmp_*
+temp_*
+input.txt
+window_dump_*.xml
+android/deps*.txt
+android/runlog.txt
+phone_*.png

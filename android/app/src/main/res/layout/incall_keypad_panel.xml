@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keypadPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical"
+    android:paddingTop="6dp"
+    android:paddingBottom="4dp"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf1" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@android:color/transparent" android:text="1" android:textColor="#FFFFFF" android:textSize="30sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf2" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="2" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ABC" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf3" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="3" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DEF" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf4" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="4" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="GHI" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf5" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="5" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="JKL" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf6" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="6" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MNO" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf7" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="7" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PQRS" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf8" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="8" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TUV" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf9" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="9" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WXYZ" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmfStar" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@android:color/transparent" android:text="*" android:textColor="#FFFFFF" android:textSize="30sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmf0" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/transparent" android:text="0" android:textColor="#FFFFFF" android:textSize="30sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+" android:textColor="#7C8A9E" android:textSize="10sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="74dp" android:layout_height="74dp" android:layout_marginHorizontal="15dp" android:layout_marginVertical="4dp" android:background="@drawable/bg_incall_keypad_digit" android:gravity="center" android:orientation="vertical">
+            <Button android:id="@+id/dtmfHash" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@android:color/transparent" android:text="#" android:textColor="#FFFFFF" android:textSize="30sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

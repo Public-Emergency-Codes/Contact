@@ -1,0 +1,257 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+  <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+  <uses-permission android:name="android.permission.CALL_PHONE"/>
+  <uses-permission android:name="android.permission.CAMERA"/>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+  <uses-permission android:name="android.permission.READ_CONTACTS"/>
+  <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+  <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+  <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+  <uses-permission android:name="android.permission.READ_SMS"/>
+  <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+  <uses-permission android:name="android.permission.RECEIVE_MMS"/>
+  <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH"/>
+  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+  <uses-permission android:name="android.permission.SEND_SMS"/>
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+  <uses-permission android:name="android.permission.MANAGE_OWN_CALLS"/>
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+  <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+  <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+  <!-- Required to act as a replacement phone/dialer app -->
+  <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.VIEW"/>
+      <category android:name="android.intent.category.BROWSABLE"/>
+      <data android:scheme="https"/>
+    </intent>
+  </queries>
+  <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="true" android:theme="@style/AppTheme" android:supportsRtl="true" android:enableOnBackInvokedCallback="false">
+    <meta-data android:name="expo.modules.updates.ENABLED" android:value="false"/>
+    <meta-data android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH" android:value="ALWAYS"/>
+    <meta-data android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS" android:value="0"/>
+
+    <!-- Required to be the default SMS app -->
+    <receiver
+      android:name=".SmsDeliverReceiver"
+      android:exported="true"
+      android:permission="android.permission.BROADCAST_SMS">
+      <intent-filter android:priority="2147483647">
+        <action android:name="android.provider.Telephony.SMS_DELIVER"/>
+      </intent-filter>
+    </receiver>
+
+    <receiver
+      android:name=".WapPushReceiver"
+      android:exported="true"
+      android:permission="android.permission.BROADCAST_WAP_PUSH">
+      <intent-filter android:priority="2147483647">
+        <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER"/>
+        <data android:mimeType="application/vnd.wap.mms-message"/>
+      </intent-filter>
+    </receiver>
+
+    <receiver
+      android:name=".MmsDownloadReceiver"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="com.emessages.app.ACTION_MMS_DOWNLOADED"/>
+      </intent-filter>
+    </receiver>
+
+    <!-- klinker library: handles MMS system events (boot, APN changes) -->
+    <receiver
+      android:name="com.android.mms.transaction.MmsSystemEventReceiver"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.ACTION_SHUTDOWN"/>
+      </intent-filter>
+    </receiver>
+
+    <service
+      android:name=".RespondViaSmsService"
+      android:exported="true"
+      android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+      <intent-filter>
+        <action android:name="android.intent.action.RESPOND_VIA_MESSAGE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="sms"/>
+        <data android:scheme="smsto"/>
+        <data android:scheme="mms"/>
+        <data android:scheme="mmsto"/>
+      </intent-filter>
+    </service>
+
+    <activity android:name=".MainActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode" android:launchMode="singleTask" android:windowSoftInputMode="adjustResize" android:theme="@style/Theme.App.SplashScreen" android:exported="true" android:screenOrientation="portrait">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="emessages"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="text/plain"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="image/*"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="video/*"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="audio/*"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="application/*"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND_MULTIPLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="image/*"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND_MULTIPLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="video/*"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SENDTO"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="sms"/>
+        <data android:scheme="smsto"/>
+        <data android:scheme="mms"/>
+        <data android:scheme="mmsto"/>
+      </intent-filter>
+      <!-- Required to be set as the default dialer app -->
+      <intent-filter>
+        <action android:name="android.intent.action.DIAL"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="tel"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.DIAL"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="tel"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.CALL_BUTTON"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+      <!-- Intercept missed call notification taps from the system -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="content" android:host="call_log"/>
+      </intent-filter>
+      <!-- Some OEMs send ACTION_CALL for missed call taps -->
+      <intent-filter>
+        <action android:name="android.intent.action.CALL"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="tel"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name=".InCallUiActivity"
+        android:exported="false"
+        android:excludeFromRecents="true"
+        android:launchMode="singleTask"
+        android:showWhenLocked="true"
+        android:turnScreenOn="true"
+        android:theme="@style/AppTheme" />
+
+    <!--
+      InCallService: replaces the stock Android call UI when this app is
+      set as the default phone app.  Requires BIND_IN_CALL_SERVICE so only
+      the Telecom framework can bind it.
+    -->
+    <service
+        android:name=".EmergencySwitchInCallService"
+        android:enabled="true"
+        android:exported="true"
+        android:permission="android.permission.BIND_INCALL_SERVICE">
+      <meta-data
+          android:name="android.telecom.IN_CALL_SERVICE_UI"
+          android:value="true"/>
+      <intent-filter>
+        <action android:name="android.telecom.InCallService"/>
+      </intent-filter>
+    </service>
+
+    <service
+        android:name=".E911CallDetectorService"
+        android:enabled="true"
+        android:exported="false"
+        android:foregroundServiceType="location|phoneCall" />
+
+    <receiver
+      android:name=".InCallNotificationActionReceiver"
+      android:enabled="true"
+      android:exported="false" />
+    <receiver
+      android:name=".IncomingCallQuickReplyReceiver"
+      android:enabled="true"
+      android:exported="false" />
+
+    <provider
+      android:name="androidx.core.content.FileProvider"
+      android:authorities="${applicationId}.fileprovider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+    </provider>
+
+    <!--
+      Intercept Telecom's missed-call notification broadcast with the highest
+      priority so we consume it before the native dialer.
+    -->
+    <receiver
+        android:name=".MissedCallReceiver"
+        android:enabled="true"
+        android:exported="true"
+        android:priority="999">
+      <intent-filter>
+        <action android:name="android.telecom.action.SHOW_MISSED_CALLS_NOTIFICATION"/>
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

@@ -1,0 +1,46 @@
+Categories:
+  - Phone & SMS
+  - Navigation
+License: 0BSD
+AuthorName: Public Emergency Codes
+AuthorEmail: support@emergency.codes
+WebSite: https://github.com/Public-Emergency-Codes/Contact
+SourceCode: https://github.com/Public-Emergency-Codes/Contact
+IssueTracker: https://github.com/Public-Emergency-Codes/Contact/issues
+Changelog: https://github.com/Public-Emergency-Codes/Contact/releases
+
+AutoName: Contact
+Summary: Emergency phone app that enhances everyday calling and texting
+Description: |
+  Contact enhances the calling and texting you already use every day with
+  built-in emergency tools — silent text-to-911, live video dispatch,
+  real-time location sharing, medical-profile relay, and automatic routing
+  to 988, 311, and 211. No new workflows to learn.
+
+  Works the way your phone already works: calls, texts, contacts, keypad,
+  recent. Built with React Native, TypeScript, and native Kotlin modules.
+
+  Not a certified emergency service. For experimental and educational use.
+
+RepoType: git
+Repo: https://github.com/Public-Emergency-Codes/Contact.git
+
+Builds:
+  - versionName: '1.0.0'
+    versionCode: 1
+    commit: main
+    subdir: android
+    sudo:
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk-headless
+    init:
+      - npm ci
+    gradle:
+      - yes
+    prebuild:
+      - npx expo prebuild --platform android
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: '1.0.0'
+CurrentVersionCode: 1

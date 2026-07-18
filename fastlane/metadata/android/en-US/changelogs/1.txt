@@ -1,0 +1,1 @@
+Initial release of Contact with calling, messaging, contacts, location sharing, medical-profile relay, emergency routing, silent-call tools, and video support.

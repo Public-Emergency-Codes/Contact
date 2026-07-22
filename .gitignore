@@ -4,6 +4,7 @@ node_modules/
 dist/
 coverage/
 .eslintcache
+tmp/
 
 # Environment variables and secrets
 .env

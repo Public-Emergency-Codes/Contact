@@ -13,8 +13,10 @@
     "test": "node --no-warnings --experimental-strip-types --test tests/*.test.mjs",
     "licenses": "node scripts/audit-licenses.js",
     "public-check": "node scripts/check-public-repo.js",
+    "android:verify-native": "node scripts/verify-native-android.js",
+    "android:bundle:play": "node scripts/build-play-bundle.js",
     "audit": "npm audit --audit-level=high",
-    "check": "npm run typecheck && npm run lint && npm run test && npm run licenses && npm run public-check",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run licenses && npm run public-check && npm run android:verify-native",
     "android:compile": "cd android && gradlew.bat :app:compileDebugKotlin --no-daemon",
     "ios": "expo run:ios"
   },

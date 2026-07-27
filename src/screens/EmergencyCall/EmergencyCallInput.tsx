@@ -187,7 +187,7 @@ export const EmergencyCallInput: React.FC<Props> = ({
                   setTimeout(() => startCameraRecording(), 500); scrollToBottom(600);
                   // Notify the PSAP that a live video stream has been requested.
                   sendPsapMessage(
-                    'Can we connect through video so i can show you live feed of the emergency',
+                    'Caller requested a live video connection to show the emergency.',
                     detectedLocation?.latitude,
                     detectedLocation?.longitude,
                   ).catch(() => {});

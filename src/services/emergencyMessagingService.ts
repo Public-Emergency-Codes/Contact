@@ -8,7 +8,7 @@
  * Features:
  *  - Parallel sending via Promise.allSettled()
  *  - Automatic single retry on per-contact failure
- *  - Emergency alert + resolved notification messages
+ *  - Emergency alert notification messages
  */
 import { NativeModules, PermissionsAndroid, Platform } from 'react-native';
 
@@ -106,14 +106,6 @@ class EmergencyMessagingService {
     return msg;
   }
 
-  buildResolvedMessage(userName: string): string {
-    let msg = `✅ EMERGENCY RESOLVED\n\n`;
-    msg += `${userName}'s emergency alert has been deactivated.\n`;
-    msg += `No further action is needed at this time.\n\n`;
-
-    return msg;
-  }
-
   /**
    * Send SMS silently in the background to all contacts (parallel + retry).
    * Uses Android SmsManager directly — no UI shown at all.
@@ -167,16 +159,6 @@ class EmergencyMessagingService {
     }
   }
 
-  /**
-   * Notify emergency contacts that the emergency has been resolved.
-   */
-  async sendResolvedSms(contacts: SmsRecipient[], userName: string): Promise<SmsSendResult> {
-    return this.sendEmergencySms({
-      contacts,
-      userName,
-      customMessage: this.buildResolvedMessage(userName),
-    });
-  }
 }
 
 const emergencyMessagingService = new EmergencyMessagingService();

@@ -329,7 +329,11 @@ export const useEmergencyCallSessionEffects = ({
     });
     if (exact) {
       savedAddrSentRef.current = true; setExactMatchAddress(exact);
-      sendPsapMessage(`SAVED ADDRESS INFO:\n${buildDispatcherInfo(exact)}`, detectedLocation.latitude, detectedLocation.longitude).catch(() => {});
+      sendPsapMessage(
+        `AUTOMATED MESSAGE: The app detected the caller is at or near a saved address on the caller's device. Saved-address information follows:\n${buildDispatcherInfo(exact)}`,
+        detectedLocation.latitude,
+        detectedLocation.longitude,
+      ).catch(() => {});
       return;
     }
     geocodeAddressesToCoords(savedAddresses).then((resolved: any[]) => {

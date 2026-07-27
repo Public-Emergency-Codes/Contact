@@ -147,7 +147,7 @@ export function findMatchingAddress(
  */
 export function buildDispatcherInfo(addr: SavedAddress): string {
   const parts: string[] = [];
-  parts.push(`📍 Saved Location: ${addr.label} — ${addr.address}`);
+  parts.push(`Saved address on caller's device: ${addr.label} - ${addr.address}`);
 
   // Layout details (skip unsure / blank)
   const layout = addr.layout;
@@ -176,7 +176,7 @@ export function buildDispatcherInfo(addr: SavedAddress): string {
  */
 export function buildContactSmsInfo(addr: SavedAddress): string {
   const parts: string[] = [];
-  parts.push(`📍 Known Location: ${addr.label} — ${addr.address}`);
+  parts.push(`Known Location: ${addr.label} - ${addr.address}`);
 
   const { layout } = addr;
   if (layout.buildingType && layout.buildingType !== 'unsure') {

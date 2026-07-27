@@ -37,7 +37,7 @@ class SilentCallService {
       : `The caller's device volume is very low (${Math.round(volumePercent * 100)}%)`;
 
     return [
-      `SILENT CALL ALERT: ${volumeStatus}.`,
+      `AUTOMATED MESSAGE: Silent-call mode detected by the app. SILENT CALL ALERT: ${volumeStatus}.`,
       'The caller may be in a dangerous situation and is intentionally keeping the phone silent.',
       'Please respond by TEXT MESSAGE (Text-to-911).',
       'The caller will communicate by typing messages sent to you as text.',
@@ -47,7 +47,7 @@ class SilentCallService {
 
   /** Build a shorter follow-up reminder for the dispatcher */
   buildSmsRequestReminder(): string {
-    return 'REMINDER: Caller is in silent mode and cannot speak. Please respond via text message.';
+    return 'AUTOMATED MESSAGE: Reminder from the app. Caller is in silent mode and cannot speak. Please respond via text message.';
   }
 
   /**

@@ -25,7 +25,7 @@ interface UseEmergencyVideoCallParams {
 }
 
 const VIDEO_REQUEST_MSG =
-  'Can we connect through video so i can show you live feed of the emergency';
+  'Caller requested a live video connection to show the emergency.';
 
 export const useEmergencyVideoCall = ({
   withVideo, camera, collapseAnims, chatMessages, setChatMessages, scrollToBottom, sendPsapMessage, detectedLocation, videoRequestId,

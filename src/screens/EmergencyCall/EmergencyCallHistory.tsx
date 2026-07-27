@@ -53,10 +53,9 @@ const isAutomated = (m: any): boolean => {
   if (m.type && m.type !== 'chat') return true;
   // Chat messages without a real timestamp are system-generated.
   if (m.type === 'chat' && !m.timestamp && !m.date) return true;
-  // Outgoing SMS sent by the app (e.g. "Automated location (not yet confirmed
-  // by caller): …") are system-generated even though they have real timestamps.
+  // Outgoing SMS sent by the app are system-generated even though they have real timestamps.
   const text = String(m?.text || m?.body || '');
-  if (!m.incoming && text.startsWith('Automated location')) return true;
+  if (!m.incoming && text.startsWith('AUTOMATED MESSAGE:')) return true;
   return false;
 };
 

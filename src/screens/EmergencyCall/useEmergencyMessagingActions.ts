@@ -126,7 +126,7 @@ export function useEmergencyMessagingActions(
       if (profileMessage) {
         params.setChatMessages(prev => [...prev, { type: 'chat', text: profileMessage, timestamp: Date.now() }]);
         scrollToBottom();
-        params.sendPsapMessage(profileMessage).catch(() => {});
+        params.sendPsapMessage(`AUTOMATED MESSAGE: Caller profile information from the app settings. ${profileMessage}`).catch(() => {});
       }
     } catch (_) {}
   }, [params, scrollToBottom]);
@@ -198,7 +198,7 @@ export function useEmergencyMessagingActions(
     try {
       const geo = await reverseGeocode(newLat, newLng);
       const newAddress = geo?.address || 'Unknown address';
-      await params.sendPsapMessage(`Caller has moved to a new location: ${newAddress} at coordinates ${newLat.toFixed(6)}, ${newLng.toFixed(6)}`, newLat, newLng);
+      await params.sendPsapMessage(`AUTOMATED MESSAGE: Caller movement detected by the app. Caller may have moved to a new location: ${newAddress} at coordinates ${newLat.toFixed(6)}, ${newLng.toFixed(6)}`, newLat, newLng);
       params.setChatMessages(prev => [...prev, { text: `We have detected that you have moved to ${toStreetAddress(newAddress)}, please confirm whether or not you moved to this new location.`, type: 'relocation', address: newAddress, coords: `${newLat.toFixed(6)}, ${newLng.toFixed(6)}`, responded: null, timestamp: Date.now() }]);
       scrollToBottom(500); params.lastScannedLocationRef.current = { latitude: newLat, longitude: newLng };
     } catch (_) {}
@@ -206,7 +206,7 @@ export function useEmergencyMessagingActions(
 
   const handleRelocationResponse = useCallback(async (idx: number, response: 'yes' | 'no') => {
     params.setChatMessages(prev => prev.map((m, i) => i === idx ? { ...m, responded: response } : m));
-    if (response === 'no') { await params.sendPsapMessage('Still at original location. Has not moved.', params.detectedLocation?.latitude, params.detectedLocation?.longitude); if (params.detectedLocation) params.lastScannedLocationRef.current = { latitude: params.detectedLocation.latitude, longitude: params.detectedLocation.longitude }; }
+    if (response === 'no') { await params.sendPsapMessage('Caller confirmed they are still at the original location. Caller has not moved.', params.detectedLocation?.latitude, params.detectedLocation?.longitude); if (params.detectedLocation) params.lastScannedLocationRef.current = { latitude: params.detectedLocation.latitude, longitude: params.detectedLocation.longitude }; }
     scrollToBottom(300);
   }, [params, scrollToBottom]);
 

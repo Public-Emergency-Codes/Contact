@@ -93,7 +93,11 @@ export const EmergencyLocationPreview: React.FC<Props> = ({
                 onPress={() => {
                   const addr = nearbyAddress.address;
                   savedAddrSentRef.current = true; setNearbyAddressConfirmed(true);
-                  sendPsapMessage(`SAVED ADDRESS INFO:\n${buildDispatcherInfo(addr)}`, detectedLocation?.latitude, detectedLocation?.longitude).catch(() => {});
+                  sendPsapMessage(
+                    `Caller confirmed they are at or near a saved address on the caller's device. Saved-address information follows:\n${buildDispatcherInfo(addr)}`,
+                    detectedLocation?.latitude,
+                    detectedLocation?.longitude,
+                  ).catch(() => {});
                   const bubbleText = addr?.accessInstructions
                     ? `I'm at ${addr.label}, ${addr.address}. ${addr.accessInstructions}`
                     : `I'm at ${addr?.label}, ${addr?.address}`;

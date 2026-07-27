@@ -260,7 +260,7 @@ export const useEmergencyCallActions = (params: UseEmergencyCallActionsParams) =
         if (address) {
           params.setAddressSearchText(address);
           const coords = `${loc.latitude.toFixed(6)}, ${loc.longitude.toFixed(6)}`;
-          const phaseIMessage = `Automated location (not yet confirmed by caller): ${address} (${coords}) ~${loc.accuracy?.toFixed(0) || '?'}m`;
+          const phaseIMessage = `AUTOMATED MESSAGE: Location detected by the app, not yet confirmed by the caller: ${address} (${coords}) ~${loc.accuracy?.toFixed(0) || '?'}m`;
           params.sendPsapMessage(phaseIMessage, loc.latitude, loc.longitude).catch(() => {});
           const nearbyLabel = params.nearbyAddress?.address?.label ? `near your ${params.nearbyAddress.address.label} at ` : 'at ';
           const cardText = `We detect you are ${nearbyLabel}${address}, if inaccurate use "Change Location".`;
@@ -315,7 +315,8 @@ export const useEmergencyCallActions = (params: UseEmergencyCallActionsParams) =
           params.setChatMessages(prev => prev.some((m: any) => m.aboveLocation) ? prev : [...prev, { type: 'chat', text: profilePayload!, aboveLocation: true, timestamp: Date.now() }]);
           scrollToBottom();
           try {
-            delivered = await params.sendPsapMessage(profilePayload, loc.latitude, loc.longitude);
+            const automatedProfilePayload = `AUTOMATED MESSAGE: Caller profile information from the app settings. ${profilePayload}`;
+            delivered = await params.sendPsapMessage(automatedProfilePayload, loc.latitude, loc.longitude);
           } catch {}
         }
 
@@ -324,7 +325,8 @@ export const useEmergencyCallActions = (params: UseEmergencyCallActionsParams) =
           try {
             const hasPerm = await psapMessagingService.ensurePermissions();
             if (hasPerm) {
-              const direct = await psapMessagingService.sendMessage(profilePayload, EMERGENCY_TEST_NUMBER);
+              const automatedProfilePayload = `AUTOMATED MESSAGE: Caller profile information from the app settings. ${profilePayload}`;
+              const direct = await psapMessagingService.sendMessage(automatedProfilePayload, EMERGENCY_TEST_NUMBER);
               delivered = !!direct.success;
             }
           } catch {}
@@ -336,7 +338,9 @@ export const useEmergencyCallActions = (params: UseEmergencyCallActionsParams) =
             const target = await resolveDirectSmsTarget();
             await sendDirectMmsAttachments(
               target,
-              imgs.length === 1 ? 'Identification photo' : 'Identification photos',
+              imgs.length === 1
+                ? 'AUTOMATED MESSAGE: Identification photo from the caller app.'
+                : 'AUTOMATED MESSAGE: Identification photos from the caller app.',
               imgs.map((uri) => ({ uri, mimeType: 'image/jpeg' })),
             );
             mmsQueued = true;

@@ -31,7 +31,7 @@ const EMERGENCY_OVERRIDE_NUMBER = EMERGENCY_TEST_NUMBER;
 
 const resolvePsapNumber = (psapNumber?: string) => {
   const trimmed = (psapNumber || '').trim();
-  if (!trimmed) return EMERGENCY_OVERRIDE_NUMBER;
+  if (!trimmed) return __DEV__ ? EMERGENCY_OVERRIDE_NUMBER : '911';
   if (__DEV__ && ENFORCE_NON_911_IN_DEV && trimmed === '911') return EMERGENCY_OVERRIDE_NUMBER;
   return trimmed;
 };
@@ -72,7 +72,7 @@ class PsapMessagingService {
    * Start a PSAP SMS session. Begins observing incoming SMS from the PSAP number.
   * @param psapNumber - Phone number to send to (default override emergency number)
    */
-  async startSession(psapNumber = EMERGENCY_OVERRIDE_NUMBER): Promise<boolean> {
+  async startSession(psapNumber: string = __DEV__ ? EMERGENCY_OVERRIDE_NUMBER : '911'): Promise<boolean> {
     if (!this.isAvailable()) {
       console.warn('[PsapSms] Native modules not available');
       return false;

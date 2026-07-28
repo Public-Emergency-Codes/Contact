@@ -140,7 +140,7 @@ export const useEmergencyCallState = (route: any) => {
       } catch (_) {}
     }
     const nativeAvailable = psapMessagingService.isAvailable();
-    const fallbackNumber = EMERGENCY_TEST_NUMBER;
+    const fallbackNumber = __DEV__ ? EMERGENCY_TEST_NUMBER : '911';
     // If for any reason a number is missing, fallback to the override number.
     const numberToUse = (devOverride && typeof devOverride === 'string' && devOverride.trim()) ? devOverride.trim() : fallbackNumber;
     console.log('[PsapSms] sendPsapMessage: devOverride=', devOverride, 'nativeAvailable=', nativeAvailable, 'psapSmsCapable=', psapSmsCapable, 'numberToUse=', numberToUse);

@@ -19,7 +19,7 @@ interface PsapMessageState {
 
 const initialState: PsapMessageState = {
   messages: [],
-  psapNumber: EMERGENCY_TEST_NUMBER,
+  psapNumber: __DEV__ ? EMERGENCY_TEST_NUMBER : '911',
   isActive: false,
 };
 

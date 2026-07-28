@@ -285,7 +285,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   }, [reloadData]);
 
   const toDialable = useCallback((value: string) => value.replace(/[^\d+*#,;]/g, ''), []);
-  const e911CardNumber = EMERGENCY_TEST_NUMBER;
+  const e911CardNumber = __DEV__ ? EMERGENCY_TEST_NUMBER : '911';
 
   const countyContactName = local311 ? `${local311.county} non-emergency services` : 'County non-emergency services';
   const savedCountyContact = useMemo(() => contacts.find((contact: any) =>

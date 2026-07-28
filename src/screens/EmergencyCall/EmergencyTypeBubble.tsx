@@ -97,7 +97,7 @@ const EmergencyTypeBubble: React.FC<EmergencyTypeBubbleProps> = ({
         (devOverride || psapSmsCapable?.capable || psapSmsCapable?.smsCapable || psapSmsCapable === null) &&
         psapMessagingService.isAvailable()
       ) {
-        const result = await psapMessagingService.sendMessage(message, EMERGENCY_TEST_NUMBER);
+        const result = await psapMessagingService.sendMessage(message, __DEV__ ? EMERGENCY_TEST_NUMBER : '911');
         if (result.success) return true;
       }
 

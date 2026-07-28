@@ -116,7 +116,7 @@ export function useEmergencyCallSessionHistory({ chatMessages, setChatMessages, 
       return [];
     }
 
-    const targets = new Set<string>([EMERGENCY_TEST_NUMBER, '911'].filter(Boolean));
+    const targets = new Set<string>(__DEV__ ? [EMERGENCY_TEST_NUMBER, '911'].filter(Boolean) : ['911']);
     if (__DEV__) {
       try {
         const override = await AsyncStorage.getItem('dev_emergency_override_number');

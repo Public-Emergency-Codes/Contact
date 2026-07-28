@@ -170,7 +170,7 @@ export const useEmergencyCallCamera = ({
   }, [camAppState, fromHomeRecording]);
 
   const resolveTarget = async (): Promise<string> => {
-    let target = (psapNumber || EMERGENCY_TEST_NUMBER).trim();
+    let target = (psapNumber || (__DEV__ ? EMERGENCY_TEST_NUMBER : '911')).trim();
     if (__DEV__) {
       try {
         const override = await AsyncStorage.getItem('dev_emergency_override_number');

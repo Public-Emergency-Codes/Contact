@@ -32,7 +32,7 @@ export const useEmergencyCallSessionEffects = ({
     const SmsReader = NativeModules?.SmsReader;
     if (typeof SmsReader?.getCachedIncomingMms !== 'function') return;
 
-    let psapNumber = EMERGENCY_TEST_NUMBER;
+    let psapNumber = __DEV__ ? EMERGENCY_TEST_NUMBER : '911';
     if (__DEV__) {
       try {
         const override = await AsyncStorage.getItem('dev_emergency_override_number');
@@ -102,7 +102,7 @@ export const useEmergencyCallSessionEffects = ({
   useEffect(() => {
     if (psapSmsSessionActive.current) return; // already started
     (async () => {
-      let psapNumber = EMERGENCY_TEST_NUMBER;
+      let psapNumber = __DEV__ ? EMERGENCY_TEST_NUMBER : '911';
       if (__DEV__) {
         try {
           const override = await AsyncStorage.getItem('dev_emergency_override_number');

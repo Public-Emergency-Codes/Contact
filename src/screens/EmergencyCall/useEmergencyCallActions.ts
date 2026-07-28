@@ -81,7 +81,7 @@ export const useEmergencyCallActions = (params: UseEmergencyCallActionsParams) =
         if (override?.trim()) return override.trim();
       } catch (_) {}
     }
-    return (params.psapNumber || EMERGENCY_TEST_NUMBER).trim();
+    return params.psapNumber?.trim() || (__DEV__ ? EMERGENCY_TEST_NUMBER : '911');
   }, [params.psapNumber]);
 
   const getEffectiveMapType = useCallback(() => (params.mapType === 'satellite' ? (params.showStreetNames || params.showBusinessNames ? 'hybrid' : 'satellite') : 'roadmap'), [params.mapType, params.showStreetNames, params.showBusinessNames]);
@@ -326,7 +326,7 @@ export const useEmergencyCallActions = (params: UseEmergencyCallActionsParams) =
             const hasPerm = await psapMessagingService.ensurePermissions();
             if (hasPerm) {
               const automatedProfilePayload = `AUTOMATED MESSAGE: Caller profile information from the app settings. ${profilePayload}`;
-              const direct = await psapMessagingService.sendMessage(automatedProfilePayload, EMERGENCY_TEST_NUMBER);
+              const direct = await psapMessagingService.sendMessage(automatedProfilePayload, __DEV__ ? EMERGENCY_TEST_NUMBER : '911');
               delivered = !!direct.success;
             }
           } catch {}

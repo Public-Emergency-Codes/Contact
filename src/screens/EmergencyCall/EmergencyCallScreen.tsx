@@ -29,7 +29,9 @@ if (TaskManager?.defineTask) TaskManager.defineTask(BACKGROUND_LOCATION_TASK, as
 
 const normalizeEmergencyNumber = (value: any) => {
   const trimmed = String(value || '').trim();
-  return !trimmed || trimmed === '911' ? EMERGENCY_TEST_NUMBER : trimmed;
+  if (!trimmed) return __DEV__ ? EMERGENCY_TEST_NUMBER : '911';
+  if (__DEV__ && trimmed === '911') return EMERGENCY_TEST_NUMBER;
+  return trimmed;
 };
 
 const EmergencyCallScreen = ({ navigation, route }: any) => {

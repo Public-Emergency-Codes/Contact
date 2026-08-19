@@ -62,7 +62,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'background_location',
     label: 'Location',
-    description: 'Required for emergency response. Tap "Allow all the time" on the next screen so 911 can locate you even if the app is in the background.',
+    description: 'Contact collects precise location data to provide emergency location, saved-address matching, and safety history even when the app is closed or not in use. Location may be sent to recipients, carriers, or emergency-service endpoints only when you use a sharing or emergency feature. Tap to continue to Android location settings.',
     critical: true,
     // Requires BOTH foreground and background to be granted.
     checkPerm: async (): Promise<PermState> => {

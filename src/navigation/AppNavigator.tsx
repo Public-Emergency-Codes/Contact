@@ -14,6 +14,9 @@ import AddressEditorScreen from '../screens/Settings/AddressEditorScreen';
 import EditProfileScreen from '../screens/Profile/EditProfileScreen';
 import ChatWindow from '../screens/Home/ChatWindow';
 import ContactDetailsScreen from '../screens/Home/ContactDetailsScreen';
+import LegalHubScreen from '../screens/Legal/LegalHubScreen';
+import LegalDocumentScreen from '../screens/Legal/LegalDocumentScreen';
+import type { LegalDocumentKey } from '../screens/Legal/legalContent';
 
 export type RootStackParamList = {
   Setup: undefined;
@@ -39,6 +42,8 @@ export type RootStackParamList = {
   EditProfile: undefined;
   ChatWindow: { threadId: string; address: string; contactName?: string };
   ContactDetails: { threadId: string; address: string; contactName?: string };
+  AboutLegal: undefined;
+  LegalDocument: { document: LegalDocumentKey };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -63,6 +68,8 @@ export default function AppNavigator() {
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       <Stack.Screen name="ChatWindow" component={ChatWindow} />
       <Stack.Screen name="ContactDetails" component={ContactDetailsScreen} />
+      <Stack.Screen name="AboutLegal" component={LegalHubScreen} />
+      <Stack.Screen name="LegalDocument" component={LegalDocumentScreen} />
     </Stack.Navigator>
   );
 }

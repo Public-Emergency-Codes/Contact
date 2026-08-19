@@ -278,6 +278,12 @@ export default function SettingsScreen({ navigation }: any) {
           () => void openProtected('CheckInSettings', ['notifications', 'battery_optimization', 'contacts'])
         )}
 
+        {renderOptionSection(
+          'About & Legal',
+          'Privacy, emergency and medical disclaimers, terms, local data management, and licenses.',
+          () => navigation.navigate('AboutLegal')
+        )}
+
         {/* Preferred Language */}
         <View style={[styles.section, { paddingVertical: 16 }]}>
           <LanguagePicker
@@ -325,18 +331,12 @@ export default function SettingsScreen({ navigation }: any) {
 
         <View style={styles.footerActions}>
           <View style={styles.supportPillRow}>
-            {renderSupportPill('Privacy Policy', () => Alert.alert(
-              'Privacy Policy',
-              'See PRIVACY.md in the project repository.'
-            ))}
+            {renderSupportPill('Privacy Policy', () => navigation.navigate('LegalDocument', { document: 'privacy' }))}
             {renderSupportPill('Contact Us', () => Alert.alert(
               'Contact Us',
               'Open a GitHub issue for setup help. Do not include personal or emergency information.'
             ))}
-            {renderSupportPill('Terms of Service', () => Alert.alert(
-              'Terms of Service',
-              'See the LICENSE file in the project repository.'
-            ))}
+            {renderSupportPill('Terms of Use', () => navigation.navigate('LegalDocument', { document: 'terms' }))}
           </View>
         </View>
       </ScrollView>

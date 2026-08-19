@@ -1,4 +1,6 @@
-# Privacy and Data Flow
+# Privacy and Data Flow (Developer Notes)
+
+The complete public policy for the distributed app is [Contact Privacy Policy](docs/privacy-policy.md). The notes below describe repository-specific data handling for contributors.
 
 Contact processes highly sensitive device data. Anyone distributing a build is responsible for reviewing the code, platform disclosures, third-party terms, and applicable law.
 
@@ -18,4 +20,4 @@ Coordinates, search terms, IP addresses, and related request metadata may theref
 
 Never commit `.env` files, API keys, signing keys, real phone numbers, messages, addresses, call logs, contact exports, recordings, screenshots containing personal data, or device logs. Use fictional test data only.
 
-This document is a technical summary, not a complete privacy policy for a distributed application.
+These developer notes supplement, but do not replace, the complete public privacy policy linked above.

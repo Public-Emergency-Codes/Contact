@@ -24,5 +24,7 @@ object E911NativePackages {
         CallAudioPackage(),
         PendingSharePackage(),
         ShareFilePackage(),
+        FossLocationPackage(),
+        FossNotificationPackage(),
     )
 }

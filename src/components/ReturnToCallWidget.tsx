@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import type { NavigationContainerRef } from '@react-navigation/native';
-import * as Notifications from 'expo-notifications';
+import * as Notifications from '../platform/fossNotifications';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AppText from './AppText';

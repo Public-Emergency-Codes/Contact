@@ -3,7 +3,7 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const ignoredDirectories = new Set([
-  '.git', '.expo', '.gradle', '.idea', '.kotlin', 'build', 'dist', 'node_modules', '.cxx', 'tmp',
+  '.git', '.expo', '.gradle', '.idea', '.kotlin', '.tools', 'build', 'dist', 'node_modules', '.cxx', 'tmp',
 ]);
 const forbiddenExtensions = new Set(['.jks', '.keystore', '.pem', '.p12', '.hprof', '.apk', '.aab']);
 const ignoredExtensions = new Set(['.log']);

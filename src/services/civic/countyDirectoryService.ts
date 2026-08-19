@@ -1,4 +1,4 @@
-import * as Location from 'expo-location';
+import * as Location from '../../platform/fossLocation';
 import countyDirectory from '../../data/civic/countyDirectory.json';
 
 export type CountyDirectoryEntry = {

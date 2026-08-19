@@ -21,7 +21,7 @@ import {
   useCameraPermission,
 } from 'react-native-vision-camera';
 import * as FileSystem from 'expo-file-system/legacy';
-import * as Location from 'expo-location';
+import * as Location from '../../platform/fossLocation';
 // @ts-ignore
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

@@ -1,4 +1,4 @@
-import * as Location from 'expo-location';
+import * as Location from '../../platform/fossLocation';
 import locationAccuracyValidator from './locationAccuracyValidator';
 import indoorDetectionService, { type IndoorDetectionResult } from './indoorDetectionService';
 import { type EnhancedLocation } from './locationModels';

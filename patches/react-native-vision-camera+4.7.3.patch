@@ -1,0 +1,236 @@
+diff --git a/node_modules/react-native-vision-camera/android/build.gradle b/node_modules/react-native-vision-camera/android/build.gradle
+index b1d9973..4e7bdfc 100644
+--- a/node_modules/react-native-vision-camera/android/build.gradle
++++ b/node_modules/react-native-vision-camera/android/build.gradle
+@@ -199,14 +199,8 @@ dependencies {
+   // Some Coroutines extension functions
+   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
+ 
+-  if (enableCodeScanner) {
+-    // User enabled code-scanner, so we bundle the 2.4 MB model in the app.
+-    implementation 'com.google.mlkit:barcode-scanning:17.3.0'
+-  } else {
+-    // Fall-back to just including the code for the CodeScanner to avoid the 2.4 MB bundle in the app.
+-    // On devices with Google Play Services, this can also download the CodeScanner model on-demand.
+-    implementation "com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.1"
+-  }
++  // Contact does not use barcode scanning. Keep CameraX photo/video support
++  // without bundling the proprietary Google ML Kit implementation.
+ 
+   if (enableFrameProcessors) {
+     // Frame Processor integration (optional)
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraSession.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraSession.kt
+index 13f6a76..5b0c5a6 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraSession.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraSession.kt
+@@ -21,7 +21,6 @@ import androidx.lifecycle.LifecycleEventObserver
+ import androidx.lifecycle.LifecycleOwner
+ import androidx.lifecycle.LifecycleRegistry
+ import com.facebook.react.bridge.UiThreadUtil
+-import com.google.mlkit.vision.barcode.common.Barcode
+ import com.mrousavy.camera.core.extensions.await
+ import com.mrousavy.camera.core.types.Orientation
+ import com.mrousavy.camera.core.types.ShutterType
+@@ -220,6 +219,6 @@ class CameraSession(internal val context: Context, internal val callback: Callba
+     fun onShutter(type: ShutterType)
+     fun onOutputOrientationChanged(outputOrientation: Orientation)
+     fun onPreviewOrientationChanged(previewOrientation: Orientation)
+-    fun onCodeScanned(codes: List<Barcode>, scannerFrame: CodeScannerFrame)
++    fun onCodeScanned(codes: List<ScannedCode>, scannerFrame: CodeScannerFrame)
+   }
+ }
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerFrame.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerFrame.kt
+index 8cea9f2..57240ae 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerFrame.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerFrame.kt
+@@ -1,3 +1,14 @@
+ package com.mrousavy.camera.core
+ 
++import android.graphics.Point
++import android.graphics.Rect
++import com.mrousavy.camera.core.types.CodeType
++
+ data class CodeScannerFrame(val width: Int, val height: Int)
++
++data class ScannedCode(
++  val type: CodeType,
++  val rawValue: String?,
++  val boundingBox: Rect? = null,
++  val cornerPoints: Array<Point>? = null,
++)
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerPipeline.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerPipeline.kt
+index 23d78d1..c2674fa 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerPipeline.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CodeScannerPipeline.kt
+@@ -1,58 +1,15 @@
+ package com.mrousavy.camera.core
+ 
+-import android.util.Log
+-import androidx.annotation.OptIn
+-import androidx.camera.core.ExperimentalGetImage
+ import androidx.camera.core.ImageAnalysis.Analyzer
+ import androidx.camera.core.ImageProxy
+-import com.google.mlkit.vision.barcode.BarcodeScanner
+-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
+-import com.google.mlkit.vision.barcode.BarcodeScanning
+-import com.google.mlkit.vision.common.InputImage
+ import java.io.Closeable
+ 
+ class CodeScannerPipeline(val configuration: CameraConfiguration.CodeScanner, val callback: CameraSession.Callback) :
+   Closeable,
+   Analyzer {
+-  companion object {
+-    private const val TAG = "CodeScannerPipeline"
+-  }
+-  private val scanner: BarcodeScanner
+-
+-  init {
+-    val types = configuration.codeTypes.map { it.toBarcodeType() }
+-    val barcodeScannerOptions = BarcodeScannerOptions.Builder()
+-      .setBarcodeFormats(types[0], *types.toIntArray())
+-      .build()
+-    scanner = BarcodeScanning.getClient(barcodeScannerOptions)
+-  }
+-
+-  @OptIn(ExperimentalGetImage::class)
+   override fun analyze(imageProxy: ImageProxy) {
+-    val image = imageProxy.image ?: throw InvalidImageTypeError()
+-
+-    try {
+-      val inputImage = InputImage.fromMediaImage(image, imageProxy.imageInfo.rotationDegrees)
+-      scanner.process(inputImage)
+-        .addOnSuccessListener { barcodes ->
+-          if (barcodes.isNotEmpty()) {
+-            callback.onCodeScanned(barcodes, CodeScannerFrame(inputImage.width, inputImage.height))
+-          }
+-        }
+-        .addOnFailureListener { error ->
+-          Log.e(TAG, "Failed to process Image!", error)
+-          callback.onError(error)
+-        }
+-        .addOnCompleteListener {
+-          imageProxy.close()
+-        }
+-    } catch (e: Throwable) {
+-      Log.e(TAG, "Failed to process Image!", e)
+-      imageProxy.close()
+-    }
++    imageProxy.close()
+   }
+ 
+-  override fun close() {
+-    scanner.close()
+-  }
++  override fun close() = Unit
+ }
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/types/CodeType.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/types/CodeType.kt
+index 25983df..252cffb 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/types/CodeType.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/types/CodeType.kt
+@@ -1,7 +1,5 @@
+ package com.mrousavy.camera.core.types
+ 
+-import com.google.mlkit.vision.barcode.common.Barcode
+-import com.mrousavy.camera.core.CodeTypeNotSupportedError
+ import com.mrousavy.camera.core.InvalidTypeScriptUnionError
+ 
+ enum class CodeType(override val unionValue: String) : JSUnionValue {
+@@ -20,43 +18,7 @@ enum class CodeType(override val unionValue: String) : JSUnionValue {
+   DATA_MATRIX("data-matrix"),
+   UNKNOWN("unknown");
+ 
+-  fun toBarcodeType(): Int =
+-    when (this) {
+-      CODE_128 -> Barcode.FORMAT_CODE_128
+-      CODE_39 -> Barcode.FORMAT_CODE_39
+-      CODE_93 -> Barcode.FORMAT_CODE_93
+-      CODABAR -> Barcode.FORMAT_CODABAR
+-      EAN_13 -> Barcode.FORMAT_EAN_13
+-      EAN_8 -> Barcode.FORMAT_EAN_8
+-      ITF -> Barcode.FORMAT_ITF
+-      UPC_E -> Barcode.FORMAT_UPC_E
+-      UPC_A -> Barcode.FORMAT_UPC_A
+-      QR -> Barcode.FORMAT_QR_CODE
+-      PDF_417 -> Barcode.FORMAT_PDF417
+-      AZTEC -> Barcode.FORMAT_AZTEC
+-      DATA_MATRIX -> Barcode.FORMAT_DATA_MATRIX
+-      UNKNOWN -> throw CodeTypeNotSupportedError(this.unionValue)
+-    }
+-
+   companion object : JSUnionValue.Companion<CodeType> {
+-    fun fromBarcodeType(barcodeType: Int): CodeType =
+-      when (barcodeType) {
+-        Barcode.FORMAT_CODE_128 -> CODE_128
+-        Barcode.FORMAT_CODE_39 -> CODE_39
+-        Barcode.FORMAT_CODE_93 -> CODE_93
+-        Barcode.FORMAT_CODABAR -> CODABAR
+-        Barcode.FORMAT_EAN_13 -> EAN_13
+-        Barcode.FORMAT_EAN_8 -> EAN_8
+-        Barcode.FORMAT_ITF -> ITF
+-        Barcode.FORMAT_UPC_E -> UPC_E
+-        Barcode.FORMAT_UPC_A -> UPC_A
+-        Barcode.FORMAT_QR_CODE -> QR
+-        Barcode.FORMAT_PDF417 -> PDF_417
+-        Barcode.FORMAT_AZTEC -> AZTEC
+-        Barcode.FORMAT_DATA_MATRIX -> DATA_MATRIX
+-        else -> UNKNOWN
+-      }
+-
+     override fun fromUnionValue(unionValue: String?): CodeType =
+       when (unionValue) {
+         "code-128" -> CODE_128
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView+Events.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView+Events.kt
+index aacb5c7..5fc428b 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView+Events.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView+Events.kt
+@@ -6,9 +6,9 @@ import com.facebook.react.bridge.ReactContext
+ import com.facebook.react.bridge.WritableMap
+ import com.facebook.react.uimanager.UIManagerHelper
+ import com.facebook.react.uimanager.events.Event
+-import com.google.mlkit.vision.barcode.common.Barcode
+ import com.mrousavy.camera.core.CameraError
+ import com.mrousavy.camera.core.CodeScannerFrame
++import com.mrousavy.camera.core.ScannedCode
+ import com.mrousavy.camera.core.UnknownCameraError
+ import com.mrousavy.camera.core.types.CodeType
+ import com.mrousavy.camera.core.types.Orientation
+@@ -125,12 +125,11 @@ fun CameraView.invokeOnAverageFpsChanged(averageFps: Double) {
+   this.sendEvent(event)
+ }
+ 
+-fun CameraView.invokeOnCodeScanned(barcodes: List<Barcode>, scannerFrame: CodeScannerFrame) {
++fun CameraView.invokeOnCodeScanned(barcodes: List<ScannedCode>, scannerFrame: CodeScannerFrame) {
+   val codes = Arguments.createArray()
+   barcodes.forEach { barcode ->
+     val code = Arguments.createMap()
+-    val type = CodeType.fromBarcodeType(barcode.format)
+-    code.putString("type", type.unionValue)
++    code.putString("type", barcode.type.unionValue)
+     code.putString("value", barcode.rawValue)
+ 
+     barcode.boundingBox?.let { rect ->
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView.kt
+index 64a751e..ba724a1 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/react/CameraView.kt
+@@ -7,10 +7,10 @@ import android.view.Gravity
+ import android.view.ScaleGestureDetector
+ import android.widget.FrameLayout
+ import androidx.camera.view.PreviewView
+-import com.google.mlkit.vision.barcode.common.Barcode
+ import com.mrousavy.camera.core.CameraConfiguration
+ import com.mrousavy.camera.core.CameraSession
+ import com.mrousavy.camera.core.CodeScannerFrame
++import com.mrousavy.camera.core.ScannedCode
+ import com.mrousavy.camera.core.types.CameraDeviceFormat
+ import com.mrousavy.camera.core.types.CodeScannerOptions
+ import com.mrousavy.camera.core.types.Orientation
+@@ -343,7 +343,7 @@ class CameraView(context: Context) :
+     invokeOnPreviewOrientationChanged(previewOrientation)
+   }
+ 
+-  override fun onCodeScanned(codes: List<Barcode>, scannerFrame: CodeScannerFrame) {
++  override fun onCodeScanned(codes: List<ScannedCode>, scannerFrame: CodeScannerFrame) {
+     invokeOnCodeScanned(codes, scannerFrame)
+   }
+ 

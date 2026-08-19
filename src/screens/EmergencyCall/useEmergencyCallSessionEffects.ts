@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { Animated, Keyboard, Platform, DeviceEventEmitter, NativeModules } from 'react-native';
-import * as Location from 'expo-location';
+import * as Location from '../../platform/fossLocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import psapMessagingService from '../../services/psap/psapMessagingService';
 import { extractPsapVideoUrl } from '../../services/psap/videoLinkService';

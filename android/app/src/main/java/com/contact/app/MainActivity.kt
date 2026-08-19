@@ -113,6 +113,7 @@ class MainActivity : ReactActivity() {
    * Handle incoming intents: missed call notifications and sms deep links.
    */
   private fun handleIntent(intent: Intent) {
+    FossNotificationModule.handleIntent(intent)
     if (InCallNotificationHelper.ACTION_OPEN_MISSED_CALL == intent.action) {
       CallManager.pendingMissedCallTab = "recent"
     }

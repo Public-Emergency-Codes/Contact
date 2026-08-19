@@ -3,7 +3,7 @@
     "name": "Contact",
     "slug": "contact",
     "icon": "./assets/icon-foreground.png",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
@@ -41,12 +41,6 @@
     },
     "scheme": "contact",
     "plugins": [
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Allow Contact to access your location for 911 emergency services."
-        }
-      ],
       [
         "react-native-vision-camera",
         {

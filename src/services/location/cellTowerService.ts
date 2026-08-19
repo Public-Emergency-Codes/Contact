@@ -1,5 +1,5 @@
 import { NativeModules, Platform, PermissionsAndroid } from 'react-native';
-import * as Location from 'expo-location';
+import * as Location from '../../platform/fossLocation';
 import type { EnhancedLocation } from './locationModels';
 
 const { CellTowerScanner } = NativeModules;

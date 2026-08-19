@@ -1,7 +1,7 @@
 import { useRef, useCallback } from 'react';
 import type { EmergencyMessageStateSetter } from './emergencyCallMessageTypes';
 import { Alert } from 'react-native';
-import * as Location from 'expo-location';
+import * as Location from '../../platform/fossLocation';
 import emergencyLocationService from '../../services/location/emergencyLocationService';
 import { localContacts } from '../../services/localContactsService';
 import emergencyMessagingService from '../../services/emergencyMessagingService';

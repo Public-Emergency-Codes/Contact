@@ -1,4 +1,4 @@
-import * as Location from 'expo-location';
+import * as Location from '../../platform/fossLocation';
 import { store } from '../../store';
 import { setLocation, setError } from '../../store/slices/locationSlice';
 

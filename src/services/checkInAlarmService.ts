@@ -9,7 +9,7 @@
  * enableVibrate=true cached on the device which couldn't be cancelled
  * from JS and persisted across unlocks.
  */
-import * as Notifications from 'expo-notifications';
+import * as Notifications from '../platform/fossNotifications';
 import { Vibration } from 'react-native';
 
 class CheckInAlarmService {

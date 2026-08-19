@@ -33,7 +33,10 @@ const memo = new Map();
 
 function isAllowed(name, visiting = new Set()) {
   if (memo.has(name)) return memo.get(name);
-  if (visiting.has(name)) return false;
+  // npm reports dependency cycles (for example Metro's packages reference one
+  // another). Revisiting a node adds no new advisory; direct advisory objects
+  // encountered anywhere else in the traversal still decide whether it blocks.
+  if (visiting.has(name)) return true;
   const vulnerability = vulnerabilities[name];
   if (!vulnerability) return false;
 

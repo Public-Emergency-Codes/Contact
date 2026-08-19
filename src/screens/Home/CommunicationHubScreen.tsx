@@ -21,6 +21,7 @@ import { placeContactCall, placeContactVideoCall } from '../../services/contactA
 import { inCallService } from '../../services/inCallService';
 import { resolveLocal311Equivalent } from '../../services/civic/countyDirectoryService';
 import type { Local311Equivalent } from '../../services/civic/countyDirectoryService';
+import { arePermissionsGranted } from '../../utils/appPermissions';
 
 const Text = AppText;
 
@@ -59,6 +60,12 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const pendingInitialTabRef = useRef<TabKey | null>(initialTab === 'chat' ? initialTab : null);
   const needsPagerReset = useRef(false);
   const threadIdCacheRef = useRef<Map<string, string>>(new Map());
+
+  const requirePermissions = useCallback(async (keys: string[]) => {
+    if (await arePermissionsGranted(keys)) return true;
+    navigation.navigate('Setup');
+    return false;
+  }, [navigation]);
 
   // When returning to Home from Settings, snap inner pager back to Chat
   useEffect(() => {
@@ -119,10 +126,18 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     }
   }, [screenWidth, handleGhostPage]);
 
-  const handleTabPress = useCallback((key: TabKey) => {
+  const handleTabPress = useCallback(async (key: TabKey) => {
+    const required = key === 'contacts'
+      ? ['contacts']
+      : key === 'recent'
+        ? ['phone_access', 'default_dialer']
+        : key === 'chat'
+          ? ['send_sms', 'receive_sms', 'default_sms']
+          : [];
+    if (required.length > 0 && !await requirePermissions(required)) return;
     const i = TAB_KEYS.indexOf(key);
     if (i >= 0) goToInnerPage(i);
-  }, [goToInnerPage]);
+  }, [goToInnerPage, requirePermissions]);
 
   // Pure data loader — no permission requests
   const loadContactsData = useCallback(async () => {
@@ -246,32 +261,21 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     setDeepSearchTooltip(false);
   }, [activeTab, searchAnim]);
 
-  // ONE-TIME permission init — the only place we ever call requestPermissionsAsync
+  // Check only; activation is initiated by the user from the banner.
   useEffect(() => {
     (async () => {
-      // Contacts: check before request to avoid unnecessary dialog
+      // Read current access without triggering a system prompt.
       const { status: existing } = await Contacts.getPermissionsAsync();
-      if (existing === 'granted') {
-        permsRef.current.contacts = true;
-      } else {
-        const { status } = await Contacts.requestPermissionsAsync();
-        permsRef.current.contacts = status === 'granted';
-      }
-      // Call log: request once here — AppState listener never requests again
+      permsRef.current.contacts = existing === 'granted';
+      // Call log access is also check-only here.
       if (Platform.OS === 'android') {
-        const checked = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_CALL_LOG);
-        let clGranted = checked;
-        if (!clGranted) {
-          const res = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CALL_LOG);
-          clGranted = res === PermissionsAndroid.RESULTS.GRANTED;
-        }
-        permsRef.current.callLog = clGranted;
+        permsRef.current.callLog = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_CALL_LOG);
       } else {
         permsRef.current.callLog = true;
       }
       reloadData();
     })().catch((e) => console.warn('[CommunicationHubScreen] init error:', e));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // AppState: refresh data on foreground — NO permission requests
   useEffect(() => {
@@ -292,33 +296,37 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     contact.name?.trim().toLowerCase() === countyContactName.toLowerCase(),
   ) || null, [contacts, countyContactName]);
 
-  const edit311Contact = useCallback(() => {
+  const edit311Contact = useCallback(async () => {
+    if (!await requirePermissions(['contacts'])) return;
     setEditingContact(savedCountyContact
       ? { id: savedCountyContact.id, name: savedCountyContact.name, number: savedCountyContact.number }
       : { id: '', name: countyContactName, number: local311?.phone || '' });
     setContactHelperText('This correction is saved only to your phone contacts. It does not change the county directory or update the number for other users.');
     setAddContactVisible(true);
-  }, [countyContactName, local311?.phone, savedCountyContact]);
+  }, [countyContactName, local311?.phone, requirePermissions, savedCountyContact]);
 
   const makeCall = useCallback(async (phoneNumber: string, _label: string) => {
+    if (!await requirePermissions(['phone_access'])) return;
     const dialable = toDialable(phoneNumber);
     if (!dialable) {
       Alert.alert('Cannot start call', 'This contact does not have a valid phone number.');
       return;
     }
     await placeContactCall(dialable);
-  }, [toDialable]);
+  }, [requirePermissions, toDialable]);
 
   const handleVideoCall = useCallback(async (phoneNumber: string) => {
+    if (!await requirePermissions(['phone_access', 'camera', 'microphone'])) return;
     const dialable = toDialable(phoneNumber);
     if (!dialable) {
       Alert.alert('Cannot start call', 'This contact does not have a valid phone number.');
       return;
     }
     await placeContactVideoCall(dialable);
-  }, [toDialable]);
+  }, [requirePermissions, toDialable]);
 
   const navigateToSmsChat = useCallback(async (phoneNumber: string, contactName?: string) => {
+    if (!await requirePermissions(['send_sms', 'receive_sms', 'default_sms'])) return;
     const dialable = toDialable(phoneNumber);
     if (!dialable) {
       Alert.alert('Cannot open chat', 'This contact does not have a valid phone number.');
@@ -347,9 +355,10 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     }
     // Fallback: navigate with the phone number as threadId (may be empty)
     navigation.navigate('ChatWindow', { threadId: dialable, address: dialable, contactName });
-  }, [toDialable, navigation]);
+  }, [toDialable, navigation, requirePermissions]);
 
   const openE911 = useCallback(async (params: any) => {
+    if (!await requirePermissions(['background_location', 'phone_access', 'send_sms', 'receive_sms'])) return;
     const e911ActionId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
     const nextParams = {
       ...params,
@@ -384,7 +393,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     }
 
     navigation.navigate('E911Call', nextParams);
-  }, [e911CardNumber, navigation]);
+  }, [e911CardNumber, navigation, requirePermissions]);
 
   // Refresh local emergency and county non-emergency numbers when Home becomes active.
   useEffect(() => {
@@ -512,7 +521,13 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
 
         {/* Page 1: Chat */}
         <View style={{ width: screenWidth }}>
-          <ChatListTab colors={colors} navigation={navigation} searchQuery={searchQuery} deepSearch={deepSearch} />
+          <ChatListTab
+            colors={colors}
+            navigation={navigation}
+            searchQuery={searchQuery}
+            deepSearch={deepSearch}
+            beforeOpen={() => requirePermissions(['send_sms', 'receive_sms', 'default_sms'])}
+          />
         </View>
 
         {/* Page 2: Recent */}
@@ -526,7 +541,15 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
         {/* Page 3: Keypad */}
         <View style={{ width: screenWidth }}>
           <View style={styles.dialerContainer}>
-            <PhoneDialer onCallPress={(num) => makeCall(num, num)} contacts={contacts} onAddContactPress={(num) => { setEditingContact({ id: '', name: '', number: num }); setAddContactVisible(true); }} />
+            <PhoneDialer
+              onCallPress={(num) => makeCall(num, num)}
+              onVoicemailPress={() => { void inCallService.placeVoicemailCall(); }}
+              contacts={contacts}
+              emergencyAlternatives={emergencyCards
+                .filter((card) => ['e4', 'e6', 'e5'].includes(card.id))
+                .map((card) => ({ id: card.id, name: card.name, number: card.number, subtitle: card.subtitle }))}
+              onAddContactPress={(num) => { setEditingContact({ id: '', name: '', number: num }); setAddContactVisible(true); }}
+            />
           </View>
         </View>
 

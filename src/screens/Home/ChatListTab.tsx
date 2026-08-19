@@ -37,7 +37,7 @@ function formatDate(ts: number): string {
 }
 
 /** Format a raw phone number for display — e.g. "+1234567890" → "(123) 456-7890" */
-export default function ChatListTab({ colors, navigation, searchQuery = '', deepSearch = false }: { colors: any; navigation?: any; searchQuery?: string; deepSearch?: boolean }) {
+export default function ChatListTab({ colors, navigation, searchQuery = '', deepSearch = false, beforeOpen }: { colors: any; navigation?: any; searchQuery?: string; deepSearch?: boolean; beforeOpen?: () => Promise<boolean> }) {
   const [threads, setThreads] = useState<Thread[]>([]);
   const [loading, setLoading] = useState(true);
   const [deepSearchThreadIds, setDeepSearchThreadIds] = useState<Set<string>>(new Set());
@@ -163,7 +163,8 @@ export default function ChatListTab({ colors, navigation, searchQuery = '', deep
     return filtered;
   }, [threads, archivedThreadIds, starredThreadIds, searchQuery, deepSearch, deepSearchThreadIds, deepSearchLoading]);
 
-  const openThread = useCallback((thread: Thread) => {
+  const openThread = useCallback(async (thread: Thread) => {
+    if (beforeOpen && !await beforeOpen()) return;
     if (navigation) {
       navigation.navigate('ChatWindow', {
         threadId: thread.threadId,
@@ -171,7 +172,7 @@ export default function ChatListTab({ colors, navigation, searchQuery = '', deep
         contactName: thread.contactName,
       });
     }
-  }, [navigation]);
+  }, [beforeOpen, navigation]);
 
   const s = styles(colors);
 

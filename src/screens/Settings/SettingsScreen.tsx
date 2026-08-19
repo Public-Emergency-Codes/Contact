@@ -22,6 +22,7 @@ import androidMedicalInfoService from '../../services/androidMedicalInfoService'
 import { LOCAL_PROFILE_KEY } from '../../constants/profileMedical';
 import { useFocusEffect } from '@react-navigation/native';
 import * as IntentLauncher from 'expo-intent-launcher';
+import { arePermissionsGranted } from '../../utils/appPermissions';
 
 export const DEV_OVERRIDE_NUMBER_KEY = 'dev_emergency_override_number';
 
@@ -130,6 +131,13 @@ function DevDialer() {
 }
 
 export default function SettingsScreen({ navigation }: any) {
+  const openProtected = useCallback(async (route: string, permissionKeys: string[], params?: any) => {
+    if (!await arePermissionsGranted(permissionKeys)) {
+      navigation.navigate('Setup');
+      return;
+    }
+    navigation.navigate(route, params);
+  }, [navigation]);
   const { colors } = useTheme();
   const { textScale, setTextScale } = useTextScale();
   const insets = useSafeAreaInsets();
@@ -243,7 +251,7 @@ export default function SettingsScreen({ navigation }: any) {
         {renderOptionSection(
           'Emergency Contacts',
           'People who receive SMS alerts when you trigger an emergency.',
-          () => navigation.navigate('EmergencyContacts')
+          () => void openProtected('EmergencyContacts', ['contacts', 'send_sms'])
         )}
 
         {renderOptionSection(
@@ -261,13 +269,13 @@ export default function SettingsScreen({ navigation }: any) {
         {renderOptionSection(
           'View Recordings',
           'Review, keep, or delete emergency recordings and manage your recording retention settings.',
-          () => navigation.navigate('Recordings')
+          () => void openProtected('Recordings', ['camera', 'microphone'])
         )}
 
         {renderOptionSection(
           'Check-In Settings',
           'Configure automatic safety check-ins, escalation timing, and who gets notified if you miss one.',
-          () => navigation.navigate('CheckInSettings')
+          () => void openProtected('CheckInSettings', ['notifications', 'battery_optimization', 'contacts'])
         )}
 
         {/* Preferred Language */}

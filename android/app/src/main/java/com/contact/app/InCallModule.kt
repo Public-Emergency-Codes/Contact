@@ -213,6 +213,40 @@ class InCallModule(
         }
     }
 
+    /** Places a call to the voicemail number configured by the active carrier. */
+    @ReactMethod
+    fun placeVoicemailCall(promise: Promise) {
+        val activity = reactContext.currentActivity ?: run {
+            promise.reject("NO_ACTIVITY", "No foreground activity"); return
+        }
+        try {
+            ensureInCallServiceEnabled(activity)
+            val tm = activity.getSystemService(TelecomManager::class.java)
+            val voicemailUri = Uri.fromParts("voicemail", "", null)
+            val hasCallPhone = activity.checkSelfPermission(android.Manifest.permission.CALL_PHONE) ==
+                PackageManager.PERMISSION_GRANTED
+            val isDefaultDialer = tm?.defaultDialerPackage == activity.packageName
+
+            if (tm != null && (isDefaultDialer || hasCallPhone)) {
+                tm.placeCall(voicemailUri, Bundle.EMPTY)
+                promise.resolve(true)
+                return
+            }
+
+            activity.startActivity(Intent(Intent.ACTION_DIAL, voicemailUri))
+            promise.resolve(true)
+        } catch (e: SecurityException) {
+            try {
+                activity.startActivity(Intent(Intent.ACTION_DIAL, Uri.fromParts("voicemail", "", null)))
+                promise.resolve(true)
+            } catch (_: Exception) {
+                promise.resolve(false)
+            }
+        } catch (e: Exception) {
+            promise.reject("PLACE_VOICEMAIL_CALL_ERROR", e.message, e)
+        }
+    }
+
     /**
      * Places a voice call for the E911 React screen without handing UI control
      * to a dialer activity. The E911 screen remains the foreground call UI.

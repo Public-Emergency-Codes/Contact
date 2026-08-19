@@ -271,7 +271,7 @@ export function useEmergencyCallSessionHistory({ chatMessages, setChatMessages, 
       setLoaded(true);
     })();
     return () => { cancelled = true; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   // Keep a ref to the latest chatMessages so the unmount cleanup can access them.
@@ -332,7 +332,7 @@ export function useEmergencyCallSessionHistory({ chatMessages, setChatMessages, 
         persist();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   const revealOlderSession = useCallback(() => {

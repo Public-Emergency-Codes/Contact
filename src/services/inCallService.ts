@@ -103,6 +103,12 @@ export const inCallService = {
     try { return await InCallModule.placeCall(number); } catch { return false; }
   },
 
+  /** Call the carrier-configured voicemail service. */
+  async placeVoicemailCall(): Promise<boolean> {
+    if (!isAndroid || !InCallModule) return false;
+    try { return await InCallModule.placeVoicemailCall(); } catch { return false; }
+  },
+
   /**
    * Place the E911 voice call while keeping the mounted E911 screen in front.
    * This never falls back to an external dialer activity.

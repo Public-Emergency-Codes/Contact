@@ -21,6 +21,7 @@ const gradleCommand = process.platform === 'win32' ? 'gradlew.bat' : './gradlew'
 const result = spawnSync(gradleCommand, [':app:bundleRelease', '--no-daemon'], {
   cwd: path.join(root, 'android'),
   shell: process.platform === 'win32',
+  env: { ...process.env, NODE_ENV: 'production' },
   stdio: 'inherit',
 });
 

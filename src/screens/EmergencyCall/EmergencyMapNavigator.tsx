@@ -76,7 +76,7 @@ export const EmergencyMapNavigator: React.FC<Props> = (props) => {
   const leafletPinLng = mapPin?.lng ?? detectedAddresses[currentAddressIndex]?.longitude ?? detectedLocation?.longitude ?? leafletCenterLng;
   const leafletHtml = React.useMemo(
     () => buildLeafletMapHtml(leafletCenterLat, leafletCenterLng, mapZoom, true, leafletPinLat, leafletPinLng),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
     [Math.round(leafletCenterLat * 1000), Math.round(leafletCenterLng * 1000)],
   );
   React.useEffect(() => {

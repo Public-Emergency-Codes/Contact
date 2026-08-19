@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { PERMISSIONS_LIST, isGranted } from '../utils/appPermissions';
 
 import PermissionOnboardingScreen from '../screens/Auth/PermissionOnboardingScreen';
 import PermissionManagementScreen from '../screens/Settings/PermissionManagementScreen';
@@ -46,33 +44,13 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  const [initialRoute, setInitialRoute] = useState<keyof RootStackParamList | null>(null);
-
-  useEffect(() => {
-    const determineRoute = async () => {
-      const setupDone = await AsyncStorage.getItem('setup_complete');
-      if (setupDone !== 'true') { setInitialRoute('Setup'); return; }
-      const criticalPerms = PERMISSIONS_LIST.filter((p: any) => p.critical);
-      const checks = await Promise.all(
-        criticalPerms.map(async (p: any) => {
-          try { return isGranted(await p.checkPerm()); } catch { return false; }
-        })
-      );
-      if (checks.some((ok: boolean) => !ok)) {
-        await AsyncStorage.removeItem('setup_complete');
-        setInitialRoute('Setup');
-      } else {
-        setInitialRoute('Home');
-      }
-    };
-    determineRoute();
-  }, []);
-
-  if (!initialRoute) return null;
-
   return (
-    <Stack.Navigator id="root-stack" initialRouteName={initialRoute} screenOptions={{ headerShown: false, animation: 'none' }}>
-      <Stack.Screen name="Setup" component={PermissionOnboardingScreen} />
+    <Stack.Navigator id="root-stack" initialRouteName="Home" screenOptions={{ headerShown: false, animation: 'none' }}>
+      <Stack.Screen
+        name="Setup"
+        component={PermissionOnboardingScreen}
+        options={{ presentation: 'transparentModal', cardStyle: { backgroundColor: 'transparent' } }}
+      />
       <Stack.Screen name="Permissions" component={PermissionManagementScreen} />
       <Stack.Screen name="Home" component={TabContainer} />
       <Stack.Screen name="EmergencyContacts" component={EmergencyContactsScreen} />

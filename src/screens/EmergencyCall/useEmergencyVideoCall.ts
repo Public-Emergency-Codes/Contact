@@ -127,7 +127,7 @@ export const useEmergencyVideoCall = ({
       cancelled = true;
       if (startingRequestRef.current === requestKey) startingRequestRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [withVideo, videoRequestId, camera.hasCamPermission, camera.activeCamDevice]);
 
   // Place the "trying to connect" bubble directly below the "Here's a live feed

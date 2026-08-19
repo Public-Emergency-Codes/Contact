@@ -8,10 +8,8 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import AppText from '../../components/AppText';
 const Text = AppText;
 import { useTheme } from '../../context/ThemeContext';
-import { CommonActions } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { openSettings } from 'react-native-permissions';
-import { PERMISSIONS_LIST, isGranted, CRITICAL_KEYS, type PermState, type PermDef } from '../../utils/appPermissions';
+import { PERMISSIONS_LIST, isGranted, type PermState, type PermDef } from '../../utils/appPermissions';
 
 type States = Record<string, PermState>;
 
@@ -62,15 +60,8 @@ export default function PermissionManagementScreen({ navigation, route }: any) {
     const unsubscribeFocus = navigation.addListener('focus', doRefresh);
     const sub = AppState.addEventListener('change', async (nextState) => {
       if (nextState !== 'active') return;
-      const fresh = await doRefresh();
-      if (justOpenedSettings.current) {
-        justOpenedSettings.current = false;
-        const anyRevoked = CRITICAL_KEYS.some(k => !isGranted(fresh[k] as PermState));
-        if (anyRevoked) {
-          await AsyncStorage.removeItem('setup_complete');
-          navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'Setup' }] }));
-        }
-      }
+      await doRefresh();
+      if (justOpenedSettings.current) justOpenedSettings.current = false;
     });
     return () => {
       sub.remove();

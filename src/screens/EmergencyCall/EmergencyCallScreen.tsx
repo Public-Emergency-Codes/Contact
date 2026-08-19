@@ -129,7 +129,7 @@ const EmergencyCallScreen = ({ navigation, route }: any) => {
       actions.runLocationDetection();
     }, 100);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [showInitiateCallButton]);
 
   const joystickSize = 80;

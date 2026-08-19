@@ -219,7 +219,6 @@ export function useEmergencyVoiceCall({
     if (!activeEmergencyEventId && !activeE911EventId) {
       setActiveE911EventId(`e911-local-${Date.now()}`);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // When the PSAP/dispatcher cancels (disconnects) the call, flip the end-call
@@ -275,7 +274,6 @@ export function useEmergencyVoiceCall({
         });
     }, delayMs);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [withVideo, autoInitiateCall, actionId, callInitiated]);
 
   const resumeActiveCallIfPresent = useCallback(async () => {

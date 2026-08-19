@@ -1,5 +1,7 @@
 # Dependencies and generated JavaScript output
 node_modules/
+.npm-cache/
+.tools/
 .expo/
 dist/
 coverage/

@@ -338,3 +338,12 @@ export const PERMISSIONS_LIST: PermDef[] = [
 export const CRITICAL_KEYS = PERMISSIONS_LIST.filter(p => p.critical).map(p => p.key);
 
 export const isGranted = (state: PermState) => state === 'granted' || state === 'limited';
+
+export const arePermissionsGranted = async (keys: string[]) => {
+  const requested = PERMISSIONS_LIST.filter(permission => keys.includes(permission.key));
+  const states = await Promise.all(requested.map(async permission => {
+    try { return await permission.checkPerm(); }
+    catch { return 'denied' as PermState; }
+  }));
+  return states.every(isGranted);
+};

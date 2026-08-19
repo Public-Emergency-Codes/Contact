@@ -175,7 +175,7 @@ const VideoRecordingBubble: React.FC<VideoRecordingBubbleProps> = ({
   /* Re-expose handle whenever dualMode changes */
   useEffect(() => {
     onReady?.({ startRecording, stopRecording, isRecording: () => recording.current });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [dualMode]);
 
   const mainDevice = dualMode ? backDevice : (activeCamera === 'front' ? frontDevice : backDevice);

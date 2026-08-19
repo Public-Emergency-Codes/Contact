@@ -94,7 +94,7 @@ export const useEmergencyCallSessionEffects = ({
       }
     );
     return () => sub.remove();
-  }, [detectedLocation]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [detectedLocation]);
 
   // Start the SMS observer session as soon as the E911 screen mounts (not waiting for psapSmsCapable).
   // In dev with override we need it up immediately so replies populate in the chat.
@@ -117,7 +117,7 @@ export const useEmergencyCallSessionEffects = ({
     return () => {
       if (psapSmsSessionActive.current) { psapMessagingService.stopSession(); psapSmsSessionActive.current = false; }
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     loadIncomingMmsImages();

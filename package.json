@@ -15,7 +15,7 @@
     "public-check": "node scripts/check-public-repo.js",
     "android:verify-native": "node scripts/verify-native-android.js",
     "android:bundle:play": "node scripts/build-play-bundle.js",
-    "audit": "npm audit --audit-level=high",
+    "audit": "node scripts/audit-security.js",
     "check": "npm run typecheck && npm run lint && npm run test && npm run licenses && npm run public-check && npm run android:verify-native",
     "android:compile": "cd android && gradlew.bat :app:compileDebugKotlin --no-daemon",
     "ios": "expo run:ios"
@@ -83,7 +83,8 @@
     "typescript": "~6.0.3"
   },
   "overrides": {
-    "brace-expansion": "5.0.8",
+    "brace-expansion": "5.0.9",
+    "js-yaml": "4.3.1",
     "postcss": "8.5.26",
     "xcode": {
       "uuid": "^11.1.1"

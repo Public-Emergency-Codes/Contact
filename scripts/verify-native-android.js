@@ -4,11 +4,11 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const requiredFiles = [
   'android/app/src/main/AndroidManifest.xml',
-  'android/app/src/main/java/com/contact/app/MainApplication.kt',
-  'android/app/src/main/java/com/contact/app/PackageRegistry.kt',
-  'android/app/src/main/java/com/contact/app/DirectSmsModule.kt',
-  'android/app/src/main/java/com/contact/app/EmergencySwitchInCallService.kt',
-  'android/app/src/main/java/com/contact/app/InCallModule.kt',
+  'android/app/src/main/java/contact/emergency/codes/MainApplication.kt',
+  'android/app/src/main/java/contact/emergency/codes/PackageRegistry.kt',
+  'android/app/src/main/java/contact/emergency/codes/DirectSmsModule.kt',
+  'android/app/src/main/java/contact/emergency/codes/EmergencySwitchInCallService.kt',
+  'android/app/src/main/java/contact/emergency/codes/InCallModule.kt',
   'android/app/src/main/res/layout/activity_in_call_ui.xml',
   'android/app/src/main/res/layout/quick_reply_bottom_sheet.xml',
 ];
@@ -18,9 +18,9 @@ const missing = requiredFiles.filter((relativePath) =>
 );
 
 const requiredText = [
-  ['android/app/src/main/java/com/contact/app/MainApplication.kt', 'E911NativePackages.all()'],
-  ['android/app/src/main/java/com/contact/app/PackageRegistry.kt', 'DirectSmsPackage()'],
-  ['android/app/src/main/java/com/contact/app/PackageRegistry.kt', 'InCallPackage()'],
+  ['android/app/src/main/java/contact/emergency/codes/MainApplication.kt', 'E911NativePackages.all()'],
+  ['android/app/src/main/java/contact/emergency/codes/PackageRegistry.kt', 'DirectSmsPackage()'],
+  ['android/app/src/main/java/contact/emergency/codes/PackageRegistry.kt', 'InCallPackage()'],
   ['android/app/src/main/AndroidManifest.xml', '.EmergencySwitchInCallService'],
   ['android/app/src/main/AndroidManifest.xml', '.SmsDeliverReceiver'],
   ['android/app/src/main/AndroidManifest.xml', 'android.intent.action.DIAL'],

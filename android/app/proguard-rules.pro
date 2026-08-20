@@ -14,8 +14,8 @@
 # Add any project specific keep options here:
 
 # Keep InCall native modules (called via reflection from React Native)
--keep class com.contact.app.InCallModule { *; }
--keep class com.contact.app.CallAudioModule { *; }
--keep class com.contact.app.EmergencySwitchInCallService { *; }
--keep class com.contact.app.InCallUiActivity { *; }
--keep class com.contact.app.CallManager { *; }
+-keep class contact.emergency.codes.InCallModule { *; }
+-keep class contact.emergency.codes.CallAudioModule { *; }
+-keep class contact.emergency.codes.EmergencySwitchInCallService { *; }
+-keep class contact.emergency.codes.InCallUiActivity { *; }
+-keep class contact.emergency.codes.CallManager { *; }

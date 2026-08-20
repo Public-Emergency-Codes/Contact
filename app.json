@@ -3,12 +3,12 @@
     "name": "Contact",
     "slug": "contact",
     "icon": "./assets/icon-foreground.png",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "android": {
-      "package": "com.contact.app",
+      "package": "contact.emergency.codes",
       "icon": "./assets/icon-foreground.png",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-adaptive-foreground.png",

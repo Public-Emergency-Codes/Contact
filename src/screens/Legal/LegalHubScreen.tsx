@@ -37,7 +37,7 @@ export default function LegalHubScreen({ navigation }: any) {
             <Text style={styles.arrow}>›</Text>
           </TouchableOpacity>
         ))}
-        <Text style={styles.version}>Contact 1.0.1 · Public Emergency Codes</Text>
+        <Text style={styles.version}>Contact 1.0.2 · Public Emergency Codes</Text>
         <Text style={styles.contact}>Questions: support@emergency.codes{`\n`}Never use email to request emergency help.</Text>
       </ScrollView>
     </SafeAreaView>

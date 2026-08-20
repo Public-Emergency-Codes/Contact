@@ -69,7 +69,7 @@
       android:name=".MmsDownloadReceiver"
       android:exported="false">
       <intent-filter>
-        <action android:name="com.contact.app.ACTION_MMS_DOWNLOADED"/>
+        <action android:name="contact.emergency.codes.ACTION_MMS_DOWNLOADED"/>
       </intent-filter>
     </receiver>
 

@@ -1,0 +1,59 @@
+AntiFeatures:
+  - NonFreeNet
+  - TetheredNet
+Categories:
+  - Navigation
+  - Phone & SMS
+License: 0BSD
+AuthorName: Public Emergency Codes
+AuthorEmail: support@emergency.codes
+WebSite: https://github.com/Public-Emergency-Codes/Contact
+SourceCode: https://github.com/Public-Emergency-Codes/Contact
+IssueTracker: https://github.com/Public-Emergency-Codes/Contact/issues
+Changelog: https://github.com/Public-Emergency-Codes/Contact/releases
+
+AutoName: Contact
+
+RepoType: git
+Repo: https://github.com/Public-Emergency-Codes/Contact.git
+
+Builds:
+  - versionName: 1.0.2
+    versionCode: 3
+    commit: v1.0.2
+    subdir: android/app
+    sudo:
+      - echo "deb https://deb.debian.org/debian bookworm main" > /etc/apt/sources.list.d/bookworm.list
+      - apt-get update
+      - apt-get install -y -t bookworm openjdk-17-jdk-headless
+      - apt-get install -y nodejs npm
+      - update-java-alternatives -s java-1.17.0-openjdk-amd64
+    init: npm ci
+    gradle:
+      - yes
+    prebuild: sed -i -e '1a "expo":{"autolinking":{"android":{"buildFromSource":[".*"]}}},'
+      ../../package.json
+    scanignore:
+      - node_modules/@react-native-async-storage/async-storage/android/build.gradle
+      - node_modules/@react-native-community/netinfo/android/build.gradle
+      - node_modules/expo-modules-core/android/ExpoModulesCorePlugin.gradle
+      - node_modules/hermes-compiler/hermesc/linux64-bin/hermesc
+      - node_modules/react-native-permissions/android/build.gradle
+      - node_modules/react-native-safe-area-context/android/build.gradle
+      - node_modules/react-native-screens/android/build.gradle
+      - node_modules/react-native-webview/android/build.gradle
+      - node_modules/react-native/ReactAndroid/publish.gradle
+    scandelete:
+      - node_modules
+    antifeatures:
+      NonFreeNet:
+        en-US: Uses proprietary public-safety and mapping network services for 
+          optional emergency features.
+      TetheredNet:
+        en-US: Some emergency integrations depend on fixed third-party service 
+          endpoints.
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags ^v[\d.]+$
+CurrentVersion: 1.0.2
+CurrentVersionCode: 3

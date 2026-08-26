@@ -61,11 +61,11 @@ export default function PermissionOnboardingScreen({ navigation }: any) {
   }, [refresh]);
 
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
-      <Pressable
-        style={styles.backdrop}
-        onPress={() => navigation.canGoBack() ? navigation.goBack() : navigation.replace('Home')}
-      >
+    <Pressable
+      style={styles.backdrop}
+      onPress={() => navigation.canGoBack() ? navigation.goBack() : navigation.replace('Home')}
+    >
+      <SafeAreaView style={styles.safeContent} edges={['top', 'bottom', 'left', 'right']} pointerEvents="box-none">
         <Pressable style={styles.window} onPress={event => event.stopPropagation()}>
           <View style={styles.header}>
             <View style={styles.headerSpacer} />
@@ -102,14 +102,14 @@ export default function PermissionOnboardingScreen({ navigation }: any) {
             })}
           </ScrollView>
         </Pressable>
-      </Pressable>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Pressable>
   );
 }
 
 const makeStyles = (colors: any) => StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'transparent' },
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', justifyContent: 'center', alignItems: 'center', padding: 18 },
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.72)' },
+  safeContent: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 18 },
   window: { width: '100%', maxWidth: 520, maxHeight: '86%', backgroundColor: colors.surface, borderRadius: 18, borderWidth: 1, borderColor: colors.border, overflow: 'hidden', elevation: 24, shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 20 },
   header: {
     paddingHorizontal: 16,

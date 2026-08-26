@@ -20,7 +20,13 @@ const Text = AppText;
 
 
 interface ExistingContactPrefill { id: string; name: string; number: string; }
-interface Props { visible: boolean; onClose: () => void; onSaved: () => void; initialContact?: ExistingContactPrefill | null; helperText?: string; }
+interface Props {
+  visible: boolean;
+  onClose: () => void;
+  onSaved: (contact?: { name: string; number: string }) => void;
+  initialContact?: ExistingContactPrefill | null;
+  helperText?: string;
+}
 
 const defaultForm = {
   firstName: '', lastName: '', middleName: '',
@@ -211,7 +217,7 @@ export default function AddContactModal({ visible, onClose, onSaved, initialCont
           isCheckInContact: form.isCheckInContact,
         });
       }
-      onSaved(); onClose();
+      onSaved({ name: fullName, number: formattedPhone }); onClose();
     } catch (e: any) {
       Alert.alert('Error', e?.message || 'Failed to save contact.');
     } finally { setSaving(false); }

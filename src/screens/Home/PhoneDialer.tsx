@@ -29,7 +29,7 @@ export const PhoneDialer = ({ onCallPress, onVoicemailPress, contacts = [], emer
   const { colors } = useTheme();
   const { textScale } = useTextScale();
   const fs = useCallback((size: number) => size * textScale, [textScale]);
-  const styles = useMemo(() => makeStyles(colors, fs), [colors, fs]);
+  const styles = useMemo(() => makeStyles(colors), [colors]);
 
   const handlePress = useCallback((digit: string) => {
     if (longPressedDigit.current === digit) {
@@ -97,7 +97,13 @@ export const PhoneDialer = ({ onCallPress, onVoicemailPress, contacts = [], emer
           </View>
         )}
         <View style={styles.displaySection}>
-          <Text style={[styles.numberDisplay, { fontSize: fs(phoneNumber.length > 10 ? 26 : 34) }]}>
+          <Text
+            style={[styles.numberDisplay, { fontSize: phoneNumber.length > 10 ? 26 : 34 }]}
+            allowFontScaling={false}
+            adjustsFontSizeToFit
+            minimumFontScale={0.55}
+            numberOfLines={1}
+          >
             {formatPhoneNumber(phoneNumber) || ' '}
           </Text>
         </View>
@@ -115,11 +121,21 @@ export const PhoneDialer = ({ onCallPress, onVoicemailPress, contacts = [], emer
                 delayLongPress={500}
                 activeOpacity={0.7}
               >
-                <Text style={[styles.dialButtonText, { fontSize: fs(28) }]}>{digit}</Text>
+                <Text
+                  style={[styles.dialButtonText, { fontSize: Math.min(28, 48 / textScale) }]}
+                  allowFontScaling={false}
+                >
+                  {digit}
+                </Text>
                 {digit === '1' ? (
                   <MaterialIcons name="voicemail" size={fs(14)} color="rgba(255,255,255,0.45)" style={styles.voicemailIcon} />
                 ) : DIAL_LETTERS[digit] ? (
-                  <Text style={[styles.dialLetters, { fontSize: fs(9) }]}>{DIAL_LETTERS[digit]}</Text>
+                  <Text
+                    style={[styles.dialLetters, { fontSize: Math.min(9, 12 / textScale) }]}
+                    allowFontScaling={false}
+                  >
+                    {DIAL_LETTERS[digit]}
+                  </Text>
                 ) : null}
               </TouchableOpacity>
             ))}
@@ -147,7 +163,7 @@ export const PhoneDialer = ({ onCallPress, onVoicemailPress, contacts = [], emer
   );
 };
 
-const makeStyles = (colors: any, _fs: (size: number) => number) =>
+const makeStyles = (colors: any) =>
   StyleSheet.create({
     container: { flex: 1, paddingHorizontal: 18, justifyContent: 'flex-end', paddingBottom: 80 },
     displayArea: { position: 'relative', minHeight: 60 },
@@ -164,9 +180,9 @@ const makeStyles = (colors: any, _fs: (size: number) => number) =>
     dialpadGrid: { marginBottom: 8 },
     dialpadRow: { flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 10 },
     dialButton: { width: 72, height: 72, borderRadius: 36, backgroundColor: '#1c1c1c', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)' },
-    dialButtonText: { color: '#ffffff', fontWeight: '600', lineHeight: 32 },
+    dialButtonText: { color: '#ffffff', fontWeight: '600', fontSize: 28 },
     voicemailIcon: { marginTop: -2 },
-    dialLetters: { color: 'rgba(255,255,255,0.45)', fontWeight: '600', letterSpacing: 1.5, marginTop: -2 },
+    dialLetters: { color: 'rgba(255,255,255,0.45)', fontWeight: '600', fontSize: 9, letterSpacing: 1.5, marginTop: -2 },
     actionsRow: { flexDirection: 'row', justifyContent: 'space-evenly', paddingVertical: 12, marginTop: 4 },
     actionButton: { width: 72, height: 72, borderRadius: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#1c1c1c', borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)', elevation: 3 },
     callButton: { backgroundColor: '#2aa865' },

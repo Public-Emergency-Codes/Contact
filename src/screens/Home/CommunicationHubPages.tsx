@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AppText from '../../components/AppText';
 import { formatPhoneNumber } from '../../utils/phoneFormat';
 
 const Text = AppText;
+
+function SearchingLabel({ style }: { style: any }) {
+  const [dots, setDots] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots(current => current.length === 3 ? '' : `${current}.`);
+    }, 450);
+    return () => clearInterval(interval);
+  }, []);
+
+  return <Text style={style}>Searching{dots}</Text>;
+}
 
 export function EmergencyDirectoryPage(props: any) {
   const { screenWidth, styles, emergencyCards, expandedEmergencyId, setExpandedEmergencyId, colors,
@@ -27,7 +40,9 @@ export function EmergencyDirectoryPage(props: any) {
                   >
                     <Ionicons name={item.icon as any} size={24} color="#ef4444" style={{ marginRight: 12 }} />
                     <View style={styles.rowCenter}>
-                      <Text style={[styles.rowName, isE911 && { color: '#ef4444' }]}>{item.name}</Text>
+                      {item.loading
+                        ? <SearchingLabel style={styles.rowName} />
+                        : <Text style={[styles.rowName, isE911 && { color: '#ef4444' }]}>{item.name}</Text>}
                       <Text style={styles.rowSub}>{item.subtitle}</Text>
                     </View>
                     <Ionicons name={expanded ? 'chevron-up-outline' : 'chevron-down-outline'} size={18} color={colors.textSecondary} />

@@ -58,6 +58,28 @@ export function findCountyDirectoryEntry(
   ) || null;
 }
 
+export function resolveCountyDirectoryEquivalent(
+  county: string | null | undefined,
+  state: string | null | undefined,
+): Local311Equivalent | null {
+  if (!county || !state) return null;
+  const entry = findCountyDirectoryEntry(county, state);
+  if (!entry) {
+    return {
+      county: county.trim(),
+      state: normalizeState(state),
+      phone: null,
+      has311: false,
+    };
+  }
+  return {
+    county: entry.county,
+    state: entry.state,
+    phone: isAvailablePhone(entry.phone) ? entry.phone.trim() : null,
+    has311: entry.has_311,
+  };
+}
+
 export async function resolveLocal311Equivalent(
   latitude: number,
   longitude: number,
@@ -66,16 +88,9 @@ export async function resolveLocal311Equivalent(
   const address = addresses?.[0];
   if (!address) return null;
 
-  const entry = findCountyDirectoryEntry(
-    address.subregion,
-    address.region,
-  );
-  if (!entry) return null;
+  const detectedCounty = address.subregion?.trim() || null;
+  const detectedState = address.region?.trim() || null;
 
-  return {
-    county: entry.county,
-    state: entry.state,
-    phone: isAvailablePhone(entry.phone) ? entry.phone.trim() : null,
-    has311: entry.has_311,
-  };
+  // Preserve a geocoded county even when the bundled directory has no number.
+  return resolveCountyDirectoryEquivalent(detectedCounty, detectedState);
 }

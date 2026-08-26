@@ -216,12 +216,6 @@ export default function SettingsScreen({ navigation }: any) {
     </View>
   );
 
-  const renderSupportPill = (label: string, onPress?: () => void) => (
-    <TouchableOpacity style={styles.supportPill} onPress={onPress}>
-      <Text style={styles.supportPillText}>{label}</Text>
-    </TouchableOpacity>
-  );
-
   return (
     <SafeAreaView style={[styles.container, { position: 'relative' }]} edges={['bottom', 'left', 'right']}>
       <ScrollView contentContainerStyle={styles.content}>
@@ -278,12 +272,6 @@ export default function SettingsScreen({ navigation }: any) {
           () => void openProtected('CheckInSettings', ['notifications', 'battery_optimization', 'contacts'])
         )}
 
-        {renderOptionSection(
-          'About & Legal',
-          'Privacy, emergency and medical disclaimers, terms, local data management, and licenses.',
-          () => navigation.navigate('AboutLegal')
-        )}
-
         {/* Preferred Language */}
         <View style={[styles.section, { paddingVertical: 16 }]}>
           <LanguagePicker
@@ -329,16 +317,11 @@ export default function SettingsScreen({ navigation }: any) {
 
         {__DEV__ && <DevDialer />}
 
-        <View style={styles.footerActions}>
-          <View style={styles.supportPillRow}>
-            {renderSupportPill('Privacy Policy', () => navigation.navigate('LegalDocument', { document: 'privacy' }))}
-            {renderSupportPill('Contact Us', () => Alert.alert(
-              'Contact Us',
-              'Open a GitHub issue for setup help. Do not include personal or emergency information.'
-            ))}
-            {renderSupportPill('Terms of Use', () => navigation.navigate('LegalDocument', { document: 'terms' }))}
-          </View>
-        </View>
+        {renderOptionSection(
+          'About & Legal',
+          'Privacy, emergency and medical disclaimers, terms, local data management, and licenses.',
+          () => navigation.navigate('AboutLegal')
+        )}
       </ScrollView>
     </SafeAreaView>
   );

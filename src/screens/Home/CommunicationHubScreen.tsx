@@ -19,7 +19,7 @@ import FloatingTabBar, { TAB_KEYS, TabKey } from '../../components/FloatingTabBa
 import { PhoneDialer } from './PhoneDialer';
 import { placeContactCall, placeContactVideoCall } from '../../services/contactActionService';
 import { inCallService } from '../../services/inCallService';
-import { resolveLocal311Equivalent } from '../../services/civic/countyDirectoryService';
+import { resolveCountyDirectoryEquivalent, resolveLocal311Equivalent } from '../../services/civic/countyDirectoryService';
 import type { Local311Equivalent } from '../../services/civic/countyDirectoryService';
 import { arePermissionsGranted } from '../../utils/appPermissions';
 
@@ -37,6 +37,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const [recentCalls, setRecentCalls] = useState<RecentEntry[]>([]);
   const [localNums, setLocalNums] = useState<{ police: string; fire: string | null; medical: string | null }>({ police: '911', fire: null, medical: null });
   const [local311, setLocal311] = useState<Local311Equivalent | null>(null);
+  const [local311Loading, setLocal311Loading] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -47,6 +48,8 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const [addContactVisible, setAddContactVisible] = useState(false);
   const [editingContact, setEditingContact] = useState<{ id: string; name: string; number: string } | null>(null);
   const [contactHelperText, setContactHelperText] = useState<string | undefined>();
+  const [countyNumberOverride, setCountyNumberOverride] = useState<{ contactName: string; number: string } | null>(null);
+  const editing311ContactRef = useRef(false);
   const [expandedContactId, setExpandedContactId] = useState<string | null>(null);
   const [expandedEmergencyId, setExpandedEmergencyId] = useState<string | null>(null);
   const [expandedRecentId, setExpandedRecentId] = useState<string | null>(null);
@@ -130,7 +133,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     const required = key === 'contacts'
       ? ['contacts']
       : key === 'recent'
-        ? ['phone_access', 'default_dialer']
+        ? ['phone_access', 'call_history', 'default_dialer']
         : key === 'chat'
           ? ['send_sms', 'receive_sms', 'default_sms']
           : [];
@@ -141,8 +144,13 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
 
   // Pure data loader — no permission requests
   const loadContactsData = useCallback(async () => {
-    if (!permsRef.current.contacts) return;
     try {
+      const { status } = await Contacts.getPermissionsAsync();
+      permsRef.current.contacts = status === 'granted';
+      if (!permsRef.current.contacts) {
+        setContacts([]);
+        return;
+      }
       const normalizePhoneLabel = (value: string | undefined) => {
         const label = (value || '').trim();
         if (!label) return '';
@@ -197,8 +205,13 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
 
   // Pure data loader — no permission requests
   const loadRecentCallsData = useCallback(async () => {
-    if (Platform.OS !== 'android' || !permsRef.current.callLog) return;
+    if (Platform.OS !== 'android') return;
     try {
+      permsRef.current.callLog = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_CALL_LOG);
+      if (!permsRef.current.callLog) {
+        setRecentCalls([]);
+        return;
+      }
       const mod = NativeModules.E911DetectorModule;
       if (!mod) return;
       const raw: any[] = await mod.getRecentCalls(100);
@@ -234,6 +247,12 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     try { await Promise.all([loadContactsData(), loadRecentCallsData()]); }
     finally { loadingRef.current = false; }
   }, [loadContactsData, loadRecentCallsData]);
+
+  // Permission grants happen on Setup or in Android settings while this screen
+  // remains mounted. Re-read the live permission state whenever Home is shown.
+  useEffect(() => {
+    if (isActive) reloadData();
+  }, [isActive, reloadData]);
 
   const openSearch = useCallback(() => {
     setSearchVisible(true);
@@ -295,15 +314,19 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const savedCountyContact = useMemo(() => contacts.find((contact: any) =>
     contact.name?.trim().toLowerCase() === countyContactName.toLowerCase(),
   ) || null, [contacts, countyContactName]);
+  const savedCountyNumber = countyNumberOverride?.contactName === countyContactName
+    ? countyNumberOverride.number
+    : savedCountyContact?.number || '';
 
   const edit311Contact = useCallback(async () => {
     if (!await requirePermissions(['contacts'])) return;
+    editing311ContactRef.current = true;
     setEditingContact(savedCountyContact
-      ? { id: savedCountyContact.id, name: savedCountyContact.name, number: savedCountyContact.number }
-      : { id: '', name: countyContactName, number: local311?.phone || '' });
+      ? { id: savedCountyContact.id, name: savedCountyContact.name, number: savedCountyNumber }
+      : { id: '', name: countyContactName, number: savedCountyNumber || local311?.phone || '' });
     setContactHelperText('This correction is saved only to your phone contacts. It does not change the county directory or update the number for other users.');
     setAddContactVisible(true);
-  }, [countyContactName, local311?.phone, requirePermissions, savedCountyContact]);
+  }, [countyContactName, local311?.phone, requirePermissions, savedCountyContact, savedCountyNumber]);
 
   const makeCall = useCallback(async (phoneNumber: string, _label: string) => {
     if (!await requirePermissions(['phone_access'])) return;
@@ -395,18 +418,21 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     navigation.navigate('E911Call', nextParams);
   }, [e911CardNumber, navigation, requirePermissions]);
 
-  // Refresh local emergency and county non-emergency numbers when Home becomes active.
+  // Search when the Emergency tab is actually opened so the user sees the
+  // lookup state instead of it completing invisibly on the default Chat tab.
   useEffect(() => {
-    if (!isActive) return;
+    if (!isActive || activeTab !== 'emergency') return;
     let cancelled = false;
+    setLocal311Loading(true);
     (async () => {
       try {
         const loc = await getCurrentLocation();
         const resp = resolveLocalEmergencyNumbers(loc.latitude, loc.longitude);
-        const civicNumber = await resolveLocal311Equivalent(loc.latitude, loc.longitude).catch((error: any) => {
+        const geocodedCivicNumber = await resolveLocal311Equivalent(loc.latitude, loc.longitude).catch((error: any) => {
           console.warn('[Civic] county number lookup failed:', error?.message || error);
           return null;
         });
+        const civicNumber = geocodedCivicNumber || resolveCountyDirectoryEquivalent(resp.county, resp.state);
         if (cancelled) return;
         const base = resp.policeNumber || '911';
         setLocalNums({
@@ -415,19 +441,24 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
           medical: (resp.medicalNumber && resp.medicalNumber !== base) ? resp.medicalNumber : null,
         });
         setLocal311(civicNumber);
-      } catch (e: any) { console.warn('[Emergency] localNums fetch failed:', e?.message || e); }
+      } catch (e: any) {
+        console.warn('[Emergency] localNums fetch failed:', e?.message || e);
+        if (!cancelled) setLocal311(null);
+      } finally {
+        if (!cancelled) setLocal311Loading(false);
+      }
     })();
     return () => { cancelled = true; };
-  }, [isActive]);
+  }, [activeTab, isActive]);
 
   const emergencyCards = useMemo(() => {
     const coveredBy911 = ['Police', ...(!localNums.fire ? ['Fire'] : []), ...(!localNums.medical ? ['Medical'] : [])];
     const primaryEmergencyNumber = e911CardNumber;
-    const cards: { id: string; name: string; number: string; subtitle: string; description: string; icon: string; callable?: boolean }[] = [
+    const cards: { id: string; name: string; number: string; subtitle: string; description: string; icon: string; callable?: boolean; loading?: boolean }[] = [
       {
         id: 'e1', name: primaryEmergencyNumber, number: primaryEmergencyNumber,
         subtitle: coveredBy911.join(' · '), icon: 'alert-circle',
-        description: 'Call 911 only for life-threatening emergencies that require an immediate police, fire, or medical response — such as active crimes, serious injuries, fires, or cardiac events. Do not call for noise complaints, minor disputes, lost property, or any situation that can wait. Misuse of 911 ties up resources and can delay help for someone whose life is truly at risk.',
+        description: 'Connects you with emergency services when immediate police, fire, or medical assistance is needed.',
       },
     ];
     if (localNums.fire)
@@ -443,30 +474,27 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     cards.push(
       {
         id: 'e4', name: '988', number: '988', subtitle: 'Suicide & Crisis Lifeline', icon: 'alert-circle',
-        description: 'Call or text 988 if you or someone you know is experiencing suicidal thoughts, a mental health crisis, or severe emotional distress. Counselors are available 24/7 and the service is free and confidential. This line is not intended for non-crisis mental health advice, physical emergencies, or general social services — for those, use 211 or 911 respectively.',
+        description: 'Connects you with trained crisis counselors for suicide, mental health, emotional distress, or substance-use crises.',
       },
       {
         id: 'e6', name: '211', number: '211', subtitle: 'Community & social services', icon: 'alert-circle',
-        description: 'Dial 211 to be connected with local social support programs, including food banks, emergency housing, utility assistance, mental health resources, child care, and disaster relief. This is the right number for navigating community resources. It is not for medical or police emergencies, and response times may vary by region.',
+        description: 'Connects you with local health and human-service resources such as housing, food, financial assistance, and community support.',
       },
       {
-        id: 'e5', name: savedCountyContact?.number || local311?.phone || 'Not available', number: savedCountyContact?.number || local311?.phone || '',
-        subtitle: local311
+        id: 'e5', name: local311Loading ? 'Searching' : (savedCountyNumber || local311?.phone) ? '311' : 'Not available', number: savedCountyNumber || local311?.phone || '',
+        subtitle: local311Loading
+          ? 'Finding your local service number'
+          : local311
           ? `${local311.county} ${local311.has311 ? '311 service' : 'non-emergency services'}`
           : 'County non-emergency services',
         icon: 'alert-circle',
-        callable: !!(savedCountyContact?.number || local311?.phone),
-        description: savedCountyContact
-          ? `Using the number saved in your phone contacts for ${local311?.county || 'this county'}. Tap the pencil to correct it. Changes only update your phone contact.`
-          : local311?.phone
-          ? `Call this ${local311.county} number for non-urgent local government services and issues such as noise complaints, potholes, broken streetlights, graffiti, or illegal dumping. If the number is incorrect, tap the pencil to save a correction only to your phone contacts. Do not use it for emergencies — call 911 when there is an immediate threat to life, safety, or property.`
-          : local311
-            ? `A county service number is not currently available for ${local311.county}. Tap the pencil if you know the correct number; it will be saved only to your phone contacts.`
-            : 'A county service number is not currently available for your location. Tap the pencil if you know the correct number; it will be saved only to your phone contacts.',
+        callable: !local311Loading && !!(savedCountyNumber || local311?.phone),
+        loading: local311Loading,
+        description: 'Connects you with local government services for issues such as roads, utilities, sanitation, code concerns, and other community requests.',
       },
     );
     return cards;
-  }, [e911CardNumber, local311, localNums, savedCountyContact]);
+  }, [e911CardNumber, local311, local311Loading, localNums, savedCountyNumber]);
 
   const filteredContacts = useMemo(() => {
     if (!searchQuery.trim()) return contacts;
@@ -598,7 +626,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
           </>
         )}
         {activeTab === 'contacts' && !searchVisible && (
-          <TouchableOpacity style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]} onPress={() => { console.log('[CommunicationHubScreen] plus tapped'); setEditingContact(null); setAddContactVisible(true); }}>
+          <TouchableOpacity style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]} onPress={() => { console.log('[CommunicationHubScreen] plus tapped'); editing311ContactRef.current = false; setEditingContact(null); setAddContactVisible(true); }}>
             <Ionicons name="add" size={22} color={colors.textPrimary} />
           </TouchableOpacity>
         )}
@@ -628,7 +656,16 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
         initialContact={editingContact}
         helperText={contactHelperText}
         onClose={() => { setAddContactVisible(false); setEditingContact(null); setContactHelperText(undefined); }}
-        onSaved={() => { setAddContactVisible(false); setEditingContact(null); setContactHelperText(undefined); loadContactsData(); }}
+        onSaved={(contact) => {
+          if (editing311ContactRef.current && contact?.number) {
+            setCountyNumberOverride({ contactName: countyContactName, number: contact.number });
+          }
+          editing311ContactRef.current = false;
+          setAddContactVisible(false);
+          setEditingContact(null);
+          setContactHelperText(undefined);
+          loadContactsData();
+        }}
       />
 
       {/* Filter dropdown — recent calls only */}

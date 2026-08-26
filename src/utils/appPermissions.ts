@@ -202,6 +202,14 @@ export const PERMISSIONS_LIST: PermDef[] = [
     },
   },
   {
+    key: 'call_history',
+    label: 'Call history',
+    description: 'Allows this app to show your recent incoming, outgoing, and missed calls.',
+    critical: false,
+    checkPerm: () => androidCheck(PERMISSIONS.ANDROID.READ_CALL_LOG),
+    requestPerm: () => androidRequest(PERMISSIONS.ANDROID.READ_CALL_LOG),
+  },
+  {
     key: 'notifications',
     label: 'Notifications',
     description: 'Delivers check-in alarms, certified responder alerts, and critical emergency reminders.',

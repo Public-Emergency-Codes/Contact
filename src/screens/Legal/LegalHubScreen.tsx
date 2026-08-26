@@ -38,7 +38,6 @@ export default function LegalHubScreen({ navigation }: any) {
           </TouchableOpacity>
         ))}
         <Text style={styles.version}>Contact 1.0.2 · Public Emergency Codes</Text>
-        <Text style={styles.contact}>Questions: support@emergency.codes{`\n`}Never use email to request emergency help.</Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -59,5 +58,4 @@ const makeStyles = (colors: any, topInset: number) => StyleSheet.create({
   cardDescription: { color: colors.textSecondary, fontSize: 13, lineHeight: 19 },
   arrow: { color: colors.textMuted, fontSize: 28 },
   version: { color: colors.textMuted, fontSize: 12, textAlign: 'center', marginTop: 12 },
-  contact: { color: colors.textSecondary, fontSize: 13, lineHeight: 20, textAlign: 'center', marginTop: 10 },
 });

@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useMemo, useEffect, useState } from 'react';
-import { Animated, AppState, BackHandler, Dimensions, PanResponder, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, BackHandler, Dimensions, Modal, PanResponder, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,6 +19,7 @@ export default function TabContainer({ navigation, route }: any) {
   const page = useRef(1);
   const [activePage, setActivePage] = useState(1);
   const [activationNeeded, setActivationNeeded] = useState(false);
+  const [disclaimerVisible, setDisclaimerVisible] = useState(false);
   const isFocused = useIsFocused();
 
   const refreshActivation = useCallback(async () => {
@@ -162,19 +163,70 @@ export default function TabContainer({ navigation, route }: any) {
             <TouchableOpacity
               style={s.activationBanner}
               activeOpacity={0.85}
-              onPress={() => navigation.navigate('Setup')}
+              onPress={() => setDisclaimerVisible(true)}
               accessibilityRole="button"
-              accessibilityLabel="Activate App"
+              accessibilityLabel="Activate Demo"
             >
               <Ionicons name="shield-checkmark-outline" size={22} color="#fff" />
               <View style={s.activationCopy}>
-                <AppText style={s.activationTitle}>Activate App</AppText>
-                <AppText style={s.activationSubtitle}>Enable permissions to unlock all features</AppText>
+                <AppText style={s.activationTitle}>Activate Demo</AppText>
               </View>
               <Ionicons name="chevron-forward" size={20} color="#fff" />
             </TouchableOpacity>
           </SafeAreaView>
         )}
+        <Modal
+          visible={disclaimerVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setDisclaimerVisible(false)}
+        >
+          <Pressable style={s.disclaimerBackdrop} onPress={() => setDisclaimerVisible(false)}>
+            <Pressable style={s.disclaimerWindow} onPress={event => event.stopPropagation()}>
+              <AppText style={s.disclaimerTitle}>Demonstration Version</AppText>
+              <AppText style={s.disclaimerBody}>
+                This version of the app is for demonstration purposes only. Activating it enables the app’s calling and messaging features, but it is not intended to replace your device’s standard phone or messaging apps and should not be relied on as your primary method of emergency communication.
+              </AppText>
+              <View style={s.legalLinks}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setDisclaimerVisible(false);
+                    navigation.navigate('LegalDocument', { document: 'privacy' });
+                  }}
+                  accessibilityRole="link"
+                >
+                  <AppText style={s.legalLink}>Privacy Policy</AppText>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    setDisclaimerVisible(false);
+                    navigation.navigate('LegalDocument', { document: 'terms' });
+                  }}
+                  accessibilityRole="link"
+                >
+                  <AppText style={s.legalLink}>Terms of Use</AppText>
+                </TouchableOpacity>
+              </View>
+              <AppText style={s.acknowledgmentText}>
+                By pressing I Accept &amp; Continue, you acknowledge this disclaimer and agree to the Terms of Use and Privacy Policy.
+              </AppText>
+              <View style={s.disclaimerActions}>
+                <TouchableOpacity style={s.cancelButton} onPress={() => setDisclaimerVisible(false)}>
+                  <AppText style={s.cancelButtonText}>Cancel</AppText>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={s.acceptButton}
+                  onPress={() => {
+                    setDisclaimerVisible(false);
+                    navigation.navigate('Setup');
+                  }}
+                >
+                  <AppText style={s.acceptButtonText}>I Accept &amp; Continue</AppText>
+                </TouchableOpacity>
+              </View>
+            </Pressable>
+          </Pressable>
+        </Modal>
       </View>
     </TabPagerContext.Provider>
   );
@@ -188,5 +240,16 @@ const s = StyleSheet.create({
   activationBanner: { minHeight: 62, borderRadius: 16, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', backgroundColor: '#dc2626', shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 12 },
   activationCopy: { flex: 1, marginHorizontal: 12 },
   activationTitle: { color: '#fff', fontSize: 16, fontWeight: '700' },
-  activationSubtitle: { color: 'rgba(255,255,255,0.82)', fontSize: 12, marginTop: 2 },
+  disclaimerBackdrop: { flex: 1, padding: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.72)' },
+  disclaimerWindow: { width: '100%', maxWidth: 520, padding: 22, borderRadius: 18, backgroundColor: '#242424', borderWidth: 1, borderColor: '#444' },
+  disclaimerTitle: { color: '#fff', fontSize: 21, lineHeight: 27, fontWeight: '700', textAlign: 'center', marginBottom: 14 },
+  disclaimerBody: { color: '#e5e7eb', fontSize: 15, lineHeight: 22 },
+  legalLinks: { marginTop: 18, gap: 14 },
+  legalLink: { color: '#60a5fa', fontSize: 16, lineHeight: 22, fontWeight: '600', textDecorationLine: 'underline' },
+  acknowledgmentText: { color: '#a3a3a3', fontSize: 12, lineHeight: 17, marginTop: 18 },
+  disclaimerActions: { flexDirection: 'row', gap: 12, marginTop: 18 },
+  cancelButton: { flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 12, borderWidth: 1, borderColor: '#737373' },
+  cancelButtonText: { color: '#fff', fontSize: 15, fontWeight: '600' },
+  acceptButton: { flex: 2, minHeight: 48, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center', borderRadius: 12, backgroundColor: '#dc2626' },
+  acceptButtonText: { color: '#fff', fontSize: 15, fontWeight: '700', textAlign: 'center' },
 });

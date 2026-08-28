@@ -19,8 +19,8 @@ import LegalDocumentScreen from '../screens/Legal/LegalDocumentScreen';
 import type { LegalDocumentKey } from '../screens/Legal/legalContent';
 
 export type RootStackParamList = {
-  Setup: undefined;
-  Permissions: undefined;
+  Setup: { permissionKeys?: string[]; continueTo?: { name: string; params?: any } } | undefined;
+  Permissions: { highlightKey?: string } | undefined;
   Home: { initialPage?: 'home' | 'record' | 'settings'; initialHomeTab?: 'chat'; initialHomeTabRequestId?: number; pendingShare?: { mimeType: string; text?: string; uris?: string[]; subject?: string } } | undefined;
   EmergencyContacts: undefined;
   Recordings: undefined;

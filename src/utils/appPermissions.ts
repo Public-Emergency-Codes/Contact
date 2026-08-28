@@ -38,6 +38,11 @@ export type PermDef = {
   requestPerm: () => Promise<PermState>;
 };
 
+export const BACKGROUND_LOCATION_DISCLOSURE = {
+  title: 'Allow location when Contact is not in use?',
+  body: 'Contact collects precise location when the app is closed or not in use so an active emergency or enabled Safety Check-In can keep your location current. If you miss a Safety Check-In, your location may be included in an alert sent to your chosen emergency contacts or emergency-service endpoints.',
+};
+
 const androidCheck = async (perm: any): Promise<PermState> => {
   if (Platform.OS !== 'android') return 'unavailable';
   const r = await check(perm);
@@ -62,7 +67,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'background_location',
     label: 'Location',
-    description: 'Contact collects precise location data to provide emergency location, saved-address matching, and safety history even when the app is closed or not in use. Location may be sent to recipients, carriers, or emergency-service endpoints only when you use a sharing or emergency feature. Tap to continue to Android location settings.',
+    description: 'Keeps your location current during an active emergency or enabled Safety Check-In, including when Contact is closed or not in use.',
     critical: true,
     // Requires BOTH foreground and background to be granted.
     checkPerm: async (): Promise<PermState> => {
@@ -80,6 +85,12 @@ export const PERMISSIONS_LIST: PermDef[] = [
     },
     requestPerm: async (): Promise<PermState> => {
       if (Platform.OS !== 'android') return 'unavailable';
+      const foreground = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+      if (foreground !== RESULTS.GRANTED && foreground !== RESULTS.LIMITED) {
+        return foreground as PermState;
+      }
+      // Android 11+ requires background access to be enabled on the app's
+      // location settings page after foreground access has been granted.
       await openLocationPermissionSettings();
       const [fg, bg] = await Promise.all([
         check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION),
@@ -96,7 +107,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'camera',
     label: 'Camera',
-    description: 'Lets you share a live video feed with dispatchers so they can see exactly what is happening.',
+    description: 'Allows you to record or share video when you choose to use an emergency video feature.',
     critical: true,
     checkPerm: () => androidCheck(PERMISSIONS.ANDROID.CAMERA),
     requestPerm: () => androidRequest(PERMISSIONS.ANDROID.CAMERA),
@@ -104,7 +115,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'microphone',
     label: 'Microphone',
-    description: 'Required for voice communication through the emergency call interface.',
+    description: 'Allows audio during calls and emergency video recordings.',
     critical: true,
     checkPerm: () => androidCheck(PERMISSIONS.ANDROID.RECORD_AUDIO),
     requestPerm: () => androidRequest(PERMISSIONS.ANDROID.RECORD_AUDIO),
@@ -112,7 +123,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'send_sms',
     label: 'Send SMS',
-    description: 'Sends your location and emergency details to the 911 dispatcher as a text message.',
+    description: 'Allows you to send text messages, including emergency information when you choose to share it.',
     critical: true,
     checkPerm: () => androidCheck(PERMISSIONS.ANDROID.SEND_SMS),
     requestPerm: () => androidRequest(PERMISSIONS.ANDROID.SEND_SMS),
@@ -120,7 +131,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'receive_sms',
     label: 'Receive SMS',
-    description: 'Receives text replies from the 911 dispatcher directly in the chat.',
+    description: 'Allows received text messages to appear in the app.',
     critical: true,
     checkPerm: () => androidCheck(PERMISSIONS.ANDROID.RECEIVE_SMS),
     requestPerm: () => androidRequest(PERMISSIONS.ANDROID.RECEIVE_SMS),
@@ -128,7 +139,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'phone_access',
     label: 'Phone Access',
-    description: 'Allows the app to place 911 calls directly as the default phone app.',
+    description: 'Allows you to place calls from the app.',
     critical: true,
     checkPerm: async (): Promise<PermState> => {
       if (Platform.OS !== 'android') return 'unavailable';
@@ -170,7 +181,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'contacts',
     label: 'Contacts',
-    description: 'Allows this app to read your contacts so you can quickly reach them during an emergency.',
+    description: 'Allows you to find and select people from your device contacts.',
     critical: false,
     checkPerm: async (): Promise<PermState> => {
       if (Platform.OS !== 'android') return 'unavailable';
@@ -212,7 +223,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'notifications',
     label: 'Notifications',
-    description: 'Delivers check-in alarms, certified responder alerts, and critical emergency reminders.',
+    description: 'Notifies you when a scheduled Safety Check-In is due or missed.',
     critical: true,
     checkPerm: async (): Promise<PermState> => {
       if (Platform.OS !== 'android') return 'unavailable';
@@ -239,7 +250,7 @@ export const PERMISSIONS_LIST: PermDef[] = [
   {
     key: 'overlay',
     label: 'Display Over Other Apps',
-    description: 'Brings the emergency interface to the front over any screen — critical so you are never locked out during a crisis.',
+    description: 'Allows an active emergency or call interface to remain accessible over other apps.',
     critical: true,
     checkPerm: async (): Promise<PermState> => {
       if (!E911DetectorModule) return 'unavailable';
@@ -354,4 +365,10 @@ export const arePermissionsGranted = async (keys: string[]) => {
     catch { return 'denied' as PermState; }
   }));
   return states.every(isGranted);
+};
+
+export const permissionsForKeys = (keys?: string[]) => {
+  if (!keys?.length) return PERMISSIONS_LIST;
+  const requested = new Set(keys);
+  return PERMISSIONS_LIST.filter(permission => requested.has(permission.key));
 };

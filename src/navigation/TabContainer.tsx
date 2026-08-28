@@ -1,14 +1,12 @@
 import React, { useRef, useCallback, useMemo, useEffect, useState } from 'react';
-import { Animated, AppState, BackHandler, Dimensions, Modal, PanResponder, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Animated, BackHandler, Dimensions, Modal, PanResponder, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
 import CommunicationHubScreen from '../screens/Home/CommunicationHubScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import EmergencyVideoCaptureScreen from '../screens/Recordings/EmergencyVideoCaptureScreen';
 import { TabPagerContext } from '../context/TabPagerContext';
 import AppText from '../components/AppText';
-import { arePermissionsGranted, PERMISSIONS_LIST, isGranted } from '../utils/appPermissions';
+import { arePermissionsGranted } from '../utils/appPermissions';
 
 const { width: W, height: H } = Dimensions.get('window');
 // Row layout (left→right): Record(0) | Home(1) | Settings(2)
@@ -18,26 +16,8 @@ export default function TabContainer({ navigation, route }: any) {
   const offsetX = useRef(new Animated.Value(-W)).current;
   const page = useRef(1);
   const [activePage, setActivePage] = useState(1);
-  const [activationNeeded, setActivationNeeded] = useState(false);
   const [disclaimerVisible, setDisclaimerVisible] = useState(false);
   const isFocused = useIsFocused();
-
-  const refreshActivation = useCallback(async () => {
-    const checks = await Promise.all(PERMISSIONS_LIST.map(async permission => {
-      try { return isGranted(await permission.checkPerm()); }
-      catch { return false; }
-    }));
-    setActivationNeeded(checks.some(granted => !granted));
-  }, []);
-
-  useEffect(() => {
-    if (isFocused) void refreshActivation();
-    const sub = AppState.addEventListener('change', state => {
-      if (state === 'active') void refreshActivation();
-    });
-    return () => sub.remove();
-  }, [isFocused, refreshActivation]);
-
   const goToPage = useCallback((nextPage: number) => {
     page.current = nextPage;
     setActivePage(nextPage);
@@ -52,7 +32,7 @@ export default function TabContainer({ navigation, route }: any) {
   const goToHome = useCallback(() => goToPage(1), [goToPage]);
   const goToRecord = useCallback(async () => {
     if (!await arePermissionsGranted(['camera', 'microphone'])) {
-      navigation.navigate('Setup');
+      navigation.navigate('Setup', { permissionKeys: ['camera', 'microphone'] });
       return;
     }
     goToPage(0);
@@ -158,23 +138,6 @@ export default function TabContainer({ navigation, route }: any) {
             <SettingsScreen navigation={navigation} />
           </View>
         </Animated.View>
-        {activationNeeded && (
-          <SafeAreaView style={s.activationArea} edges={['bottom']} pointerEvents="box-none">
-            <TouchableOpacity
-              style={s.activationBanner}
-              activeOpacity={0.85}
-              onPress={() => setDisclaimerVisible(true)}
-              accessibilityRole="button"
-              accessibilityLabel="Activate Demo"
-            >
-              <Ionicons name="shield-checkmark-outline" size={22} color="#fff" />
-              <View style={s.activationCopy}>
-                <AppText style={s.activationTitle}>Activate Demo</AppText>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color="#fff" />
-            </TouchableOpacity>
-          </SafeAreaView>
-        )}
         <Modal
           visible={disclaimerVisible}
           transparent
@@ -218,7 +181,7 @@ export default function TabContainer({ navigation, route }: any) {
                   style={s.acceptButton}
                   onPress={() => {
                     setDisclaimerVisible(false);
-                    navigation.navigate('Setup');
+                    navigation.navigate('Permissions');
                   }}
                 >
                   <AppText style={s.acceptButtonText}>I Accept &amp; Continue</AppText>

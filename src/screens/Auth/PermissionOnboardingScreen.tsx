@@ -9,20 +9,23 @@ import AppText from '../../components/AppText';
 const Text = AppText;
 import { useTheme } from '../../context/ThemeContext';
 import { openSettings } from 'react-native-permissions';
-import { PERMISSIONS_LIST, isGranted, type PermState, type PermDef } from '../../utils/appPermissions';
+import { BACKGROUND_LOCATION_DISCLOSURE, isGranted, permissionsForKeys, type PermState, type PermDef } from '../../utils/appPermissions';
+import PermissionDisclosureModal from '../../components/PermissionDisclosureModal';
 
 type States = Record<string, PermState>;
 
-export default function PermissionOnboardingScreen({ navigation }: any) {
+export default function PermissionOnboardingScreen({ navigation, route }: any) {
   const { colors } = useTheme();
   const styles = useMemo(() => makeStyles(colors), [colors]);
+  const visiblePermissions = useMemo(() => permissionsForKeys(route?.params?.permissionKeys), [route?.params?.permissionKeys]);
   const [states, setStates] = useState<States>(
-    () => Object.fromEntries(PERMISSIONS_LIST.map(p => [p.key, 'loading' as PermState]))
+    () => Object.fromEntries(visiblePermissions.map(p => [p.key, 'loading' as PermState]))
   );
+  const [pendingDisclosure, setPendingDisclosure] = useState<PermDef | null>(null);
 
   const refresh = useCallback(async () => {
     const results = await Promise.all(
-      PERMISSIONS_LIST.map(async p => {
+      visiblePermissions.map(async p => {
         try {
           return [p.key, await p.checkPerm()] as const;
         } catch {
@@ -31,7 +34,7 @@ export default function PermissionOnboardingScreen({ navigation }: any) {
       })
     );
     setStates(Object.fromEntries(results));
-  }, []);
+  }, [visiblePermissions]);
 
   useEffect(() => {
     refresh();
@@ -39,12 +42,22 @@ export default function PermissionOnboardingScreen({ navigation }: any) {
     return () => sub.remove();
   }, [refresh]);
 
-  const allGranted = PERMISSIONS_LIST.every(p => isGranted(states[p.key] ?? 'denied'));
-  const stillLoading = PERMISSIONS_LIST.some(p => (states[p.key] ?? 'loading') === 'loading');
+  const allGranted = visiblePermissions.every(p => isGranted(states[p.key] ?? 'denied'));
+  const stillLoading = visiblePermissions.some(p => (states[p.key] ?? 'loading') === 'loading');
 
   useEffect(() => {
-    if (!stillLoading && allGranted && navigation.canGoBack()) navigation.goBack();
-  }, [allGranted, navigation, stillLoading]);
+    if (stillLoading || !allGranted) return;
+    const destination = route?.params?.continueTo;
+    if (destination?.name) navigation.replace(destination.name, destination.params);
+    else if (navigation.canGoBack()) navigation.goBack();
+  }, [allGranted, navigation, route?.params?.continueTo, stillLoading]);
+
+  const requestPermission = useCallback(async (p: PermDef) => {
+    setStates(prev => ({ ...prev, [p.key]: 'loading' }));
+    const newState = await p.requestPerm();
+    setStates(prev => ({ ...prev, [p.key]: newState }));
+    setTimeout(refresh, 800);
+  }, [refresh]);
 
   const handleToggle = useCallback(async (p: PermDef) => {
     // Read live state (not from stale closure) to pick the right branch.
@@ -54,11 +67,12 @@ export default function PermissionOnboardingScreen({ navigation }: any) {
       await openSettings().catch(() => {});
       return;
     }
-    setStates(prev => ({ ...prev, [p.key]: 'loading' }));
-    const newState = await p.requestPerm();
-    setStates(prev => ({ ...prev, [p.key]: newState }));
-    setTimeout(refresh, 800);
-  }, [refresh]);
+    if (p.key === 'background_location') {
+      setPendingDisclosure(p);
+      return;
+    }
+    await requestPermission(p);
+  }, [requestPermission]);
 
   return (
     <Pressable
@@ -81,7 +95,7 @@ export default function PermissionOnboardingScreen({ navigation }: any) {
           </View>
 
           <ScrollView contentContainerStyle={styles.content}>
-            {PERMISSIONS_LIST.map(p => {
+            {visiblePermissions.map(p => {
               const state = states[p.key] ?? 'loading';
               const granted = isGranted(state);
               return (
@@ -101,6 +115,17 @@ export default function PermissionOnboardingScreen({ navigation }: any) {
               );
             })}
           </ScrollView>
+          <PermissionDisclosureModal
+            visible={!!pendingDisclosure}
+            title={BACKGROUND_LOCATION_DISCLOSURE.title}
+            body={BACKGROUND_LOCATION_DISCLOSURE.body}
+            onCancel={() => setPendingDisclosure(null)}
+            onContinue={() => {
+              const permission = pendingDisclosure;
+              setPendingDisclosure(null);
+              if (permission) void requestPermission(permission);
+            }}
+          />
         </Pressable>
       </SafeAreaView>
     </Pressable>

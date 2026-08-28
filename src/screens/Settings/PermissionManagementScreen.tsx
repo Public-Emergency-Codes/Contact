@@ -9,7 +9,8 @@ import AppText from '../../components/AppText';
 const Text = AppText;
 import { useTheme } from '../../context/ThemeContext';
 import { openSettings } from 'react-native-permissions';
-import { PERMISSIONS_LIST, isGranted, type PermState, type PermDef } from '../../utils/appPermissions';
+import { BACKGROUND_LOCATION_DISCLOSURE, PERMISSIONS_LIST, isGranted, type PermState, type PermDef } from '../../utils/appPermissions';
+import PermissionDisclosureModal from '../../components/PermissionDisclosureModal';
 
 type States = Record<string, PermState>;
 
@@ -21,6 +22,7 @@ export default function PermissionManagementScreen({ navigation, route }: any) {
   const [states, setStates] = useState<States>(
     () => Object.fromEntries(PERMISSIONS_LIST.map(p => [p.key, 'loading' as PermState]))
   );
+  const [pendingDisclosure, setPendingDisclosure] = useState<PermDef | null>(null);
   // Tracks that we just sent the user to system settings — AppState listener uses this.
   const justOpenedSettings = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
@@ -69,6 +71,13 @@ export default function PermissionManagementScreen({ navigation, route }: any) {
     };
   }, [doRefresh, navigation]);
 
+  const requestPermission = useCallback(async (p: PermDef) => {
+    setStates(prev => ({ ...prev, [p.key]: 'loading' }));
+    const newState = await p.requestPerm();
+    setStates(prev => ({ ...prev, [p.key]: newState }));
+    setTimeout(doRefresh, 800);
+  }, [doRefresh]);
+
   const handleToggle = useCallback(async (p: PermDef) => {
     // Always read live state to avoid stale-closure bugs.
     const live = await p.checkPerm();
@@ -77,12 +86,12 @@ export default function PermissionManagementScreen({ navigation, route }: any) {
       await openSettings().catch(() => { justOpenedSettings.current = false; });
       return;
     }
-    // Permission is OFF — request it.
-    setStates(prev => ({ ...prev, [p.key]: 'loading' }));
-    const newState = await p.requestPerm();
-    setStates(prev => ({ ...prev, [p.key]: newState }));
-    setTimeout(doRefresh, 800);
-  }, [doRefresh]);
+    if (p.key === 'background_location') {
+      setPendingDisclosure(p);
+      return;
+    }
+    await requestPermission(p);
+  }, [requestPermission]);
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom', 'left', 'right']}>
@@ -125,6 +134,17 @@ export default function PermissionManagementScreen({ navigation, route }: any) {
           );
         })}
       </ScrollView>
+      <PermissionDisclosureModal
+        visible={!!pendingDisclosure}
+        title={BACKGROUND_LOCATION_DISCLOSURE.title}
+        body={BACKGROUND_LOCATION_DISCLOSURE.body}
+        onCancel={() => setPendingDisclosure(null)}
+        onContinue={() => {
+          const permission = pendingDisclosure;
+          setPendingDisclosure(null);
+          if (permission) void requestPermission(permission);
+        }}
+      />
     </SafeAreaView>
   );
 }

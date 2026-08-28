@@ -133,7 +133,7 @@ function DevDialer() {
 export default function SettingsScreen({ navigation }: any) {
   const openProtected = useCallback(async (route: string, permissionKeys: string[], params?: any) => {
     if (!await arePermissionsGranted(permissionKeys)) {
-      navigation.navigate('Setup');
+      navigation.navigate('Setup', { permissionKeys, continueTo: { name: route, params } });
       return;
     }
     navigation.navigate(route, params);
@@ -269,7 +269,14 @@ export default function SettingsScreen({ navigation }: any) {
         {renderOptionSection(
           'Check-In Settings',
           'Configure automatic safety check-ins, escalation timing, and who gets notified if you miss one.',
-          () => void openProtected('CheckInSettings', ['notifications', 'battery_optimization', 'contacts'])
+          () => void openProtected('CheckInSettings', [
+            'notifications',
+            'battery_optimization',
+            'contacts',
+            'background_location',
+            'send_sms',
+            'phone_access',
+          ])
         )}
 
         {/* Preferred Language */}

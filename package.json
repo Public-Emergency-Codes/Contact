@@ -1,6 +1,6 @@
 {
   "name": "contact",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An Android phone app that enhances the calling and messaging you already use every day with built-in emergency tools — silent text-to-911, video dispatch, live location, medical-data relay, and routing to 988, 311, and 211. No new workflows to learn.",
   "license": "0BSD",
   "main": "index.ts",

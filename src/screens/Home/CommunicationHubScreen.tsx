@@ -66,7 +66,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
 
   const requirePermissions = useCallback(async (keys: string[]) => {
     if (await arePermissionsGranted(keys)) return true;
-    navigation.navigate('Setup');
+    navigation.navigate('Setup', { permissionKeys: keys });
     return false;
   }, [navigation]);
 

@@ -117,6 +117,12 @@ export function useEmergencyVoiceCall({
     // call connects silently and the user stays in the E911 screen.
       let canCall = await inCallService.canPlaceCallInApp();
       if (!canCall) {
+        if (!(await inCallService.isDefaultDialer())) {
+          pendingDialerRoleCallRef.current = true;
+          setCallInitiated(false);
+          await inCallService.requestDefaultDialer();
+          return;
+        }
         try {
           const granted = await PermissionsAndroid.request(
             PermissionsAndroid.PERMISSIONS.CALL_PHONE,

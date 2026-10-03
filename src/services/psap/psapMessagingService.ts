@@ -43,19 +43,15 @@ class PsapMessagingService {
   private subscriptions: any[] = [];
   private incomingListeners: SmsListener[] = [];
 
-  /** Request SEND_SMS + RECEIVE_SMS + READ_SMS runtime permissions. */
+  /** Verify permissions already granted through the feature permission flow. */
   async ensurePermissions(): Promise<boolean> {
     if (Platform.OS !== 'android') return false;
     try {
-      const results = await PermissionsAndroid.requestMultiple([
-        PermissionsAndroid.PERMISSIONS.SEND_SMS,
-        PermissionsAndroid.PERMISSIONS.RECEIVE_SMS,
-        PermissionsAndroid.PERMISSIONS.READ_SMS,
-        PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE,
+      const [sendGranted, receiveGranted] = await Promise.all([
+        PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.SEND_SMS),
+        PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.RECEIVE_SMS),
       ]);
-      const ok =
-        results[PermissionsAndroid.PERMISSIONS.SEND_SMS] === PermissionsAndroid.RESULTS.GRANTED &&
-        results[PermissionsAndroid.PERMISSIONS.RECEIVE_SMS] === PermissionsAndroid.RESULTS.GRANTED;
+      const ok = sendGranted && receiveGranted;
       console.log('[PsapSms] Permissions granted:', ok);
       return ok;
     } catch {

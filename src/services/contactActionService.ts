@@ -28,6 +28,14 @@ async function ensureInAppCallCapability(): Promise<boolean> {
   // Already capable — nothing to do.
   if (await inCallService.canPlaceCallInApp()) return true;
 
+  // The default-handler role must be granted before CALL_PHONE is requested.
+  if (!(await inCallService.isDefaultDialer())) {
+    try {
+      await inCallService.requestDefaultDialer();
+      if (!(await inCallService.isDefaultDialer())) return false;
+    } catch { return false; }
+  }
+
   // Request CALL_PHONE (needed for TelecomManager.placeCall).
   try {
     const result = await PermissionsAndroid.request(
@@ -42,11 +50,7 @@ async function ensureInAppCallCapability(): Promise<boolean> {
   // Last resort: ask the user to set this app as the default phone app.
   // This gives us the DIALER role which lets TelecomManager route calls
   // through our InCallService without CALL_PHONE.
-  try {
-    await inCallService.requestDefaultDialer();
-    // The user may or may not have accepted — check again.
-    return await inCallService.canPlaceCallInApp();
-  } catch { return false; }
+  return false;
 }
 
 export async function placeContactCall(phoneNumber: string, onStarted?: () => void): Promise<boolean> {

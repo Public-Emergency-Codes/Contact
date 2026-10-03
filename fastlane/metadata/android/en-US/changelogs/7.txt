@@ -1,0 +1,1 @@
+Improved permission handling and privacy protections, bundled map code locally, added broader device support, and hardened sharing and missed-call handling.

@@ -3,7 +3,7 @@ import type { EmergencyMessageStateSetter } from './emergencyCallMessageTypes';
 import { View, TouchableOpacity, Image, Animated } from 'react-native';
 import { WebView } from 'react-native-webview';
 import AppText from '../../components/AppText';
-import { buildLeafletMapHtml, toStreetAddress } from './emergencyMap';
+import { buildLeafletMapHtml, LEAFLET_ASSET_BASE_URL, toStreetAddress } from './emergencyMap';
 import { MessageDeliveryMetadata } from './EmergencyCallMessageList';
 
 const Text = AppText;
@@ -143,7 +143,7 @@ export const EmergencyLocationPreview: React.FC<Props> = ({
                 <Animated.View ref={locationThumbRef} style={{ maxHeight: locationCollapseAnim.interpolate({ inputRange: [0, 1], outputRange: [0, TOTAL_THUMB_HEIGHT + 40] }), overflow: 'hidden' }}>
                   <TouchableOpacity onPress={() => { if (!expandedAnims.has(locationCollapseAnim)) expandOne(locationCollapseAnim, locationThumbRef); else openLocationNavigator(); }} activeOpacity={0.8} style={{ borderRadius: 8, overflow: 'hidden', marginHorizontal: 12, marginTop: 10, backgroundColor: colors.background }}>
                     <View style={{ width: '100%', height: TOTAL_THUMB_HEIGHT }} pointerEvents="none">
-                      <WebView source={{ html: buildLeafletMapHtml(pinLat, pinLng, 17, false, pinLat, pinLng) }} style={{ flex: 1 }} javaScriptEnabled domStorageEnabled originWhitelist={['*']} scrollEnabled={false} />
+                      <WebView source={{ html: buildLeafletMapHtml(pinLat, pinLng, 17, false, pinLat, pinLng), baseUrl: LEAFLET_ASSET_BASE_URL }} style={{ flex: 1 }} javaScriptEnabled domStorageEnabled allowFileAccess originWhitelist={['*']} scrollEnabled={false} />
                     </View>
                   </TouchableOpacity>
                 </Animated.View>

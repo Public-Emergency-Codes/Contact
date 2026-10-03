@@ -6,7 +6,7 @@ import { WebView } from 'react-native-webview';
 // @ts-ignore
 import { Ionicons } from '@expo/vector-icons';
 import AddressAutocompleteInput from '../../components/AddressAutocompleteInput';
-import { buildLeafletMapHtml } from './emergencyMap';
+import { buildLeafletMapHtml, LEAFLET_ASSET_BASE_URL } from './emergencyMap';
 import { reverseGeocode } from './reverseGeocode';
 
 const Text = AppText;
@@ -113,7 +113,7 @@ export const EmergencyMapNavigator: React.FC<Props> = (props) => {
         </View>
         <View style={{ flex: 1, overflow: 'hidden', borderRadius: 10, borderBottomLeftRadius: 14, borderBottomRightRadius: 14 }} onLayout={(e) => { setMapSectionHeight(e.nativeEvent.layout.height); const { width, height } = e.nativeEvent.layout; setMapContainerSize({ w: width, h: height }); }}>
           {(leafletCenterLat || leafletCenterLng) ? (
-            <WebView ref={leafletMapRef} source={{ html: leafletHtml }} style={{ flex: 1 }} javaScriptEnabled domStorageEnabled originWhitelist={['*']} onLoadEnd={() => { if (leafletMapRef.current) leafletMapRef.current.injectJavaScript(`if(typeof window.setTileType==='function')window.setTileType('${mapType === 'satellite' ? 'satellite' : 'roadmap'}');true;`); }} onMessage={async (event) => { try { const data = JSON.parse(event.nativeEvent.data); if (data.type === 'map_click') { setMapPin({ lat: data.lat, lng: data.lng }); setMapModified(true); setAddressSearchText('Resolving address...'); setPinFullAddress(''); const geo = await reverseGeocode(data.lat, data.lng); const address = geo?.address || `${Number(data.lat).toFixed(6)}, ${Number(data.lng).toFixed(6)}`; setPinFullAddress(address); setAddressSearchText(address); } } catch {} }} />
+            <WebView ref={leafletMapRef} source={{ html: leafletHtml, baseUrl: LEAFLET_ASSET_BASE_URL }} style={{ flex: 1 }} javaScriptEnabled domStorageEnabled allowFileAccess originWhitelist={['*']} onLoadEnd={() => { if (leafletMapRef.current) leafletMapRef.current.injectJavaScript(`if(typeof window.setTileType==='function')window.setTileType('${mapType === 'satellite' ? 'satellite' : 'roadmap'}');true;`); }} onMessage={async (event) => { try { const data = JSON.parse(event.nativeEvent.data); if (data.type === 'map_click') { setMapPin({ lat: data.lat, lng: data.lng }); setMapModified(true); setAddressSearchText('Resolving address...'); setPinFullAddress(''); const geo = await reverseGeocode(data.lat, data.lng); const address = geo?.address || `${Number(data.lat).toFixed(6)}, ${Number(data.lng).toFixed(6)}`; setPinFullAddress(address); setAddressSearchText(address); } } catch {} }} />
           ) : (
             <View style={{ flex: 1, backgroundColor: colors.surfaceAlt, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={{ color: colors.textMuted }}>Loading map...</Text>

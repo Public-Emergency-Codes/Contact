@@ -358,17 +358,37 @@ export const CRITICAL_KEYS = PERMISSIONS_LIST.filter(p => p.critical).map(p => p
 
 export const isGranted = (state: PermState) => state === 'granted' || state === 'limited';
 
+const HANDLER_PREREQUISITES: Record<string, string> = {
+  send_sms: 'default_sms',
+  receive_sms: 'default_sms',
+  phone_access: 'default_dialer',
+  call_history: 'default_dialer',
+};
+
+export const permissionPrerequisiteFor = (key: string) => HANDLER_PREREQUISITES[key];
+
+export const permissionsForKeys = (keys?: string[]) => {
+  if (!keys?.length) return PERMISSIONS_LIST;
+  const expanded = new Set(keys);
+  keys.forEach(key => {
+    const prerequisite = HANDLER_PREREQUISITES[key];
+    if (prerequisite) expanded.add(prerequisite);
+  });
+  // Handler roles must be requested before their sensitive runtime permissions.
+  return PERMISSIONS_LIST
+    .filter(permission => expanded.has(permission.key))
+    .sort((a, b) => {
+      const aIsRole = a.key === 'default_sms' || a.key === 'default_dialer';
+      const bIsRole = b.key === 'default_sms' || b.key === 'default_dialer';
+      return Number(bIsRole) - Number(aIsRole);
+    });
+};
+
 export const arePermissionsGranted = async (keys: string[]) => {
-  const requested = PERMISSIONS_LIST.filter(permission => keys.includes(permission.key));
+  const requested = permissionsForKeys(keys);
   const states = await Promise.all(requested.map(async permission => {
     try { return await permission.checkPerm(); }
     catch { return 'denied' as PermState; }
   }));
   return states.every(isGranted);
-};
-
-export const permissionsForKeys = (keys?: string[]) => {
-  if (!keys?.length) return PERMISSIONS_LIST;
-  const requested = new Set(keys);
-  return PERMISSIONS_LIST.filter(permission => requested.has(permission.key));
 };

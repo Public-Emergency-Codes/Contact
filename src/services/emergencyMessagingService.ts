@@ -44,19 +44,14 @@ export interface SmsSendResult {
 class EmergencyMessagingService {
   private static MAX_RETRIES = 1;
 
-  /** Request SEND_SMS + READ_PHONE_STATE runtime permissions. */
+  /** Verify permissions already granted through the feature permission flow. */
   private async ensurePermission(): Promise<boolean> {
     if (Platform.OS !== 'android') return false;
     try {
-      const perms = [
-        PermissionsAndroid.PERMISSIONS.SEND_SMS,
-        PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE,
-      ];
-      const results = await PermissionsAndroid.requestMultiple(perms);
-      const smsOk =
-        results[PermissionsAndroid.PERMISSIONS.SEND_SMS] === PermissionsAndroid.RESULTS.GRANTED;
-      const phoneOk =
-        results[PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE] === PermissionsAndroid.RESULTS.GRANTED;
+      const [smsOk, phoneOk] = await Promise.all([
+        PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.SEND_SMS),
+        PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE),
+      ]);
       console.log(`[EmergencyMessagingService] Permissions — SEND_SMS: ${smsOk}, READ_PHONE_STATE: ${phoneOk}`);
       return smsOk && phoneOk;
     } catch {

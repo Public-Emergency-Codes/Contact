@@ -1,6 +1,6 @@
 {
   "name": "contact",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An Android phone app that enhances the calling and messaging you already use every day with built-in emergency tools — silent text-to-911, video dispatch, live location, medical-data relay, and routing to 988, 311, and 211. No new workflows to learn.",
   "license": "0BSD",
   "main": "index.ts",
@@ -60,6 +60,7 @@
     "expo-modules-core": "~57.0.1",
     "expo-task-manager": "~57.0.1",
     "expo-video": "~57.0.0",
+    "leaflet": "1.9.4",
     "react": "19.2.3",
     "react-native": "0.86.2",
     "react-native-gesture-handler": "~2.32.0",

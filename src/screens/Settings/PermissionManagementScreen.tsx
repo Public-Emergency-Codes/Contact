@@ -9,7 +9,7 @@ import AppText from '../../components/AppText';
 const Text = AppText;
 import { useTheme } from '../../context/ThemeContext';
 import { openSettings } from 'react-native-permissions';
-import { BACKGROUND_LOCATION_DISCLOSURE, PERMISSIONS_LIST, isGranted, type PermState, type PermDef } from '../../utils/appPermissions';
+import { BACKGROUND_LOCATION_DISCLOSURE, PERMISSIONS_LIST, isGranted, permissionPrerequisiteFor, type PermState, type PermDef } from '../../utils/appPermissions';
 import PermissionDisclosureModal from '../../components/PermissionDisclosureModal';
 
 type States = Record<string, PermState>;
@@ -85,6 +85,14 @@ export default function PermissionManagementScreen({ navigation, route }: any) {
       justOpenedSettings.current = true;
       await openSettings().catch(() => { justOpenedSettings.current = false; });
       return;
+    }
+    const prerequisiteKey = permissionPrerequisiteFor(p.key);
+    if (prerequisiteKey) {
+      const prerequisite = PERMISSIONS_LIST.find(permission => permission.key === prerequisiteKey);
+      if (prerequisite && !isGranted(await prerequisite.checkPerm())) {
+        await requestPermission(prerequisite);
+        return;
+      }
     }
     if (p.key === 'background_location') {
       setPendingDisclosure(p);

@@ -29,7 +29,7 @@ class ShareFileModule(reactContext: ReactApplicationContext) :
                     require(file.exists()) { "Shared file does not exist: ${file.absolutePath}" }
                     FileProvider.getUriForFile(
                         reactApplicationContext,
-                        "${reactApplicationContext.packageName}.fileprovider",
+                        "${reactApplicationContext.packageName}.contactfiles",
                         file,
                     )
                 }

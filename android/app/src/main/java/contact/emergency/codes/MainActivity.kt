@@ -147,23 +147,6 @@ class MainActivity : ReactActivity() {
       val mimeType = intent.type ?: "*/*"
       sb.append("mimeType=").append(Uri.encode(mimeType))
 
-      // ── Dump intent details for debugging ────────────────────────────
-      android.util.Log.i("MainActivity", "=== SHARE INTENT ===")
-      android.util.Log.i("MainActivity", "  action=${intent.action} type=${intent.type}")
-      android.util.Log.i("MainActivity", "  data=${intent.data} (scheme=${intent.data?.scheme})")
-      val cd = intent.clipData
-      android.util.Log.i("MainActivity", "  clipData=$cd itemCount=${cd?.itemCount ?: 0}")
-      if (cd != null && cd.itemCount > 0) {
-        for (i in 0 until cd.itemCount) {
-          val item = cd.getItemAt(i)
-          android.util.Log.i("MainActivity", "  clipData[$i] uri=${item?.uri} text=${item?.text}")
-        }
-      }
-      intent.extras?.keySet()?.forEach { key ->
-        val value = intent.extras?.get(key)
-        android.util.Log.i("MainActivity", "  extra[$key] = ${value?.javaClass?.simpleName}: $value")
-      }
-
       // ── Extract shared file URIs from every possible location ──────────
       val rawUris = linkedSetOf<Uri>()
 
@@ -173,7 +156,6 @@ class MainActivity : ReactActivity() {
         for (i in 0 until clip.itemCount) {
           val item = clip.getItemAt(i)
           if (item?.uri != null) {
-            android.util.Log.i("MainActivity", "  -> Got URI from ClipData: ${item.uri}")
             rawUris.add(item.uri)
           }
         }
@@ -184,15 +166,12 @@ class MainActivity : ReactActivity() {
         @Suppress("DEPRECATION")
         when (val stream = intent.extras?.get(Intent.EXTRA_STREAM)) {
           is Uri -> {
-            android.util.Log.i("MainActivity", "  -> Got URI from EXTRA_STREAM: $stream")
             rawUris.add(stream)
           }
           is Iterable<*> -> stream.filterIsInstance<Uri>().forEach {
-            android.util.Log.i("MainActivity", "  -> Got URI from EXTRA_STREAM list: $it")
             rawUris.add(it)
           }
           is Array<*> -> stream.filterIsInstance<Uri>().forEach {
-            android.util.Log.i("MainActivity", "  -> Got URI from EXTRA_STREAM array: $it")
             rawUris.add(it)
           }
         }
@@ -202,7 +181,6 @@ class MainActivity : ReactActivity() {
       if (intent.data != null) {
         val ds = intent.data?.scheme
         if (ds == "content" || ds == "file") {
-          android.util.Log.i("MainActivity", "  -> Got URI from intent.data: ${intent.data}")
           rawUris.add(intent.data!!)
         }
       }
@@ -213,13 +191,11 @@ class MainActivity : ReactActivity() {
         val v = intent.extras?.get(key)
         when (v) {
           is Uri -> {
-            android.util.Log.i("MainActivity", "  -> Got URI from extra[$key]: $v")
             rawUris.add(v)
           }
           is Iterable<*> -> {
             v.forEach { item ->
               if (item is Uri) {
-                android.util.Log.i("MainActivity", "  -> Got URI from extra[$key] list: $item")
                 rawUris.add(item)
               }
             }
@@ -227,13 +203,9 @@ class MainActivity : ReactActivity() {
         }
       }
 
-      android.util.Log.i("MainActivity", "  rawUris count after extraction: ${rawUris.size}")
-
       // Pass raw URIs directly — DirectSmsModule.toSharableUri handles
       // content:// URIs by copying them before MMS send
       val uris = rawUris.map { it.toString() }
-
-      android.util.Log.i("MainActivity", "  uris count: ${uris.size}")
 
       if (uris.isNotEmpty()) {
         sb.append("&uris=").append(Uri.encode(uris.joinToString(",")))
@@ -281,8 +253,6 @@ class MainActivity : ReactActivity() {
 
         val shareFile = File(cacheDir, "pending_share.json")
         shareFile.writeText(dump.toString())
-        android.util.Log.i("MainActivity", "  pending share path: ${shareFile.absolutePath}")
-        android.util.Log.i("MainActivity", "  wrote intent dump: ${dump.toString().take(300)}")
       } catch (e: Exception) {
         android.util.Log.w("MainActivity", "  failed to write dump: ${e.message}")
       }
@@ -303,7 +273,6 @@ class MainActivity : ReactActivity() {
 
       intent.data = Uri.parse(sb.toString())
       intent.action = Intent.ACTION_VIEW
-      android.util.Log.i("MainActivity", "  final deep-link: $sb")
       return
     }
 

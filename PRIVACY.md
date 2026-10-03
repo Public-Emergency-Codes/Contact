@@ -6,7 +6,7 @@ Contact processes highly sensitive device data. Anyone distributing a build is r
 
 ## Device data
 
-Depending on granted permissions and enabled features, the app can access SMS/MMS content, call state and call logs, contacts, precise/background location, camera, microphone, media, notifications, and overlay capabilities. Most application state is stored locally on the device.
+Depending on granted permissions and enabled features, the app can access SMS/MMS content, call state and call logs, contacts, precise/background location, camera, microphone, media, notifications, and overlay capabilities. Most application state is stored locally on the device. The Android app excludes its data from cloud backup and device-to-device transfer because it can contain location, emergency-history, profile, and medical information.
 
 ## External services
 

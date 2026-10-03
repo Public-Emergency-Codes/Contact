@@ -57,7 +57,7 @@ class WapPushReceiver : BroadcastReceiver() {
             val outFile = File(context.cacheDir, "incoming_mms_download_${System.currentTimeMillis()}.pdu")
             val outputUri: Uri = FileProvider.getUriForFile(
                 context,
-                "${context.packageName}.fileprovider",
+                "${context.packageName}.contactfiles",
                 outFile
             )
             val callback = Intent(context, MmsDownloadReceiver::class.java).apply {

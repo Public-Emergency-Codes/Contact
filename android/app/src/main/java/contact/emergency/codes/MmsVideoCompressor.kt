@@ -90,7 +90,7 @@ class MmsVideoCompressor(private val context: Context) {
                         onSuccess(
                             FileProvider.getUriForFile(
                                 context,
-                                "${context.packageName}.fileprovider",
+                                "${context.packageName}.contactfiles",
                                 output,
                             ),
                         )

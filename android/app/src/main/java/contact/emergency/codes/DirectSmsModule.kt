@@ -529,7 +529,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
             // Get FileProvider URI
             val contentUri = FileProvider.getUriForFile(
                 reactContext,
-                "${reactContext.packageName}.fileprovider",
+                "${reactContext.packageName}.contactfiles",
                 cacheFile
             )
 
@@ -647,7 +647,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
     private fun toSharableUri(rawUri: String): Uri {
         Log.i("DirectSms", "toSharableUri input=$rawUri")
         val parsed = Uri.parse(rawUri)
-        val authority = "${reactContext.packageName}.fileprovider"
+        val authority = "${reactContext.packageName}.contactfiles"
 
         if (parsed.scheme.equals("content", ignoreCase = true)) {
             val inStream = reactContext.contentResolver.openInputStream(parsed)

@@ -48,7 +48,7 @@ export const LEGAL_DOCUMENTS: Record<LegalDocumentKey, LegalDocument> = {
       {
         heading: 'Storage and retention',
         paragraphs: [
-          'Most app information is stored locally on your device. Emergency history is limited to the latest 50 records and records older than 90 days are scheduled for deletion. Location history is limited to the latest 500 points. Recordings remain until you delete them, clear app storage, or uninstall the app.',
+          'Most app information is stored locally on your device. Contact excludes its app data from Android cloud backup and device-to-device transfer. Emergency history is limited to the latest 50 records and records older than 90 days are scheduled for deletion. Location history is limited to the latest 500 points. Recordings remain until you delete them, clear app storage, or uninstall the app.',
           'Android, your carrier, recipients, emergency services, and external applications may separately retain calls, messages, attachments, or other information under their own policies.',
         ],
       },

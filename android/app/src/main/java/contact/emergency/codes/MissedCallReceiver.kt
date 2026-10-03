@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.telecom.TelecomManager
-import android.util.Log
 
 /**
  * Intercepts Telecom's ACTION_SHOW_MISSED_CALLS_NOTIFICATION ordered broadcast.
@@ -19,6 +18,8 @@ class MissedCallReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (TelecomManager.ACTION_SHOW_MISSED_CALLS_NOTIFICATION != intent.action) return
+        val telecomManager = context.getSystemService(TelecomManager::class.java)
+        if (telecomManager.defaultDialerPackage != context.packageName) return
 
         val missedCallCount = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getIntExtra(TelecomManager.EXTRA_NOTIFICATION_COUNT, 1)
@@ -33,8 +34,6 @@ class MissedCallReceiver : BroadcastReceiver() {
             @Suppress("DEPRECATION")
             intent.getStringExtra(TelecomManager.EXTRA_NOTIFICATION_PHONE_NUMBER)
         }
-
-        Log.i("MissedCallReceiver", "Missed call broadcast: count=$missedCallCount number=$phoneNumber")
 
         InCallNotificationHelper.showMissedCallNotification(
             context,

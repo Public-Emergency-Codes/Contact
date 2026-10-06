@@ -23,14 +23,14 @@ class PendingShareModule(reactContext: ReactApplicationContext) :
     fun consume(promise: Promise) {
         try {
             val file = pendingFile()
-            Log.i("MainActivity", "PendingShare.consume path=${file.absolutePath} exists=${file.exists()}")
+            Log.i("MainActivity", "Pending share consumed; cached=${file.exists()}")
             if (!file.exists()) {
                 promise.resolve(null)
                 return
             }
             val json = file.readText()
             if (!file.delete()) {
-                Log.w("MainActivity", "PendingShare.consume could not delete ${file.absolutePath}")
+                Log.w("MainActivity", "Pending share cache cleanup failed")
             }
             promise.resolve(json)
         } catch (e: Exception) {

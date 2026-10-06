@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 
 export type TabKey = 'emergency' | 'chat' | 'recent' | 'keypad' | 'contacts';
@@ -30,9 +31,10 @@ interface FloatingTabBarProps {
 
 export default function FloatingTabBar({ activeTab, onTabPress }: FloatingTabBarProps) {
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
   const s = makeStyles(colors);
   return (
-    <View style={s.pillBarWrap} pointerEvents="box-none">
+    <View style={[s.pillBarWrap, { bottom: Math.max(insets.bottom, 12) + 12 }]} pointerEvents="box-none">
       <View style={s.pillBar}>
         {TABS.map((tab) => {
           const active = activeTab === tab.key;
@@ -44,6 +46,9 @@ export default function FloatingTabBar({ activeTab, onTabPress }: FloatingTabBar
               style={[s.pillTab, active && s.pillTabActive]}
               onPress={() => onTabPress(tab.key)}
               activeOpacity={0.75}
+              accessibilityRole="tab"
+              accessibilityLabel={`${tab.label} tab`}
+              accessibilityState={{ selected: active }}
             >
               {tab.iconFamily === 'MaterialCommunityIcons' ? (
                 <MaterialCommunityIcons
@@ -81,7 +86,6 @@ const makeStyles = (colors: ReturnType<typeof useTheme>['colors']) =>
     position: 'absolute',
     left: 0,
     right: 0,
-    bottom: 24,
     alignItems: 'center',
     zIndex: 10,
   },

@@ -80,7 +80,7 @@ class WapPushReceiver : BroadcastReceiver() {
                 null,
                 pendingIntent
             )
-            Log.i(TAG, "System MMS download requested: $contentLocation")
+            Log.i(TAG, "System MMS download requested")
         } catch (e: Exception) {
             Log.e(TAG, "System MMS download request failed", e)
         }

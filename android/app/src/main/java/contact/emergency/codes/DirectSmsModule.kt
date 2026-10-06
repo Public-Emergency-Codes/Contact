@@ -171,7 +171,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
 
             // Write sent message to the SMS content provider so it appears
             // when querying content://sms (SmsManager does NOT auto-save).
-            saveSentMessage(phoneNumber, message, threadId, msgId)
+            saveSentMessage(phoneNumber, message, threadId)
 
             promise.resolve(msgId)
         } catch (e: Exception) {
@@ -183,7 +183,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
      * Write a sent SMS to the content://sms provider so it shows up in
      * queries (SmsManager.sendTextMessage does NOT auto-save sent messages).
      */
-    private fun saveSentMessage(phoneNumber: String, body: String, threadId: String, msgId: String) {
+    private fun saveSentMessage(phoneNumber: String, body: String, threadId: String) {
         try {
             val resolver = reactContext.contentResolver
 
@@ -216,11 +216,11 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
                 }
             }
 
-            val uri = resolver.insert(
+            resolver.insert(
                 android.net.Uri.parse("content://sms"),
                 values
             )
-            Log.i("DirectSms", "saveSentMessage($msgId): uri=$uri, tid=$tid, addr=$phoneNumber")
+            Log.i("DirectSms", "Sent SMS saved to the platform message store")
         } catch (e: Exception) {
             Log.w("DirectSms", "saveSentMessage failed (non-fatal): ${e.message}")
         }
@@ -246,7 +246,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
             val msgId = "mms_${System.currentTimeMillis()}"
             val mimeType = reactContext.contentResolver.getType(shareUri) ?: "application/octet-stream"
 
-            Log.i("DirectSms", "sendMms requested to=$phoneNumber msgLen=${message.length} uri=$shareUri mime=$mimeType")
+            Log.i("DirectSms", "MMS send requested; attachment type=$mimeType")
             prepareMmsAttachment(shareUri, mimeType, promise) { preparedUri ->
                 val ok = sendCarrierMmsPdu(phoneNumber, message, arrayListOf(preparedUri)) { sent, error ->
                     if (sent) promise.resolve(msgId)
@@ -273,7 +273,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
 
             val shareUri = toSharableUri(imageUri)
             val msgId = "mms_${System.currentTimeMillis()}"
-            Log.i("DirectSms", "sendMmsNoFallback requested to=$phoneNumber msgLen=${message.length} uri=$shareUri")
+            Log.i("DirectSms", "Carrier-only MMS send requested")
             val mimeType = reactContext.contentResolver.getType(shareUri) ?: "application/octet-stream"
             prepareMmsAttachment(shareUri, mimeType, promise) { preparedUri ->
                 val ok = sendCarrierMmsPdu(phoneNumber, message, arrayListOf(preparedUri)) { sent, error ->
@@ -312,7 +312,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
             }
 
             val msgId = "mms_${System.currentTimeMillis()}"
-            Log.i("DirectSms", "sendMmsImages requested to=$phoneNumber msgLen=${message.length} images=${shareUris.size}")
+            Log.i("DirectSms", "Multi-attachment MMS send requested; attachments=${shareUris.size}")
             val ok = sendCarrierMmsPdu(phoneNumber, message, shareUris) { sent, error ->
                 if (sent) promise.resolve(msgId)
                 else promise.reject("MMS_SEND_FAILED", error ?: "Carrier rejected the MMS")
@@ -464,7 +464,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
         }
 
         return try {
-            Log.i("DirectSms", "PDU MMS to=$phoneNumber msgLen=${messageText.length} images=${shareUris.size}")
+            Log.i("DirectSms", "Building carrier MMS; attachments=${shareUris.size}")
 
             // Read image bytes from the shareable URIs
             val mediaParts = shareUris.mapIndexedNotNull { index, uri ->
@@ -524,7 +524,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
             // Write PDU to cache file
             val cacheFile = java.io.File(reactContext.cacheDir, "mms_pdu_${System.currentTimeMillis()}.dat")
             java.io.FileOutputStream(cacheFile).use { it.write(pduBytes) }
-            Log.i("DirectSms", "PDU written to ${cacheFile.absolutePath} (${cacheFile.length()} bytes)")
+            Log.i("DirectSms", "PDU written to private cache (${cacheFile.length()} bytes)")
 
             // Get FileProvider URI
             val contentUri = FileProvider.getUriForFile(
@@ -645,7 +645,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
     }
 
     private fun toSharableUri(rawUri: String): Uri {
-        Log.i("DirectSms", "toSharableUri input=$rawUri")
+        Log.i("DirectSms", "Preparing shareable MMS attachment")
         val parsed = Uri.parse(rawUri)
         val authority = "${reactContext.packageName}.contactfiles"
 
@@ -660,7 +660,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
                 }
             }
             val result = FileProvider.getUriForFile(reactContext, authority, outFile)
-            Log.i("DirectSms", "toSharableUri content->file outFile=$outFile exists=${outFile.exists()} size=${outFile.length()} uri=$result")
+            Log.i("DirectSms", "Prepared content attachment; size=${outFile.length()}")
             return result
         }
 
@@ -681,7 +681,7 @@ class DirectSmsModule(private val reactContext: ReactApplicationContext) :
             }
         }
         val result = FileProvider.getUriForFile(reactContext, authority, outFile)
-        Log.i("DirectSms", "toSharableUri file->cache outFile=$outFile exists=${outFile.exists()} size=${outFile.length()} uri=$result")
+        Log.i("DirectSms", "Prepared file attachment; size=${outFile.length()}")
         return result
     }
 

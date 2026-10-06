@@ -1,0 +1,1 @@
+Fixed international phone-number entry, improved screen-reader labels and system-navigation spacing, clarified U.S. emergency-service availability, and removed sensitive details from messaging logs.

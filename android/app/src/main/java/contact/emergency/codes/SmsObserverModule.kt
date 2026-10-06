@@ -92,14 +92,14 @@ class SmsObserverModule(private val reactContext: ReactApplicationContext) :
                         val sender = normalizeNumber(rawSender)
                         val body = sms.messageBody ?: ""
                         val timestamp = sms.timestampMillis
-                        Log.d("SmsObserver", "[DBG] SMS from rawSender=$rawSender normalized=$sender monitored=$monitoredNumbers")
+                        Log.d("SmsObserver", "[DBG] SMS received; monitored candidates=${monitoredNumbers.size}")
 
                         val isMonitored = monitoredNumbers.isNotEmpty() &&
                             monitoredNumbers.any { it == sender || sender.endsWith(it) || it.endsWith(sender) }
 
                         Log.d("SmsObserver", "[DBG] isMonitored=$isMonitored body.isNotBlank=${body.isNotBlank()}")
                         if (isMonitored && body.isNotBlank()) {
-                            Log.d("SmsObserver", "[DBG] Emitting onPsapSmsReceived for sender=$rawSender")
+                            Log.d("SmsObserver", "[DBG] Emitting monitored SMS event")
                             val params = Arguments.createMap().apply {
                                 putString("sender", rawSender)
                                 putString("body", body)
@@ -133,7 +133,7 @@ class SmsObserverModule(private val reactContext: ReactApplicationContext) :
                     val body = intent.getStringExtra("body") ?: "Mock Sandbox SMS"
                     val timestamp = intent.getLongExtra("timestamp", System.currentTimeMillis())
 
-                    Log.d("SmsObserver", "[DBG MOCK] Mock outgoing SMS intent received: address=$address body=$body")
+                    Log.d("SmsObserver", "[DBG MOCK] Mock outgoing SMS intent received")
 
                     val normAddr = normalizeNumber(address)
                     val isEmergency = normAddr == "911" || normAddr == "988" || normAddr == "211" || normAddr == "311" ||
@@ -158,7 +158,7 @@ class SmsObserverModule(private val reactContext: ReactApplicationContext) :
             }
 
             isObserving = true
-            Log.d("SmsObserver", "[DBG] Receiver registered. Monitoring: $monitoredNumbers")
+            Log.d("SmsObserver", "[DBG] Receiver registered; monitored candidates=${monitoredNumbers.size}")
 
             // Also register a ContentObserver on content://sms as a fallback.
             // This catches messages that arrive via RCS (stored in telephony DB but no SMS_RECEIVED broadcast)
@@ -246,13 +246,13 @@ class SmsObserverModule(private val reactContext: ReactApplicationContext) :
                     if (id > lastProcessedOutgoingSmsId) {
                         lastProcessedOutgoingSmsId = id
                         val normAddr = normalizeNumber(address)
-                        Log.d("SmsObserver", "[DBG Outgoing] New outgoing message: _id=$id address=$address, normAddr=$normAddr")
+                        Log.d("SmsObserver", "[DBG Outgoing] New outgoing message detected")
 
                         val isEmergency = normAddr == "911" || normAddr == "988" || normAddr == "211" || normAddr == "311" ||
                             monitoredNumbers.any { it == normAddr || normAddr.endsWith(it) || it.endsWith(normAddr) }
 
                         if (isEmergency) {
-                            Log.d("SmsObserver", "[DBG Outgoing] Intercepted outgoing emergency SMS to $address")
+                            Log.d("SmsObserver", "[DBG Outgoing] Intercepted outgoing emergency SMS")
                             val params = Arguments.createMap().apply {
                                 putString("address", address)
                                 putString("body", body)
@@ -294,10 +294,10 @@ class SmsObserverModule(private val reactContext: ReactApplicationContext) :
                     val isMonitored = monitoredNumbers.isNotEmpty() &&
                         monitoredNumbers.any { n -> n == sender || sender.endsWith(n) || n.endsWith(sender) }
 
-                    Log.d("SmsObserver", "[DBG SMS] id=$id address=$address sender=$sender isMonitored=$isMonitored")
+                    Log.d("SmsObserver", "[DBG SMS] Message evaluated; isMonitored=$isMonitored")
 
                     if (isMonitored && body.isNotBlank()) {
-                        Log.d("SmsObserver", "[DBG SMS] Emitting onPsapSmsReceived from $address")
+                        Log.d("SmsObserver", "[DBG SMS] Emitting monitored SMS event")
                         val params = Arguments.createMap().apply {
                             putString("sender", address)
                             putString("body", body)
@@ -347,7 +347,7 @@ class SmsObserverModule(private val reactContext: ReactApplicationContext) :
                         while (a.moveToNext()) {
                             val t = a.getInt(a.getColumnIndexOrThrow("type"))
                             val addr = a.getString(a.getColumnIndexOrThrow("address")) ?: continue
-                            Log.d("SmsObserver", "[DBG MMS] addr row: type=$t addr=$addr")
+                            Log.d("SmsObserver", "[DBG MMS] Address row read; type=$t")
                             if (t == 137) { found = addr; break } // 137 = FROM
                         }
                         found
@@ -387,10 +387,10 @@ class SmsObserverModule(private val reactContext: ReactApplicationContext) :
                     val isMonitored = monitoredNumbers.isEmpty() ||
                         monitoredNumbers.any { n -> n == sender || sender.endsWith(n) || n.endsWith(sender) }
 
-                    Log.d("SmsObserver", "[DBG MMS] id=$id address=$address sender=$sender body=${body.take(30)} isMonitored=$isMonitored")
+                    Log.d("SmsObserver", "[DBG MMS] Message evaluated; isMonitored=$isMonitored")
 
                     if (isMonitored && body.isNotBlank()) {
-                        Log.d("SmsObserver", "[DBG MMS] Emitting onPsapSmsReceived from $address")
+                        Log.d("SmsObserver", "[DBG MMS] Emitting monitored MMS event")
                         val params = Arguments.createMap().apply {
                             putString("sender", address)
                             putString("body", body)

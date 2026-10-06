@@ -17,12 +17,12 @@ class MmsDownloadReceiver : BroadcastReceiver() {
         try {
             val file = File(path)
             if (!file.exists() || file.length() <= 0L) {
-                Log.w(TAG, "Downloaded MMS PDU missing or empty: $path")
+                Log.w(TAG, "Downloaded MMS PDU missing or empty")
                 return
             }
 
             val stored = MmsDownloadHelper.storeDownloadedPdu(context, file.readBytes())
-            Log.i(TAG, "System MMS download stored=$stored path=$path")
+            Log.i(TAG, "System MMS download stored=$stored")
             if (stored) emitToJs(context)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to store system-downloaded MMS", e)

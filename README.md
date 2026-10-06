@@ -1,6 +1,6 @@
 # Contact
 
-Contact is an Android phone app that enhances the calling and messaging you already use every day with built-in emergency tools. It works the way your phone already works — calls, texts, contacts, keypad, recent — and quietly integrates silent text-to-911, live video dispatch, real-time location sharing, medical-profile relay, and automatic routing to 988, 311, and 211. No new workflows to learn. Built with React Native, TypeScript, and native Kotlin modules.
+Contact is an Android phone app that enhances the calling and messaging you already use every day with built-in emergency tools. It works the way your phone already works — calls, texts, contacts, keypad, recent — and quietly integrates silent text-to-911, live video dispatch, real-time location sharing, medical-profile relay, and automatic routing to 988, 311, and 211. These numbered-service integrations are designed for the United States; availability and emergency numbers differ elsewhere. No new workflows to learn. Built with React Native, TypeScript, and native Kotlin modules.
 
 > [!CAUTION]
 > This project is not a certified emergency service, medical device, dispatch system, or replacement for the phone's native emergency calling features. Do not rely on it to contact emergency services or transmit accurate location data. Call your local emergency number using the system dialer when help is needed.

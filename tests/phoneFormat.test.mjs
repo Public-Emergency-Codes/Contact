@@ -19,5 +19,9 @@ test('validates and formats phone numbers', () => {
   assert.equal(isValidE164('3125550199'), false);
   assert.equal(formatPhoneNumber('+13125550199'), '(312) 555-0199');
   assert.equal(formatPhoneInput('3125550199'), '(312) 555-0199');
+  assert.equal(formatPhoneInput('+'), '+');
+  assert.equal(formatPhoneInput('06641234567'), '06641234567');
+  assert.equal(formatPhoneInput('+436641234567'), '+436641234567');
+  assert.equal(formatPhoneInput('+44 20 7946 0958'), '+442079460958');
   assert.equal(normalizePhoneLookup('+1 (312) 555-0199'), '3125550199');
 });

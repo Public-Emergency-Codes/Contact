@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, AppState, Keyboard, NativeModules, PermissionsAndroid, Platform, ScrollView, TextInput, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useIsFocused } from '@react-navigation/native';
 // @ts-ignore
 import { Ionicons } from '@expo/vector-icons';
 import * as Contacts from 'expo-contacts/legacy';
@@ -30,6 +31,7 @@ const Text = AppText;
 export default function CommunicationHubScreen({ navigation, isActive = true, initialTab, initialTabRequestId, pendingShare }: any) {
   const { colors } = useTheme();
   const { goToSettings } = useTabPager();
+  const isStackFocused = useIsFocused();
   const insets = useSafeAreaInsets();
   const styles = useMemo(() => makeCommunicationHubStyles(colors, insets.top), [colors, insets.top]);
   const [activeTab, setActiveTab] = useState<TabKey>('chat');
@@ -62,10 +64,12 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   const initialScrollDone = useRef(false);
   const pendingInitialTabRef = useRef<TabKey | null>(initialTab === 'chat' ? initialTab : null);
   const needsPagerReset = useRef(false);
+  const pendingPermissionTabRef = useRef<{ tab: TabKey; keys: string[] } | null>(null);
   const threadIdCacheRef = useRef<Map<string, string>>(new Map());
 
-  const requirePermissions = useCallback(async (keys: string[]) => {
+  const requirePermissions = useCallback(async (keys: string[], returnTab?: TabKey) => {
     if (await arePermissionsGranted(keys)) return true;
+    if (returnTab) pendingPermissionTabRef.current = { tab: returnTab, keys };
     navigation.navigate('Setup', { permissionKeys: keys });
     return false;
   }, [navigation]);
@@ -91,6 +95,19 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     pagerRef.current?.scrollTo({ x: idx * screenWidth, animated });
     setActiveTab(tab);
   }, [screenWidth]);
+
+  useEffect(() => {
+    if (!isStackFocused) return;
+    const pending = pendingPermissionTabRef.current;
+    if (!pending) return;
+    let cancelled = false;
+    void (async () => {
+      const granted = await arePermissionsGranted(pending.keys);
+      if (!cancelled && granted) snapToInnerTab(pending.tab, false);
+      pendingPermissionTabRef.current = null;
+    })();
+    return () => { cancelled = true; };
+  }, [isStackFocused, snapToInnerTab]);
 
   useEffect(() => {
     if (initialTab !== 'chat') return;
@@ -137,7 +154,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
         : key === 'chat'
           ? ['send_sms', 'receive_sms', 'default_sms']
           : [];
-    if (required.length > 0 && !await requirePermissions(required)) return;
+    if (required.length > 0 && !await requirePermissions(required, key)) return;
     const i = TAB_KEYS.indexOf(key);
     if (i >= 0) goToInnerPage(i);
   }, [goToInnerPage, requirePermissions]);
@@ -251,8 +268,8 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
   // Permission grants happen on Setup or in Android settings while this screen
   // remains mounted. Re-read the live permission state whenever Home is shown.
   useEffect(() => {
-    if (isActive) reloadData();
-  }, [isActive, reloadData]);
+    if (isActive && isStackFocused) reloadData();
+  }, [isActive, isStackFocused, reloadData]);
 
   const openSearch = useCallback(() => {
     setSearchVisible(true);
@@ -458,7 +475,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
       {
         id: 'e1', name: primaryEmergencyNumber, number: primaryEmergencyNumber,
         subtitle: coveredBy911.join(' · '), icon: 'alert-circle',
-        description: 'Connects you with emergency services when immediate police, fire, or medical assistance is needed.',
+        description: 'In the United States, connects you with emergency services when immediate police, fire, or medical assistance is needed.',
       },
     ];
     if (localNums.fire)
@@ -474,11 +491,11 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
     cards.push(
       {
         id: 'e4', name: '988', number: '988', subtitle: 'Suicide & Crisis Lifeline', icon: 'alert-circle',
-        description: 'Connects you with trained crisis counselors for suicide, mental health, emotional distress, or substance-use crises.',
+        description: 'U.S. service that connects you with trained crisis counselors for suicide, mental health, emotional distress, or substance-use crises.',
       },
       {
         id: 'e6', name: '211', number: '211', subtitle: 'Community & social services', icon: 'alert-circle',
-        description: 'Connects you with local health and human-service resources such as housing, food, financial assistance, and community support.',
+        description: 'U.S. service that connects you with local health and human-service resources such as housing, food, financial assistance, and community support.',
       },
       {
         id: 'e5', name: local311Loading ? 'Searching' : (savedCountyNumber || local311?.phone) ? '311' : 'Not available', number: savedCountyNumber || local311?.phone || '',
@@ -490,7 +507,7 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
         icon: 'alert-circle',
         callable: !local311Loading && !!(savedCountyNumber || local311?.phone),
         loading: local311Loading,
-        description: 'Connects you with local government services for issues such as roads, utilities, sanitation, code concerns, and other community requests.',
+        description: 'U.S. local service for roads, utilities, sanitation, code concerns, and other community requests. Availability varies by county or city.',
       },
     );
     return cards;
@@ -616,22 +633,39 @@ export default function CommunicationHubScreen({ navigation, isActive = true, in
               <TouchableOpacity
                 style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled, deepSearch && styles.iconBtnActive]}
                 onPress={() => setDeepSearch((v) => !v)}
+                accessibilityRole="button"
+                accessibilityLabel={deepSearch ? 'Disable deep message search' : 'Enable deep message search'}
               >
                 <Ionicons name="layers-outline" size={16} color={deepSearch ? '#60a5fa' : colors.textPrimary} />
               </TouchableOpacity>
             )}
-            <TouchableOpacity style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]} onPress={searchVisible ? closeSearch : openSearch}>
+            <TouchableOpacity
+              style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]}
+              onPress={searchVisible ? closeSearch : openSearch}
+              accessibilityRole="button"
+              accessibilityLabel={searchVisible ? 'Close search' : `Search ${activeTab === 'chat' ? 'chats' : 'contacts'}`}
+            >
               <Ionicons name={searchVisible ? 'close' : 'search-outline'} size={19} color={colors.textPrimary} />
             </TouchableOpacity>
           </>
         )}
         {activeTab === 'contacts' && !searchVisible && (
-          <TouchableOpacity style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]} onPress={() => { console.log('[CommunicationHubScreen] plus tapped'); editing311ContactRef.current = false; setEditingContact(null); setAddContactVisible(true); }}>
+          <TouchableOpacity
+            style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]}
+            onPress={() => { editing311ContactRef.current = false; setEditingContact(null); setAddContactVisible(true); }}
+            accessibilityRole="button"
+            accessibilityLabel="Add contact"
+          >
             <Ionicons name="add" size={22} color={colors.textPrimary} />
           </TouchableOpacity>
         )}
         {!searchVisible && (
-          <TouchableOpacity style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]} onPress={goToSettings}>
+          <TouchableOpacity
+            style={[styles.iconBtn, (scrolled || searchVisible) && styles.iconBtnScrolled]}
+            onPress={goToSettings}
+            accessibilityRole="button"
+            accessibilityLabel="Open settings"
+          >
             <Ionicons name="settings-outline" size={19} color={colors.textPrimary} />
           </TouchableOpacity>
         )}

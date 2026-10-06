@@ -25,6 +25,9 @@ export function EmergencyDirectoryPage(props: any) {
   return (
 <View style={{ width: screenWidth }}>
           <ScrollView contentContainerStyle={styles.emergencyTabList}>
+            <Text style={[styles.contactDetailText, { marginHorizontal: 4, marginBottom: 12, lineHeight: 18 }]}>
+              911, 988, 311, and 211 are U.S. services. Availability and emergency numbers differ in other countries.
+            </Text>
             {emergencyCards.map((item) => {
               const expanded = expandedEmergencyId === item.id;
               const isE911 = item.id === 'e1';
@@ -37,6 +40,9 @@ export function EmergencyDirectoryPage(props: any) {
                     style={styles.contactHeaderRow}
                     onPress={() => setExpandedEmergencyId((prev) => (prev === item.id ? null : item.id))}
                     activeOpacity={0.85}
+                    accessibilityRole="button"
+                    accessibilityLabel={`${item.name}, ${item.subtitle}`}
+                    accessibilityState={{ expanded }}
                   >
                     <Ionicons name={item.icon as any} size={24} color="#ef4444" style={{ marginRight: 12 }} />
                     <View style={styles.rowCenter}>
@@ -61,26 +67,42 @@ export function EmergencyDirectoryPage(props: any) {
                               withVideo: true,
                               startNewSession: true,
                             })}
+                            accessibilityRole="button"
                             accessibilityLabel="Start 911 call with video recording"
                           >
                             <Ionicons name="videocam" size={22} color="#fff" />
                           </TouchableOpacity>
                         )}
-                        {callable && <TouchableOpacity style={styles.emergencyActionBtn} onPress={() => { if (isE911) { openE911({ source: 'home_emergency_card', emergencyNumber: e911CardNumber, autoInitiateCall: true, startNewSession: true }); } else { makeCall(item.number, item.name); } }}>
+                        {callable && <TouchableOpacity
+                          style={styles.emergencyActionBtn}
+                          onPress={() => { if (isE911) { openE911({ source: 'home_emergency_card', emergencyNumber: e911CardNumber, autoInitiateCall: true, startNewSession: true }); } else { makeCall(item.number, item.name); } }}
+                          accessibilityRole="button"
+                          accessibilityLabel={`Call ${item.name}`}
+                        >
                           <Ionicons name="call" size={22} color="#fff" />
                         </TouchableOpacity>}
                         {isE911 && (
-                          <TouchableOpacity style={styles.emergencyActionBtn} onPress={() => openE911({ source: 'home_emergency_card', emergencyNumber: e911CardNumber, showInitiateCallButton: true })}>
+                          <TouchableOpacity
+                            style={styles.emergencyActionBtn}
+                            onPress={() => openE911({ source: 'home_emergency_card', emergencyNumber: e911CardNumber, showInitiateCallButton: true })}
+                            accessibilityRole="button"
+                            accessibilityLabel="Open text-to-911"
+                          >
                             <Ionicons name="chatbox" size={22} color="#fff" />
                           </TouchableOpacity>
                         )}
                         {smsCapable && (
-                          <TouchableOpacity style={styles.emergencyActionBtn} onPress={() => navigateToSmsChat(item.number)}>
+                          <TouchableOpacity
+                            style={styles.emergencyActionBtn}
+                            onPress={() => navigateToSmsChat(item.number)}
+                            accessibilityRole="button"
+                            accessibilityLabel={`Text ${item.name}`}
+                          >
                             <Ionicons name="chatbox" size={22} color="#fff" />
                           </TouchableOpacity>
                         )}
                         {is311 && (
-                          <TouchableOpacity style={styles.emergencyActionBtn} onPress={edit311Contact} accessibilityLabel="Correct county service number in phone contacts">
+                          <TouchableOpacity style={styles.emergencyActionBtn} onPress={edit311Contact} accessibilityRole="button" accessibilityLabel="Correct county service number in phone contacts">
                             <Ionicons name="pencil" size={22} color="#fff" />
                           </TouchableOpacity>
                         )}

@@ -75,8 +75,8 @@ class SmsDeliverReceiver : BroadcastReceiver() {
                 put(Telephony.Sms.READ, 0)
                 put(Telephony.Sms.TYPE, Telephony.Sms.MESSAGE_TYPE_INBOX)
             }
-            val uri = context.contentResolver.insert(Telephony.Sms.CONTENT_URI, values)
-            Log.d(TAG, "Wrote SMS to provider: uri=$uri address=$address")
+            context.contentResolver.insert(Telephony.Sms.CONTENT_URI, values)
+            Log.d(TAG, "Wrote SMS to provider")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to write SMS to provider", e)
         }
@@ -112,7 +112,7 @@ class SmsDeliverReceiver : BroadcastReceiver() {
                 .build()
 
             NotificationManagerCompat.from(context).notify(address.hashCode(), notification)
-            Log.d(TAG, "Notification posted for $title ($address)")
+            Log.d(TAG, "SMS notification posted")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to show notification", e)
         }
@@ -162,7 +162,7 @@ class SmsDeliverReceiver : BroadcastReceiver() {
                 reactContext
                     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
                     .emit("onSmsReceived", params)
-                Log.d(TAG, "Emitted onSmsReceived to JS: $address")
+                Log.d(TAG, "Emitted SMS received event to JS")
             }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to emit to JS", e)

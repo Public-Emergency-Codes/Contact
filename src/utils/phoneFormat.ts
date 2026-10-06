@@ -10,13 +10,17 @@ export function formatPhoneNumber(raw: string): string {
 }
 
 export function formatPhoneInput(raw: string): string {
-  const digits = String(raw || '').replace(/\D/g, '');
-  const local = digits.length > 10 && digits.startsWith('1') ? digits.slice(1, 11) : digits.slice(0, 10);
+  const value = String(raw || '').trim();
+  const hasLeadingPlus = value.startsWith('+');
+  const digits = value.replace(/\D/g, '').slice(0, 15);
+  if (!digits) return hasLeadingPlus ? '+' : '';
 
-  if (local.length === 0) return '';
-  if (local.length < 4) return local;
-  if (local.length < 7) return `(${local.slice(0, 3)}) ${local.slice(3)}`;
-  return `(${local.slice(0, 3)}) ${local.slice(3, 6)}-${local.slice(6)}`;
+  // Preserve international numbers as E.164-style input and never discard
+  // significant digits from longer national numbers.
+  if (hasLeadingPlus) return `+${digits}`;
+  if (digits.length !== 10) return digits;
+
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
 
 export function normalizePhoneE164(raw: string): string {

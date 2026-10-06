@@ -19,7 +19,7 @@ object MmsDownloadHelper {
         val pdu = PduParser(pduBytes).parse()
         if (pdu !is NotificationInd) { Log.d(TAG, "PDU not NotificationInd"); return false }
         val contentLocation = contentLocation(pduBytes) ?: return false
-        Log.i(TAG, "MMS URL: $contentLocation")
+        Log.i(TAG, "Downloading carrier MMS payload")
 
         val (proxyHost, proxyPort) = getApn(context) ?: run {
             Log.e(TAG, "No MMSC/APN — cannot download MMS"); return false
@@ -81,7 +81,7 @@ object MmsDownloadHelper {
             conn.inputStream.use { input ->
                 val out = ByteArrayOutputStream(); input.copyTo(out); out.toByteArray()
             }
-        } catch (e: Exception) { Log.e(TAG, "HTTP GET failed: $urlStr", e); null }
+        } catch (e: Exception) { Log.e(TAG, "MMS HTTP download failed", e); null }
     }
 
     private fun storeMms(context: Context, retrieveConf: RetrieveConf, sender: String): Boolean {
@@ -96,7 +96,7 @@ object MmsDownloadHelper {
                 if (threadId > 0) put("thread_id", threadId)
             }) ?: return false
         val mmsId = mmsUri.lastPathSegment ?: return false
-        Log.i(TAG, "MMS id=$mmsId threadId=$threadId")
+        Log.i(TAG, "Storing downloaded MMS")
 
         context.contentResolver.insert(Uri.parse("content://mms/$mmsId/addr"),
             ContentValues().apply { put("address", sender); put("type", 137); put("charset", 106) })
@@ -127,7 +127,7 @@ object MmsDownloadHelper {
             if (pv.size() > 0) context.contentResolver.insert(Uri.parse("content://mms/$mmsId/part"), pv)
         }
         IncomingMmsCache.add(context, "incoming_mms_$mmsId", sender, textBody, dateMs, mediaPaths, mediaMimes)
-        Log.i(TAG, "MMS stored: id=$mmsId from=$sender parts=${body.partsNum}")
+        Log.i(TAG, "MMS stored; parts=${body.partsNum}")
         return true
     }
 

@@ -114,7 +114,7 @@ class SmsWriterModule(reactContext: ReactApplicationContext) :
             for (emergency in NEVER_BLOCK) {
                 if (clean.contains(normalize(emergency))) {
                     val msg = "Refusing to block emergency/PSAP number: $phoneNumber"
-                    Log.w("SmsWriter", msg)
+                    Log.w("SmsWriter", "Refusing to block an emergency/PSAP number")
                     promise.reject("BLOCK_EMERGENCY", msg)
                     return
                 }
@@ -130,7 +130,7 @@ class SmsWriterModule(reactContext: ReactApplicationContext) :
             )
 
             if (uri != null) {
-                Log.i("SmsWriter", "blockNumber($phoneNumber): blocked at $uri")
+                Log.i("SmsWriter", "Phone number added to the platform block list")
                 promise.resolve(true)
             } else {
                 // Already blocked or insert failed
